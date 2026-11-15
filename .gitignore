@@ -1,0 +1,7 @@
+build/
+bin/
+graphs/
+data/
+results/smoke/
+*.o
+*.d
