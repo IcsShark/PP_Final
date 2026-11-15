@@ -29,7 +29,7 @@ LIB_S := $(LIB_SRCS:%.cpp=$(BUILD)/stats/%.o)
 PROGS := $(BIN)/sssp $(BIN)/sssp_stats $(BIN)/convert $(BIN)/gen $(BIN)/profile \
          $(BIN)/test_sssp $(BIN)/test_sssp_stats
 
-.PHONY: all test smoke debug clean
+.PHONY: all test debug clean
 .SECONDARY:
 
 all: $(PROGS)
@@ -65,9 +65,6 @@ $(BIN)/%: $(BUILD)/normal/tools/%.o $(LIB_N)
 test: $(BIN)/test_sssp $(BIN)/test_sssp_stats
 > ./$(BIN)/test_sssp tests/testcase
 > ./$(BIN)/test_sssp_stats tests/testcase
-
-smoke: all
-> bash scripts/smoke.sh
 
 # AddressSanitizer + UBSan build in separate directories.
 debug:

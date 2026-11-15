@@ -94,6 +94,12 @@ void delta_stepping_omp(const CSRGraph& g, vid_t src, const DeltaOptions& opt, i
 
     // Concatenate every thread's `local` into `shared`; returns total size.
     auto gather = [&](std::vector<vid_t>& local, std::vector<vid_t>& shared) -> uint64_t {
+      // Read the capacity BEFORE the barrier: nobody can be resizing `shared`
+      // here, so every thread sees the same value and takes the same branch
+      // below. (Reading shared.size() after the barrier let a late thread see
+      // the already-resized vector, skip the `single`, and desynchronise the
+      // barriers -> intermittent deadlock.)
+      const uint64_t cap = shared.size();
       sizes[tid].v = local.size();
 #pragma omp barrier
       uint64_t offset = 0, total = 0;
@@ -101,9 +107,9 @@ void delta_stepping_omp(const CSRGraph& g, vid_t src, const DeltaOptions& opt, i
         if (t == tid) offset = total;
         total += sizes[t].v;
       }
-      if (total > shared.size()) {  // same decision on every thread
+      if (total > cap) {  // identical decision on every thread (same total, same cap)
 #pragma omp single
-        shared.resize(std::max<uint64_t>(total, 2 * shared.size()));
+        shared.resize(std::max<uint64_t>(total, 2 * cap));
       }
       std::copy(local.begin(), local.end(), shared.begin() + static_cast<std::ptrdiff_t>(offset));
       local.clear();
