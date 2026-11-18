@@ -6,6 +6,7 @@
 #
 # Usage: run -c 12 -- bash scripts/exp/e4_check_ref.sh [GRAPH...]
 # Output: $E4_RES/ref_check.log
+{ # read the whole script first: replacing this file mid-run is then safe
 set -euo pipefail
 source "$(dirname "$0")/e4_env.sh"
 
@@ -52,3 +53,5 @@ for G in "${graphs[@]}"; do
   rm -f "$C"
 done
 echo "== check_ref OK in ${SECONDS}s"
+exit
+}

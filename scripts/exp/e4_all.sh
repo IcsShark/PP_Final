@@ -10,6 +10,7 @@
 #
 # Steps whose status file already says OK are skipped, so rerunning resumes.
 # Stops at the first failure (verification or otherwise); see results/e4_gapbs/logs.
+{ # read the whole script first: replacing this file mid-run is then safe
 set -euo pipefail
 source "$(dirname "$0")/e4_env.sh"
 command -v run > /dev/null || e4_die "'run' not found; module load pp first"
@@ -71,3 +72,5 @@ for G in "${graphs[@]}"; do
   fi
 done
 echo "[$(date +%T)] all done: ${graphs[*]}"
+exit
+}

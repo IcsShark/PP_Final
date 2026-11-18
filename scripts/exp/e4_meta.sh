@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # E4: write $E4_RES/META.txt from the repo, the GAPBS checkout and the job logs.
 # Light work; run on the login node after (or during) e4_all.sh.
+{ # read the whole script first: replacing this file mid-run is then safe
 set -euo pipefail
 source "$(dirname "$0")/e4_env.sh"
 OUT="$E4_RES/META.txt"
@@ -73,3 +74,5 @@ echo "- sweep uses -r 3 and the median (spec example: -r 1)."
 echo "- one job per (graph, threads, Delta) to stay under the 30-min QoS limit."
 } > "$OUT"
 echo "wrote $OUT"
+exit
+}

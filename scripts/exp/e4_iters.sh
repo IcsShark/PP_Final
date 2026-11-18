@@ -5,6 +5,7 @@
 #
 # Usage: run -c 12 -- bash scripts/exp/e4_iters.sh GRAPH   (after its runs)
 # Output: $E4_RES/iters/GRAPH.csv  graph,delta,threads,source,gapbs_iterations,ours_phases
+{ # read the whole script first: replacing this file mid-run is then safe
 set -euo pipefail
 source "$(dirname "$0")/e4_env.sh"
 
@@ -32,3 +33,5 @@ cat "$CSV"
 [ "$(wc -l < "$CSV")" = 2 ] || e4_die "$CSV incomplete"
 echo "OK" > "$STATUS"
 echo "== iters $G OK in ${SECONDS}s"
+exit
+}

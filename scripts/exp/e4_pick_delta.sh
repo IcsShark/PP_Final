@@ -3,6 +3,7 @@
 # $E4_RES/sweep/GRAPH.csv and its two neighbours in the sweep grid (fails if
 # the best is at an edge of the grid). Light work; fine on the login node.
 # Output (stdout): PREV,BEST,NEXT<TAB>BEST<TAB>E0_REF (or -)
+{ # read the whole script first: replacing this file mid-run is then safe
 set -euo pipefail
 source "$(dirname "$0")/e4_env.sh"
 
@@ -28,3 +29,5 @@ awk -F, -v grid="$E4_SWEEP_DELTAS" -v ref="${E4_REF_DELTA[$G]:--}" '
     if (bi <= 1 || bi >= n) { print "best delta " d[bi] " is at the edge of the sweep grid" > "/dev/stderr"; exit 1 }
     printf "%s,%s,%s\t%s\t%s\n", d[bi - 1], d[bi], d[bi + 1], d[bi], ref
   }' "$CSV"
+exit
+}

@@ -11,6 +11,7 @@
 #        -> $E4_RES/raw/GRAPH_tT_dTAG.gapbs.csv    (one row per trial)
 # The .wsg is staged to node-local tmp first (GAPBS reloads it per invocation).
 # Any WRONG (ours) or Verification FAIL (GAPBS) stops the script.
+{ # read the whole script first: replacing this file mid-run is then safe
 set -euo pipefail
 source "$(dirname "$0")/e4_env.sh"
 
@@ -71,3 +72,5 @@ for f in "$OURS" "$GAP"; do
 done
 echo "OK $(date -Is) ${SECONDS}s" > "$STATUS"
 echo "== run $TAG OK in ${SECONDS}s"
+exit
+}

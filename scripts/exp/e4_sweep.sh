@@ -4,6 +4,7 @@
 #
 # Usage: run -c 12 -- bash scripts/exp/e4_sweep.sh GRAPH
 # Output: $E4_RES/sweep/GRAPH.csv (bin/sssp CSV), status in $E4_RES/status/sweep_GRAPH
+{ # read the whole script first: replacing this file mid-run is then safe
 set -euo pipefail
 source "$(dirname "$0")/e4_env.sh"
 
@@ -26,3 +27,5 @@ ROWS=$(wc -l < "$CSV")
 [ "$ROWS" = $(( $(tr ',' '\n' <<< "$E4_SWEEP_DELTAS" | wc -l) * 3 + 1 )) ] || e4_die "$CSV has $ROWS lines"
 echo "OK" > "$STATUS"
 echo "== sweep $G OK in ${SECONDS}s"
+exit
+}

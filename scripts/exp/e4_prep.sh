@@ -14,6 +14,7 @@
 # E4_FRESH (e4_env.sh) keep the regenerated .csr in $E4_OUT for ours. Only the .wsg is
 # kept, and e4_all.sh deletes it once the graph's runs are done.
 # `run` always exits 0, so the result is written to $E4_RES/status/prep_GRAPH.
+{ # read the whole script first: replacing this file mid-run is then safe
 set -euo pipefail
 source "$(dirname "$0")/e4_env.sh"
 
@@ -95,3 +96,5 @@ read -r GN GM < <(sed -n 's/^Graph has \([0-9]*\) nodes and \([0-9]*\) directed 
 echo "-- GAPBS graph: n=$GN m=$GM (same as ours)"
 echo "OK n=$GN m=$GM" > "$STATUS"
 echo "== prep $G OK in ${SECONDS}s"
+exit
+}
