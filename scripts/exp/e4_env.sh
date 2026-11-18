@@ -42,3 +42,22 @@ e4_csr() { if e4_fresh "$1"; then echo "$E4_OUT/$1.csr"; else echo "$E4_REF_CSR/
 e4_mktmp() { mktemp -d "${TMPDIR:-/tmp}/e4_${USER}_XXXXXX"; }
 
 e4_die() { echo "E4 ERROR: $*" >&2; exit 1; }
+
+# ---- driver helpers (login node; e4_all.sh, e4_suggested.sh)
+ok() { [ -f "$E4_RES/status/$1" ] && grep -q '^OK' "$E4_RES/status/$1"; }
+# The job writes its status on the compute node; the login node's NFS cache can
+# take up to a minute to show a new file or its new contents.
+ok_wait() { for _ in $(seq 1 30); do ok "$1" && return 0; sleep 3; done; return 1; }
+# Wait (up to ~90 s) until FILE shows LINES lines on this node (NFS cache).
+wait_lines() { for _ in $(seq 1 30); do [ -f "$1" ] && [ "$(wc -l < "$1")" = "$2" ] && return 0; sleep 3; done; return 1; }
+job() { # status-name script args...   (one compute job, whole node)
+  local st=$1; shift
+  if ok "$st"; then echo "[$(date +%T)] skip $st (OK)"; return 0; fi
+  echo "[$(date +%T)] submit $st"
+  # run always exits 0. It prints the job's output (a fresh slurm-*.out, so no
+  # stale NFS cache) when the job ends; every e4 step ends with "== ... OK in".
+  local out
+  out=$(run -c 12 -- bash "$@" 2>&1 || true)
+  grep -q '^== .* OK in [0-9]*s$' <<< "$out" || ok_wait "$st" || e4_die "$st: $(cat "$E4_RES/status/$st" 2>/dev/null || echo 'no status (job killed? 30 min limit)')"
+  echo "[$(date +%T)] done   $st: $(grep -m1 '^== .* OK in' <<< "$out" || cat "$E4_RES/status/$st" 2>/dev/null)"
+}

@@ -16,24 +16,6 @@ source "$(dirname "$0")/e4_env.sh"
 command -v run > /dev/null || e4_die "'run' not found; module load pp first"
 cd "$E4_REPO"
 
-ok() { [ -f "$E4_RES/status/$1" ] && grep -q '^OK' "$E4_RES/status/$1"; }
-# The job writes its status on the compute node; the login node's NFS cache can
-# take up to a minute to show a new file or its new contents.
-ok_wait() { for _ in $(seq 1 30); do ok "$1" && return 0; sleep 3; done; return 1; }
-job() { # status-name script args...
-  local st=$1; shift
-  if ok "$st"; then echo "[$(date +%T)] skip $st (OK)"; return 0; fi
-  echo "[$(date +%T)] submit $st"
-  # run always exits 0. It prints the job's output (a fresh slurm-*.out, so no
-  # stale NFS cache) when the job ends; every e4 step ends with "== ... OK in".
-  local out
-  out=$(run -c 12 -- bash "$@" 2>&1 || true)
-  grep -q '^== .* OK in [0-9]*s$' <<< "$out" || ok_wait "$st" || e4_die "$st: $(cat "$E4_RES/status/$st" 2>/dev/null || echo 'no status (job killed? 30 min limit)')"
-  echo "[$(date +%T)] done   $st: $(grep -m1 '^== .* OK in' <<< "$out" || cat "$E4_RES/status/$st" 2>/dev/null)"
-}
-
-# Wait (up to ~90 s) until FILE shows LINES lines on this node (NFS cache).
-wait_lines() { for _ in $(seq 1 30); do [ -f "$1" ] && [ "$(wc -l < "$1")" = "$2" ] && return 0; sleep 3; done; return 1; }
 
 # Never overlap with a job left over from an earlier driver (pp_qos: 1 job).
 while [ -n "$(squeue -u "$USER" -h 2>/dev/null)" ]; do sleep 10; done
