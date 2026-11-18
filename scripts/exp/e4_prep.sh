@@ -5,11 +5,13 @@
 # Usage (one compute job per graph; run -c 12 so the node's RAM is ours):
 #   run -c 12 -- bash scripts/exp/e4_prep.sh GRAPH
 #
-#   raw .gz / bin/gen --emit-wel --> $E4_OUT/GRAPH.csr + tmp/GRAPH.wel
-#   cmp $E4_OUT/GRAPH.csr $E4_REF_CSR/GRAPH.csr        (same graph + weights)
+#   raw .gz / bin/gen --emit-wel --> tmp/GRAPH.csr + tmp/GRAPH.wel
+#   cmp tmp/GRAPH.csr $E4_REF_CSR/GRAPH.csr             (same graph + weights)
 #   GAPBS converter -f tmp/GRAPH.wel -w -b $E4_OUT/GRAPH.wsg
 #
-# The .wel only lives in node-local tmp and is deleted when the job ends.
+# The regenerated .csr and the .wel only live in node-local tmp (deleted when
+# the job ends): the home quota (10 GB) cannot hold them. Only the .wsg is
+# kept, and e4_all.sh deletes it once the graph's runs are done.
 # `run` always exits 0, so the result is written to $E4_RES/status/prep_GRAPH.
 set -euo pipefail
 source "$(dirname "$0")/e4_env.sh"
@@ -26,7 +28,7 @@ trap 'rm -rf "$TMP"' EXIT
 echo "== prep $G on $(hostname) at $(date -Is), tmp=$TMP"
 SECONDS=0
 
-CSR="$E4_OUT/$G.csr"
+CSR="$TMP/$G.csr"
 WEL="$TMP/$G.wel"
 WSG="$E4_OUT/$G.wsg"
 
@@ -64,9 +66,16 @@ M_WEL=$(wc -l < "$WEL")
 [ "$M_WEL" = "$OM" ] || e4_die ".wel has $M_WEL edges but our CSR has m=$OM"
 # -w: keep weights (without it GAPBS drops them). No -s: keep edges directed
 # exactly as in our CSR (LJ is directed; the others are already symmetric).
-"$GAPBS_DIR/converter" -f "$WEL" -w -b "$WSG" | tee "$TMP/conv.out"
+rm -f "$CSR"
+"$GAPBS_DIR/converter" -f "$WEL" -w -b "$WSG.part" | tee "$TMP/conv.out"
 rm -f "$WEL"
-echo "-- wsg done (${SECONDS}s); size $(stat -c %s "$WSG") bytes"
+# GAPBS's writer does not check write errors (e.g. quota): verify the size.
+# Layout: directed flag (1) + m (8) + n (8) + 2 x [(n+1) offsets + m edges] x 8.
+WANT=$((17 + 2 * ((ON + 1) * 8 + OM * 8)))
+HAVE=$(stat -c %s "$WSG.part")
+[ "$HAVE" = "$WANT" ] || e4_die "$WSG.part has $HAVE bytes, expected $WANT (disk quota?)"
+mv "$WSG.part" "$WSG"
+echo "-- wsg done (${SECONDS}s); size $HAVE bytes (as expected)"
 
 read -r GN GM < <(sed -n 's/^Graph has \([0-9]*\) nodes and \([0-9]*\) directed edges.*/\1 \2/p' "$TMP/conv.out")
 [ -n "${GN:-}" ] || e4_die "cannot parse GAPBS graph stats (expected a directed graph)"

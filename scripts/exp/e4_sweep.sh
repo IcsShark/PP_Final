@@ -20,5 +20,8 @@ echo "== sweep $G on $(hostname) at $(date -Is)"
 SECONDS=0
 "$E4_REPO/bin/sssp" -g "$E4_REF_CSR/$G.csr" -a delta-omp -d "$E4_SWEEP_DELTAS" -t 12 \
   --sources 1 --seed 42 -r 3 -q --verify --csv "$CSV"
+# 13 deltas x 3 reps + header; a short file means a lost write (e.g. quota).
+ROWS=$(wc -l < "$CSV")
+[ "$ROWS" = $(( $(tr ',' '\n' <<< "$E4_SWEEP_DELTAS" | wc -l) * 3 + 1 )) ] || e4_die "$CSV has $ROWS lines"
 echo "OK" > "$STATUS"
 echo "== sweep $G OK in ${SECONDS}s"

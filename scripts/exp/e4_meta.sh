@@ -25,9 +25,11 @@ echo
 echo "## Data"
 echo "raw:        $E4_RAW  (downloaded with scripts/fetch-datasets.sh; md5sum -c datasets/md5sums.txt all OK)"
 echo "reference:  $E4_REF_CSR  (the CSRs E0-E2 use)"
-echo "generated:  $E4_OUT/{GRAPH.csr,GRAPH.wsg}; .wel only in node-local tmp, deleted after conversion"
+echo "generated:  $E4_OUT/GRAPH.wsg, deleted once the graph's runs are done (10 GB home quota);"
+echo "            the regenerated .csr and the .wel only live in node-local tmp"
 echo "check:      e4_prep.sh rebuilds GRAPH.csr with the exact convert-all.sh / gen-synthetic.sh arguments,"
-echo "            cmp's it against the reference (must be identical), and checks GAPBS reports the same n and m:"
+echo "            cmp's it against the reference (must be identical), checks GAPBS reports the same n and m,"
+echo "            and checks the .wsg file size against its layout:"
 for f in "$E4_RES"/status/prep_*; do [ -f "$f" ] && printf '  %-10s %s\n' "${f##*/prep_}" "$(cat "$f")"; done
 echo
 echo "## Delta (deltas.csv): best = fastest in the e4_sweep.sh grid (t=12, 1 source, median of 3);"
@@ -60,7 +62,8 @@ echo
 echo "## Deviations from docs/E4-experiment-spec.md"
 echo "- raw/ read from \$HOME/pp_data/raw (own md5-verified download): the shared raw/ is not readable by this account."
 echo "- outputs in \$HOME/pp_data/gapbs instead of the shared \$PP_DATA_DIR/gapbs (user's decision)."
-echo "- .wel written to node-local tmp, not to the gapbs/ directory (faster; deleted when the job ends)."
+echo "- .wel and the regenerated .csr written to node-local tmp, not to gapbs/; each .wsg deleted after its"
+echo "  graph is done. Reason: 10 GB home quota (a USA sweep was lost to 'Disk quota exceeded' and rerun)."
 echo "- GAPBS converter needs -w (spec 4.3 omitted it; without it the .wsg would be unweighted)."
 echo "- Delta from a sweep for every graph (spec allows it); the E0 references were clearly not optimal on NY t=12."
 echo "- sweep uses -r 3 and the median (spec example: -r 1)."

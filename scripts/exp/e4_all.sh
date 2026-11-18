@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
-# E4 driver: for each graph, prep -> Delta sweep -> runs at t = 1, 6, 12.
+# E4 driver: for each graph, prep -> Delta sweep -> runs at t = 1, 6, 12 ->
+# GAPBS iteration count -> delete the graph's .wsg (home quota is 10 GB; set
+# E4_KEEP_WSG=1 to keep it).
 # Submits one job at a time through `run` (pp_qos: 1 job, <= 30 min each) and
 # only waits in between, so it can stay on the login node:
 #
@@ -29,15 +31,23 @@ job() { # status-name script args...
   echo "[$(date +%T)] done   $st: $(grep -m1 '^== .* OK in' <<< "$out" || cat "$E4_RES/status/$st" 2>/dev/null)"
 }
 
+# Wait (up to ~90 s) until FILE shows LINES lines on this node (NFS cache).
+wait_lines() { for _ in $(seq 1 30); do [ -f "$1" ] && [ "$(wc -l < "$1")" = "$2" ] && return 0; sleep 3; done; return 1; }
+
 # Never overlap with a job left over from an earlier driver (pp_qos: 1 job).
 while [ -n "$(squeue -u "$USER" -h 2>/dev/null)" ]; do sleep 10; done
 
 graphs=("$@")
 [ ${#graphs[@]} -gt 0 ] || graphs=("${E4_GRAPHS[@]}")
 mkdir -p "$E4_RES"
+NSWEEP=$(( $(tr ',' '\n' <<< "$E4_SWEEP_DELTAS" | wc -l) * 3 + 1 ))
 for G in "${graphs[@]}"; do
+  if ok "iters_$G"; then echo "[$(date +%T)] skip $G (done)"; continue; fi
+  # .wsg deleted after an earlier, partly finished pass: rebuild it.
+  [ -f "$E4_OUT/$G.wsg" ] || rm -f "$E4_RES/status/prep_$G"
   job "prep_$G" scripts/exp/e4_prep.sh "$G"
   job "sweep_$G" scripts/exp/e4_sweep.sh "$G"
+  wait_lines "$E4_RES/sweep/$G.csv" "$NSWEEP" || e4_die "sweep/$G.csv incomplete on the login node"
   IFS=$'\t' read -r DELTAS BEST REF < <(bash scripts/exp/e4_pick_delta.sh "$G")
   [ -n "${BEST:-}" ] || e4_die "no Delta picked for $G"
   echo "[$(date +%T)] $G deltas=$DELTAS best=$BEST (E0 ref $REF)"
@@ -54,5 +64,10 @@ for G in "${graphs[@]}"; do
       job "run_${G}_t${T}_d${D}" scripts/exp/e4_run.sh "$G" "$T" "$D"
     done
   done
+  job "iters_$G" scripts/exp/e4_iters.sh "$G"
+  if [ "${E4_KEEP_WSG:-0}" != 1 ]; then
+    rm -f "$E4_OUT/$G.wsg"
+    echo "[$(date +%T)] removed $E4_OUT/$G.wsg"
+  fi
 done
 echo "[$(date +%T)] all done: ${graphs[*]}"

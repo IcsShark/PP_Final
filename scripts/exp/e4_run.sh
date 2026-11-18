@@ -63,5 +63,10 @@ for D in ${DELTAS//,/ }; do
   done
 done
 [ "$fails" = 0 ] || e4_die "GAPBS verification failed for $TAG (see $LOG)"
+# 4 sources x 3 reps x (#deltas) rows + header in each CSV; catches lost writes.
+WANT=$(( 4 * 3 * $(tr ',' '\n' <<< "$DELTAS" | wc -l) + 1 ))
+for f in "$OURS" "$GAP"; do
+  [ "$(wc -l < "$f")" = "$WANT" ] || e4_die "$f has $(wc -l < "$f") lines, expected $WANT"
+done
 echo "OK $(date -Is) ${SECONDS}s" > "$STATUS"
 echo "== run $TAG OK in ${SECONDS}s"
