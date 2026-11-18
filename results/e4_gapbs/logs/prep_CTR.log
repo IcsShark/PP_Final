@@ -1,0 +1,14 @@
+== prep CTR on cmpt055.hpc.cc.cs.nctu.edu.tw at 2026-11-19T01:57:16+08:00, tmp=/tmp/e4_chiangca_HXi8mc
+read /tmp/e4_chiangca_HXi8mc/CTR.txt: n=14081816 input edges=34292496 (1.0 s)
+built CSR: n=14081816 m=33866826 (0.4 s)
+wrote /tmp/e4_chiangca_HXi8mc/CTR.csr (0.1 s)
+wrote /tmp/e4_chiangca_HXi8mc/CTR.wel (1.3 s)
+profile: d_avg=2.41 d_max=8 w_min=1 w_max=214013 zero_out_degree=0
+-- csr+wel done (12s); wel size 715569464 bytes
+-- cmp OK: /tmp/e4_chiangca_HXi8mc/CTR.csr == /u/cs/111/111550055/pp_data/csr/CTR.csr
+Read Time:           4.48197
+Build Time:          0.67233
+Graph has 14081816 nodes and 33866826 directed edges for degree: 2
+-- wsg done (46s); size 767178305 bytes (as expected)
+-- GAPBS graph: n=14081816 m=33866826 (same as ours)
+== prep CTR OK in 46s

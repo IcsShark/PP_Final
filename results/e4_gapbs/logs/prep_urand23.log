@@ -1,0 +1,10 @@
+== prep urand23 on cmpt096.hpc.cc.cs.nctu.edu.tw at 2026-11-19T01:00:23+08:00, tmp=/tmp/e4_chiangca_skQ3qF
+generated urand /tmp/e4_chiangca_skQ3qF/urand23.csr: n=8388608 m=134217598 (6.7 s)
+-- csr+wel done (29s); wel size 2994566564 bytes
+-- cmp OK: /tmp/e4_chiangca_skQ3qF/urand23.csr == /u/cs/111/111550055/pp_data/csr/urand23.csr
+Read Time:           19.45765
+Build Time:          3.50532
+Graph has 8388608 nodes and 134217598 directed edges for degree: 15
+-- wsg done (116s); size 2281699329 bytes (as expected)
+-- GAPBS graph: n=8388608 m=134217598 (same as ours)
+== prep urand23 OK in 116s

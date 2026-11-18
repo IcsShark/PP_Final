@@ -1,0 +1,14 @@
+== prep USA on cmpt047.hpc.cc.cs.nctu.edu.tw at 2026-11-19T02:00:38+08:00, tmp=/tmp/e4_chiangca_L8aW0Q
+read /tmp/e4_chiangca_L8aW0Q/USA.txt: n=23947347 input edges=58333344 (1.8 s)
+built CSR: n=23947347 m=57708624 (0.7 s)
+wrote /tmp/e4_chiangca_L8aW0Q/USA.csr (0.3 s)
+wrote /tmp/e4_chiangca_L8aW0Q/USA.wel (5.2 s)
+profile: d_avg=2.41 d_max=9 w_min=1 w_max=368855 zero_out_degree=0
+-- csr+wel done (19s); wel size 1256832474 bytes
+-- cmp OK: /tmp/e4_chiangca_L8aW0Q/USA.csr == /u/cs/111/111550055/pp_data/csr/USA.csr
+Read Time:           7.54022
+Build Time:          0.59888
+Graph has 23947347 nodes and 57708624 directed edges for degree: 2
+-- wsg done (54s); size 1306495569 bytes (as expected)
+-- GAPBS graph: n=23947347 m=57708624 (same as ours)
+== prep USA OK in 54s

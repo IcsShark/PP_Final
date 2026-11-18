@@ -1,0 +1,25 @@
+== sweep grid2896 on cmpt081.hpc.cc.cs.nctu.edu.tw at 2026-11-19T01:34:53+08:00
+csr: /u/cs/111/111550055/pp_data/csr/grid2896.csr
+graph grid2896: n=8386816 m=33535680 d_avg=4.00 d_max=4 w=[1,262143] load=7069.7 ms
+sources: 6333350
+delta-omp all/pop delta=64       t=12 src=6333350   median=  9279.347 ms phases=3734821 buckets=3732926
+delta-omp all/pop delta=128      t=12 src=6333350   median=  5370.855 ms phases=2090122 buckets=2086133
+delta-omp all/pop delta=256      t=12 src=6333350   median=  3265.177 ms phases=1103557 buckets=1095403
+delta-omp all/pop delta=512      t=12 src=6333350   median=  2098.090 ms phases=576924 buckets=560832
+delta-omp all/pop delta=1024     t=12 src=6333350   median=  1587.265 ms phases=314221 buckets=283852
+delta-omp all/pop delta=2048     t=12 src=6333350   median=  1021.541 ms phases=192688 buckets=142801
+delta-omp all/pop delta=4096     t=12 src=6333350   median=   645.552 ms phases=126551 buckets=71630
+delta-omp all/pop delta=8192     t=12 src=6333350   median=   395.417 ms phases=74914 buckets=35870
+delta-omp all/pop delta=16384    t=12 src=6333350   median=   307.969 ms phases=48236 buckets=17953
+delta-omp all/pop delta=32768    t=12 src=6333350   median=   243.565 ms phases=31062 buckets=8985
+delta-omp all/pop delta=65536    t=12 src=6333350   median=   199.740 ms phases=21012 buckets=4495
+delta-omp all/pop delta=131072   t=12 src=6333350   median=   174.936 ms phases=14753 buckets=2248
+delta-omp all/pop delta=262144   t=12 src=6333350   median=   155.552 ms phases=10873 buckets=1124
+delta-omp all/pop delta=524288   t=12 src=6333350   median=   149.596 ms phases=8541 buckets=562
+delta-omp all/pop delta=1048576  t=12 src=6333350   median=   155.012 ms phases=7179 buckets=282
+delta-omp all/pop delta=2097152  t=12 src=6333350   median=   179.082 ms phases=6359 buckets=141
+delta-omp all/pop delta=4194304  t=12 src=6333350   median=   240.616 ms phases=5889 buckets=71
+delta-omp all/pop delta=8388608  t=12 src=6333350   median=   383.219 ms phases=5554 buckets=36
+delta-omp all/pop delta=16777216 t=12 src=6333350   median=   710.744 ms phases=5378 buckets=18
+all runs verified against Dijkstra
+== sweep grid2896 OK in 89s

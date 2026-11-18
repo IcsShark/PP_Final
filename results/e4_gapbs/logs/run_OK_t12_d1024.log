@@ -1,0 +1,75 @@
+== run OK_t12_d1024 on cmpt096 at 2026-11-19T00:38:53+08:00, SLURM_CPUS_PER_TASK=12
+csr: /u/cs/111/111550055/pp_data/csr/OK.csr
+graph OK: n=3072626 m=234370166 d_avg=76.28 d_max=33313 w=[1,262143] load=11106.3 ms
+sources: 2320310 1963504 2311060 418714
+  delta-omp delta=1024     t=12 src=2320310   rep=0     618.324 ms  phases=579 reached=3072441 OK
+  delta-omp delta=1024     t=12 src=2320310   rep=1     573.182 ms  phases=578 reached=3072441 OK
+  delta-omp delta=1024     t=12 src=2320310   rep=2     597.925 ms  phases=579 reached=3072441 OK
+delta-omp all/pop delta=1024     t=12 src=2320310   median=   597.925 ms phases=579 buckets=389
+  delta-omp delta=1024     t=12 src=1963504   rep=0     518.534 ms  phases=570 reached=3072441 OK
+  delta-omp delta=1024     t=12 src=1963504   rep=1     512.004 ms  phases=569 reached=3072441 OK
+  delta-omp delta=1024     t=12 src=1963504   rep=2     511.344 ms  phases=571 reached=3072441 OK
+delta-omp all/pop delta=1024     t=12 src=1963504   median=   512.004 ms phases=571 buckets=382
+  delta-omp delta=1024     t=12 src=2311060   rep=0     536.257 ms  phases=575 reached=3072441 OK
+  delta-omp delta=1024     t=12 src=2311060   rep=1     536.820 ms  phases=575 reached=3072441 OK
+  delta-omp delta=1024     t=12 src=2311060   rep=2     551.632 ms  phases=575 reached=3072441 OK
+delta-omp all/pop delta=1024     t=12 src=2311060   median=   536.820 ms phases=575 buckets=386
+  delta-omp delta=1024     t=12 src=418714    rep=0     616.006 ms  phases=572 reached=3072441 OK
+  delta-omp delta=1024     t=12 src=418714    rep=1     572.030 ms  phases=573 reached=3072441 OK
+  delta-omp delta=1024     t=12 src=418714    rep=2     570.664 ms  phases=573 reached=3072441 OK
+delta-omp all/pop delta=1024     t=12 src=418714    median=   572.030 ms phases=573 buckets=389
+all runs verified against Dijkstra
+-- ours done (38s), sources: 2320310 1963504 2311060 418714
+-- gapbs d=1024 t=12 src=2320310
+Read Time:           1.27733
+Graph has 3072626 nodes and 234370166 directed edges for degree: 76
+Trial Time:          0.42185
+Verification:           PASS
+Verification Time:   4.26950
+Trial Time:          0.31076
+Verification:           PASS
+Verification Time:   4.25840
+Trial Time:          0.32315
+Verification:           PASS
+Verification Time:   4.25566
+Average Time:        0.35192
+-- gapbs d=1024 t=12 src=1963504
+Read Time:           14.45827
+Graph has 3072626 nodes and 234370166 directed edges for degree: 76
+Trial Time:          0.30871
+Verification:           PASS
+Verification Time:   4.31173
+Trial Time:          0.28766
+Verification:           PASS
+Verification Time:   4.21732
+Trial Time:          0.27702
+Verification:           PASS
+Verification Time:   4.18398
+Average Time:        0.29113
+-- gapbs d=1024 t=12 src=2311060
+Read Time:           0.86277
+Graph has 3072626 nodes and 234370166 directed edges for degree: 76
+Trial Time:          0.30494
+Verification:           PASS
+Verification Time:   4.06396
+Trial Time:          0.28678
+Verification:           PASS
+Verification Time:   4.06204
+Trial Time:          0.28601
+Verification:           PASS
+Verification Time:   4.06223
+Average Time:        0.29258
+-- gapbs d=1024 t=12 src=418714
+Read Time:           0.85271
+Graph has 3072626 nodes and 234370166 directed edges for degree: 76
+Trial Time:          0.31942
+Verification:           PASS
+Verification Time:   4.18384
+Trial Time:          0.29977
+Verification:           PASS
+Verification Time:   4.19046
+Trial Time:          0.31060
+Verification:           PASS
+Verification Time:   4.14191
+Average Time:        0.30993
+== run OK_t12_d1024 OK in 136s

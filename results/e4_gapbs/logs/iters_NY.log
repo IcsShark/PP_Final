@@ -1,0 +1,4 @@
+== iters NY on cmpt051.hpc.cc.cs.nctu.edu.tw at 2026-11-18T23:49:23+08:00
+graph,delta,threads,source,gapbs_iterations,ours_phases
+NY,32768,12,199622,31,1306
+== iters NY OK in 0s

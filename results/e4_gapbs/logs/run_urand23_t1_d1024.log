@@ -1,0 +1,75 @@
+== run urand23_t1_d1024 on cmpt096 at 2026-11-19T01:03:29+08:00, SLURM_CPUS_PER_TASK=12
+csr: /u/cs/111/111550055/pp_data/csr/urand23.csr
+graph urand23: n=8388608 m=134217598 d_avg=16.00 d_max=40 w=[1,262143] load=246.4 ms
+sources: 6334703 5360583 6309451 1143138
+  delta-omp delta=1024     t=1  src=6334703   rep=0    3464.298 ms  phases=882 reached=8388607 OK
+  delta-omp delta=1024     t=1  src=6334703   rep=1    3390.784 ms  phases=882 reached=8388607 OK
+  delta-omp delta=1024     t=1  src=6334703   rep=2    3393.932 ms  phases=882 reached=8388607 OK
+delta-omp all/pop delta=1024     t=1  src=6334703   median=  3393.932 ms phases=882 buckets=487
+  delta-omp delta=1024     t=1  src=5360583   rep=0    3394.473 ms  phases=890 reached=8388607 OK
+  delta-omp delta=1024     t=1  src=5360583   rep=1    3407.808 ms  phases=890 reached=8388607 OK
+  delta-omp delta=1024     t=1  src=5360583   rep=2    3391.215 ms  phases=890 reached=8388607 OK
+delta-omp all/pop delta=1024     t=1  src=5360583   median=  3394.473 ms phases=890 buckets=496
+  delta-omp delta=1024     t=1  src=6309451   rep=0    3400.445 ms  phases=887 reached=8388607 OK
+  delta-omp delta=1024     t=1  src=6309451   rep=1    3407.729 ms  phases=887 reached=8388607 OK
+  delta-omp delta=1024     t=1  src=6309451   rep=2    3393.432 ms  phases=887 reached=8388607 OK
+delta-omp all/pop delta=1024     t=1  src=6309451   median=  3400.445 ms phases=887 buckets=493
+  delta-omp delta=1024     t=1  src=1143138   rep=0    3401.727 ms  phases=887 reached=8388607 OK
+  delta-omp delta=1024     t=1  src=1143138   rep=1    3396.906 ms  phases=887 reached=8388607 OK
+  delta-omp delta=1024     t=1  src=1143138   rep=2    3412.243 ms  phases=887 reached=8388607 OK
+delta-omp all/pop delta=1024     t=1  src=1143138   median=  3401.727 ms phases=887 buckets=487
+all runs verified against Dijkstra
+-- ours done (73s), sources: 6334703 5360583 6309451 1143138
+-- gapbs d=1024 t=1 src=6334703
+Read Time:           0.49897
+Graph has 8388608 nodes and 134217598 directed edges for degree: 15
+Trial Time:          2.65355
+Verification:           PASS
+Verification Time:   7.59160
+Trial Time:          2.62305
+Verification:           PASS
+Verification Time:   7.08215
+Trial Time:          2.59051
+Verification:           PASS
+Verification Time:   7.07335
+Average Time:        2.62237
+-- gapbs d=1024 t=1 src=5360583
+Read Time:           2.80427
+Graph has 8388608 nodes and 134217598 directed edges for degree: 15
+Trial Time:          2.63187
+Verification:           PASS
+Verification Time:   7.92270
+Trial Time:          2.58662
+Verification:           PASS
+Verification Time:   7.97306
+Trial Time:          2.58722
+Verification:           PASS
+Verification Time:   7.86747
+Average Time:        2.60190
+-- gapbs d=1024 t=1 src=6309451
+Read Time:           0.48832
+Graph has 8388608 nodes and 134217598 directed edges for degree: 15
+Trial Time:          2.61507
+Verification:           PASS
+Verification Time:   7.01108
+Trial Time:          2.57837
+Verification:           PASS
+Verification Time:   6.96294
+Trial Time:          2.57691
+Verification:           PASS
+Verification Time:   6.97509
+Average Time:        2.59012
+-- gapbs d=1024 t=1 src=1143138
+Read Time:           0.48144
+Graph has 8388608 nodes and 134217598 directed edges for degree: 15
+Trial Time:          2.62074
+Verification:           PASS
+Verification Time:   7.01116
+Trial Time:          2.58955
+Verification:           PASS
+Verification Time:   6.97530
+Trial Time:          2.59265
+Verification:           PASS
+Verification Time:   6.98169
+Average Time:        2.60098
+== run urand23_t1_d1024 OK in 250s

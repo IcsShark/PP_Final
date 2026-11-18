@@ -1,0 +1,4 @@
+== iters USA on cmpt053.hpc.cc.cs.nctu.edu.tw at 2026-11-19T00:00:30+08:00
+graph,delta,threads,source,gapbs_iterations,ours_phases
+USA,32768,12,18083971,1367,52475
+== iters USA OK in 0s

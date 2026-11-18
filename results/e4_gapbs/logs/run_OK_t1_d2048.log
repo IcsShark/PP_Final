@@ -1,0 +1,75 @@
+== run OK_t1_d2048 on cmpt096 at 2026-11-19T00:25:48+08:00, SLURM_CPUS_PER_TASK=12
+csr: /u/cs/111/111550055/pp_data/csr/OK.csr
+graph OK: n=3072626 m=234370166 d_avg=76.28 d_max=33313 w=[1,262143] load=5551.3 ms
+sources: 2320310 1963504 2311060 418714
+  delta-omp delta=2048     t=1  src=2320310   rep=0    2426.463 ms  phases=350 reached=3072441 OK
+  delta-omp delta=2048     t=1  src=2320310   rep=1    2379.160 ms  phases=350 reached=3072441 OK
+  delta-omp delta=2048     t=1  src=2320310   rep=2    2370.444 ms  phases=350 reached=3072441 OK
+delta-omp all/pop delta=2048     t=1  src=2320310   median=  2379.160 ms phases=350 buckets=208
+  delta-omp delta=2048     t=1  src=1963504   rep=0    2277.752 ms  phases=350 reached=3072441 OK
+  delta-omp delta=2048     t=1  src=1963504   rep=1    2349.636 ms  phases=350 reached=3072441 OK
+  delta-omp delta=2048     t=1  src=1963504   rep=2    2267.514 ms  phases=350 reached=3072441 OK
+delta-omp all/pop delta=2048     t=1  src=1963504   median=  2277.752 ms phases=350 buckets=202
+  delta-omp delta=2048     t=1  src=2311060   rep=0    2344.017 ms  phases=345 reached=3072441 OK
+  delta-omp delta=2048     t=1  src=2311060   rep=1    2326.595 ms  phases=345 reached=3072441 OK
+  delta-omp delta=2048     t=1  src=2311060   rep=2    2351.412 ms  phases=345 reached=3072441 OK
+delta-omp all/pop delta=2048     t=1  src=2311060   median=  2344.017 ms phases=345 buckets=206
+  delta-omp delta=2048     t=1  src=418714    rep=0    2405.765 ms  phases=349 reached=3072441 OK
+  delta-omp delta=2048     t=1  src=418714    rep=1    2413.817 ms  phases=349 reached=3072441 OK
+  delta-omp delta=2048     t=1  src=418714    rep=2    2413.280 ms  phases=349 reached=3072441 OK
+delta-omp all/pop delta=2048     t=1  src=418714    median=  2413.280 ms phases=349 buckets=209
+all runs verified against Dijkstra
+-- ours done (55s), sources: 2320310 1963504 2311060 418714
+-- gapbs d=2048 t=1 src=2320310
+Read Time:           0.99262
+Graph has 3072626 nodes and 234370166 directed edges for degree: 76
+Trial Time:          1.90377
+Verification:           PASS
+Verification Time:   4.51334
+Trial Time:          1.90608
+Verification:           PASS
+Verification Time:   4.39876
+Trial Time:          1.90809
+Verification:           PASS
+Verification Time:   4.54090
+Average Time:        1.90598
+-- gapbs d=2048 t=1 src=1963504
+Read Time:           21.96206
+Graph has 3072626 nodes and 234370166 directed edges for degree: 76
+Trial Time:          1.63408
+Verification:           PASS
+Verification Time:   4.34105
+Trial Time:          1.60585
+Verification:           PASS
+Verification Time:   4.28884
+Trial Time:          1.59610
+Verification:           PASS
+Verification Time:   4.33144
+Average Time:        1.61201
+-- gapbs d=2048 t=1 src=2311060
+Read Time:           0.87821
+Graph has 3072626 nodes and 234370166 directed edges for degree: 76
+Trial Time:          1.52241
+Verification:           PASS
+Verification Time:   4.22670
+Trial Time:          1.51582
+Verification:           PASS
+Verification Time:   4.21898
+Trial Time:          1.50252
+Verification:           PASS
+Verification Time:   4.23846
+Average Time:        1.51358
+-- gapbs d=2048 t=1 src=418714
+Read Time:           0.86087
+Graph has 3072626 nodes and 234370166 directed edges for degree: 76
+Trial Time:          1.52222
+Verification:           PASS
+Verification Time:   4.14552
+Trial Time:          1.50790
+Verification:           PASS
+Verification Time:   4.04883
+Trial Time:          1.50421
+Verification:           PASS
+Verification Time:   4.04074
+Average Time:        1.51145
+== run OK_t1_d2048 OK in 180s

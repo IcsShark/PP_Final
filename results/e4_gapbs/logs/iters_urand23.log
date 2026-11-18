@@ -1,0 +1,4 @@
+== iters urand23 on cmpt051.hpc.cc.cs.nctu.edu.tw at 2026-11-19T01:30:43+08:00
+graph,delta,threads,source,gapbs_iterations,ours_phases
+urand23,2048,12,6334703,249,521
+== iters urand23 OK in 52s

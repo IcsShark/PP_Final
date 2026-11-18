@@ -1,0 +1,294 @@
+[23:21:03] skip prep_NY (OK)
+[23:21:03] submit sweep_NY
+[23:21:34] done   sweep_NY: OK
+[23:21:34] NY deltas=16384,32768,65536 best=32768 (E0 ref 256)
+[23:21:34] submit run_NY_t1_d16384
+[23:22:04] done   run_NY_t1_d16384: OK 2026-11-18T23:21:39+08:00 1s
+[23:22:04] submit run_NY_t1_d32768
+[23:22:36] done   run_NY_t1_d32768: OK 2026-11-18T23:22:08+08:00 1s
+[23:22:36] submit run_NY_t1_d65536
+[23:23:07] done   run_NY_t1_d65536: OK 2026-11-18T23:22:39+08:00 1s
+[23:23:07] submit run_NY_t6_d16384
+[23:23:18] done   run_NY_t6_d16384: OK 2026-11-18T23:23:08+08:00 1s
+[23:23:18] submit run_NY_t6_d32768
+[23:23:35] skip prep_NY (OK)
+[23:23:35] skip sweep_NY (OK)
+[23:23:35] NY deltas=16384,32768,65536 best=32768 (E0 ref 256)
+[23:23:35] skip run_NY_t1_d16384 (OK)
+[23:23:35] skip run_NY_t1_d32768 (OK)
+[23:23:35] skip run_NY_t1_d65536 (OK)
+[23:23:35] skip run_NY_t6_d16384 (OK)
+[23:23:35] submit run_NY_t6_d32768
+cat: /u/cs/112/112550121/PP_Final/results/e4_gapbs/status/run_NY_t6_d32768: No such file or directory
+[23:23:40] done   run_NY_t6_d32768: 
+[23:23:40] submit run_NY_t6_d65536
+[23:23:49] done   run_NY_t6_d65536: OK 2026-11-18T23:23:43+08:00 0s
+[23:23:49] submit run_NY_t12_d16384
+cat: /u/cs/112/112550121/PP_Final/results/e4_gapbs/status/run_NY_t12_d16384: No such file or directory
+[23:23:55] done   run_NY_t12_d16384: 
+[23:23:55] submit run_NY_t12_d32768
+cat: /u/cs/112/112550121/PP_Final/results/e4_gapbs/status/run_NY_t12_d32768: No such file or directory
+[23:23:57] done   run_NY_t12_d32768: 
+[23:23:57] submit run_NY_t12_d65536
+cat: /u/cs/112/112550121/PP_Final/results/e4_gapbs/status/run_NY_t12_d65536: No such file or directory
+[23:24:03] done   run_NY_t12_d65536: 
+[23:24:03] submit prep_CTR
+[23:24:40] done   prep_CTR: OK n=14081816 m=33866826
+[23:24:40] submit sweep_CTR
+cat: /u/cs/112/112550121/PP_Final/results/e4_gapbs/status/sweep_CTR: No such file or directory
+[23:25:19] done   sweep_CTR: 
+[23:25:19] CTR deltas=16384,32768,65536 best=32768 (E0 ref 512)
+[23:25:19] submit run_CTR_t1_d16384
+[23:26:26] done   run_CTR_t1_d16384: OK 2026-11-18T23:26:24+08:00 62s
+[23:26:26] submit run_CTR_t1_d32768
+[23:27:30] done   run_CTR_t1_d32768: OK 2026-11-18T23:27:29+08:00 61s
+[23:27:30] submit run_CTR_t1_d65536
+[23:28:26] done   run_CTR_t1_d65536: OK 2026-11-18T23:28:24+08:00 52s
+[23:28:26] submit run_CTR_t6_d16384
+[23:29:03] done   run_CTR_t6_d16384: OK 2026-11-18T23:29:02+08:00 33s
+[23:29:03] submit run_CTR_t6_d32768
+[23:29:42] done   run_CTR_t6_d32768: OK 2026-11-18T23:29:41+08:00 34s
+[23:29:42] submit run_CTR_t6_d65536
+[23:30:19] done   run_CTR_t6_d65536: OK 2026-11-18T23:30:18+08:00 35s
+[23:30:19] submit run_CTR_t12_d16384
+[23:30:55] done   run_CTR_t12_d16384: OK 2026-11-18T23:30:54+08:00 34s
+[23:30:55] submit run_CTR_t12_d32768
+[23:31:30] done   run_CTR_t12_d32768: OK 2026-11-18T23:31:29+08:00 33s
+[23:31:30] submit run_CTR_t12_d65536
+[23:32:07] done   run_CTR_t12_d65536: OK 2026-11-18T23:32:06+08:00 34s
+[23:32:07] submit prep_USA
+[23:33:04] done   prep_USA: OK n=23947347 m=57708624
+[23:33:04] submit sweep_USA
+[23:33:56] done   sweep_USA: OK
+E4 ERROR: no sweep for USA (/u/cs/112/112550121/PP_Final/results/e4_gapbs/sweep/USA.csv)
+===== restart 2026-11-18T23:49:20+08:00 =====
+[23:49:21] skip prep_NY (OK)
+[23:49:21] skip sweep_NY (OK)
+[23:49:21] NY deltas=16384,32768,65536 best=32768 (E0 ref 256)
+[23:49:21] skip run_NY_t1_d16384 (OK)
+[23:49:21] skip run_NY_t1_d32768 (OK)
+[23:49:21] skip run_NY_t1_d65536 (OK)
+[23:49:21] skip run_NY_t6_d16384 (OK)
+[23:49:21] skip run_NY_t6_d32768 (OK)
+[23:49:21] skip run_NY_t6_d65536 (OK)
+[23:49:21] skip run_NY_t12_d16384 (OK)
+[23:49:21] skip run_NY_t12_d32768 (OK)
+[23:49:21] skip run_NY_t12_d65536 (OK)
+[23:49:21] submit iters_NY
+[23:49:24] done   iters_NY: == iters NY OK in 0s
+[23:49:24] removed /u/cs/112/112550121/pp_data/gapbs/NY.wsg
+[23:49:24] skip prep_CTR (OK)
+[23:49:24] skip sweep_CTR (OK)
+[23:49:24] CTR deltas=16384,32768,65536 best=32768 (E0 ref 512)
+[23:49:24] skip run_CTR_t1_d16384 (OK)
+[23:49:24] skip run_CTR_t1_d32768 (OK)
+[23:49:24] skip run_CTR_t1_d65536 (OK)
+[23:49:24] skip run_CTR_t6_d16384 (OK)
+[23:49:24] skip run_CTR_t6_d32768 (OK)
+[23:49:24] skip run_CTR_t6_d65536 (OK)
+[23:49:24] skip run_CTR_t12_d16384 (OK)
+[23:49:24] skip run_CTR_t12_d32768 (OK)
+[23:49:24] skip run_CTR_t12_d65536 (OK)
+[23:49:24] submit iters_CTR
+[23:49:37] done   iters_CTR: == iters CTR OK in 8s
+[23:49:37] removed /u/cs/112/112550121/pp_data/gapbs/CTR.wsg
+[23:49:37] skip prep_USA (OK)
+[23:49:37] submit sweep_USA
+[23:50:39] done   sweep_USA: == sweep USA OK in 56s
+[23:50:39] USA deltas=16384,32768,65536 best=32768 (E0 ref 1024)
+[23:50:39] submit run_USA_t1_d16384
+[23:52:05] done   run_USA_t1_d16384: == run USA_t1_d16384 OK in 83s
+[23:52:05] submit run_USA_t1_d32768
+[23:53:21] done   run_USA_t1_d32768: == run USA_t1_d32768 OK in 73s
+[23:53:21] submit run_USA_t1_d65536
+[23:54:43] done   run_USA_t1_d65536: == run USA_t1_d65536 OK in 78s
+[23:54:43] submit run_USA_t6_d16384
+[23:55:37] done   run_USA_t6_d16384: == run USA_t6_d16384 OK in 51s
+[23:55:37] submit run_USA_t6_d32768
+[23:56:33] done   run_USA_t6_d32768: == run USA_t6_d32768 OK in 51s
+[23:56:33] submit run_USA_t6_d65536
+[23:57:28] done   run_USA_t6_d65536: == run USA_t6_d65536 OK in 52s
+[23:57:28] submit run_USA_t12_d16384
+[23:58:43] done   run_USA_t12_d16384: == run USA_t12_d16384 OK in 71s
+[23:58:43] submit run_USA_t12_d32768
+[23:59:36] done   run_USA_t12_d32768: == run USA_t12_d32768 OK in 51s
+[23:59:36] submit run_USA_t12_d65536
+[00:00:29] done   run_USA_t12_d65536: == run USA_t12_d65536 OK in 51s
+[00:00:29] submit iters_USA
+[00:00:31] done   iters_USA: == iters USA OK in 0s
+[00:00:31] removed /u/cs/112/112550121/pp_data/gapbs/USA.wsg
+[00:00:31] submit prep_LJ
+E4 ERROR: prep_LJ: FAIL (incomplete)
+===== restart 2026-11-19T00:07:30+08:00: LJ on hold (reference LJ.csr differs) =====
+[00:07:30] submit prep_OK
+E4 ERROR: prep_OK: FAIL (incomplete)
+E4 ERROR: first driver did not finish; not starting LJ
+===== restart 2026-11-19T00:12:42+08:00: after stale-file-handle on prep_OK =====
+[00:12:42] submit prep_OK
+[00:18:01] done   prep_OK: == prep OK OK in 314s
+[00:18:01] submit sweep_OK
+[00:19:25] done   sweep_OK: == sweep OK OK in 82s
+[00:19:25] OK deltas=512,1024,2048 best=1024 (E0 ref -)
+[00:19:25] submit run_OK_t1_d512
+[00:22:40] done   run_OK_t1_d512: == run OK_t1_d512 OK in 187s
+[00:22:40] submit run_OK_t1_d1024
+[00:25:45] done   run_OK_t1_d1024: == run OK_t1_d1024 OK in 183s
+[00:25:45] submit run_OK_t1_d2048
+[00:28:50] done   run_OK_t1_d2048: == run OK_t1_d2048 OK in 180s
+[00:28:50] submit run_OK_t6_d512
+[00:31:36] done   run_OK_t6_d512: == run OK_t6_d512 OK in 163s
+[00:31:36] submit run_OK_t6_d1024
+[00:33:59] done   run_OK_t6_d1024: == run OK_t6_d1024 OK in 140s
+[00:33:59] submit run_OK_t6_d2048
+[00:36:32] done   run_OK_t6_d2048: == run OK_t6_d2048 OK in 150s
+[00:36:32] submit run_OK_t12_d512
+[00:38:52] done   run_OK_t12_d512: == run OK_t12_d512 OK in 138s
+[00:38:52] submit run_OK_t12_d1024
+[00:41:09] done   run_OK_t12_d1024: == run OK_t12_d1024 OK in 136s
+[00:41:09] submit run_OK_t12_d2048
+[00:43:28] done   run_OK_t12_d2048: == run OK_t12_d2048 OK in 138s
+[00:43:28] submit iters_OK
+[00:43:47] done   iters_OK: == iters OK OK in 16s
+[00:43:47] removed /u/cs/112/112550121/pp_data/gapbs/OK.wsg (and OK.csr if any)
+[00:43:47] submit prep_kron23
+[00:45:11] done   prep_kron23: == prep kron23 OK in 83s
+[00:45:12] submit sweep_kron23
+[00:46:31] done   sweep_kron23: == sweep kron23 OK in 76s
+[00:46:31] kron23 deltas=128,256,512 best=256 (E0 ref -)
+[00:46:31] submit run_kron23_t1_d128
+[00:48:30] done   run_kron23_t1_d128: == run kron23_t1_d128 OK in 117s
+[00:48:30] submit run_kron23_t1_d256
+[00:50:13] done   run_kron23_t1_d256: == run kron23_t1_d256 OK in 101s
+[00:50:13] submit run_kron23_t1_d512
+[00:52:00] done   run_kron23_t1_d512: == run kron23_t1_d512 OK in 100s
+[00:52:00] submit run_kron23_t6_d128
+[00:53:14] done   run_kron23_t6_d128: == run kron23_t6_d128 OK in 73s
+[00:53:14] submit run_kron23_t6_d256
+[00:54:26] done   run_kron23_t6_d256: == run kron23_t6_d256 OK in 68s
+[00:54:26] submit run_kron23_t6_d512
+[00:55:37] done   run_kron23_t6_d512: == run kron23_t6_d512 OK in 69s
+[00:55:37] submit run_kron23_t12_d128
+[00:57:38] done   run_kron23_t12_d128: == run kron23_t12_d128 OK in 119s
+[00:57:38] submit run_kron23_t12_d256
+[00:58:59] done   run_kron23_t12_d256: == run kron23_t12_d256 OK in 79s
+[00:58:59] submit run_kron23_t12_d512
+[01:00:17] done   run_kron23_t12_d512: == run kron23_t12_d512 OK in 74s
+[01:00:17] submit iters_kron23
+[01:00:20] done   iters_kron23: == iters kron23 OK in 1s
+[01:00:21] removed /u/cs/112/112550121/pp_data/gapbs/kron23.wsg (and kron23.csr if any)
+[01:00:21] submit prep_urand23
+[01:02:19] done   prep_urand23: == prep urand23 OK in 116s
+[01:02:19] submit sweep_urand23
+[01:03:28] done   sweep_urand23: == sweep urand23 OK in 67s
+[01:03:28] urand23 deltas=1024,2048,4096 best=2048 (E0 ref -)
+[01:03:28] submit run_urand23_t1_d1024
+[01:07:40] done   run_urand23_t1_d1024: == run urand23_t1_d1024 OK in 250s
+[01:07:40] submit run_urand23_t1_d2048
+[01:12:24] done   run_urand23_t1_d2048: == run urand23_t1_d2048 OK in 280s
+[01:12:24] submit run_urand23_t1_d4096
+[01:16:02] done   run_urand23_t1_d4096: == run urand23_t1_d4096 OK in 217s
+[01:16:02] submit run_urand23_t6_d1024
+[01:18:31] done   run_urand23_t6_d1024: == run urand23_t6_d1024 OK in 148s
+[01:18:31] submit run_urand23_t6_d2048
+[01:21:03] done   run_urand23_t6_d2048: == run urand23_t6_d2048 OK in 150s
+[01:21:03] submit run_urand23_t6_d4096
+[01:23:26] done   run_urand23_t6_d4096: == run urand23_t6_d4096 OK in 139s
+[01:23:26] submit run_urand23_t12_d1024
+[01:25:59] done   run_urand23_t12_d1024: == run urand23_t12_d1024 OK in 152s
+[01:25:59] submit run_urand23_t12_d2048
+[01:28:22] done   run_urand23_t12_d2048: == run urand23_t12_d2048 OK in 140s
+[01:28:22] submit run_urand23_t12_d4096
+[01:30:42] done   run_urand23_t12_d4096: == run urand23_t12_d4096 OK in 139s
+[01:30:42] submit iters_urand23
+[01:31:36] done   iters_urand23: == iters urand23 OK in 52s
+[01:31:36] removed /u/cs/112/112550121/pp_data/gapbs/urand23.wsg (and urand23.csr if any)
+[01:31:36] submit prep_grid2896
+[01:32:07] done   prep_grid2896: == prep grid2896 OK in 26s
+[01:32:07] submit sweep_grid2896
+[01:33:25] done   sweep_grid2896: == sweep grid2896 OK in 76s
+best delta 262144 is at the edge of the sweep grid
+E4 ERROR: first driver did not finish; not starting LJ
+===== restart 2026-11-19T01:34:49+08:00: grid2896 sweep extended to 2^24 =====
+[01:34:52] skip prep_grid2896 (OK)
+[01:34:52] submit sweep_grid2896
+[01:36:28] done   sweep_grid2896: == sweep grid2896 OK in 89s
+[01:36:28] grid2896 deltas=262144,524288,1048576 best=524288 (E0 ref -)
+[01:36:28] submit run_grid2896_t1_d262144
+[01:37:12] done   run_grid2896_t1_d262144: == run grid2896_t1_d262144 OK in 42s
+[01:37:12] submit run_grid2896_t1_d524288
+[01:38:04] done   run_grid2896_t1_d524288: == run grid2896_t1_d524288 OK in 49s
+[01:38:04] submit run_grid2896_t1_d1048576
+[01:38:41] done   run_grid2896_t1_d1048576: == run grid2896_t1_d1048576 OK in 35s
+[01:38:41] submit run_grid2896_t6_d262144
+[01:39:06] done   run_grid2896_t6_d262144: == run grid2896_t6_d262144 OK in 23s
+[01:39:06] submit run_grid2896_t6_d524288
+[01:39:33] done   run_grid2896_t6_d524288: == run grid2896_t6_d524288 OK in 23s
+[01:39:33] submit run_grid2896_t6_d1048576
+[01:40:03] done   run_grid2896_t6_d1048576: == run grid2896_t6_d1048576 OK in 23s
+[01:40:03] submit run_grid2896_t12_d262144
+[01:40:31] done   run_grid2896_t12_d262144: == run grid2896_t12_d262144 OK in 22s
+[01:40:31] submit run_grid2896_t12_d524288
+[01:40:55] done   run_grid2896_t12_d524288: == run grid2896_t12_d524288 OK in 22s
+[01:40:55] submit run_grid2896_t12_d1048576
+[01:41:21] done   run_grid2896_t12_d1048576: == run grid2896_t12_d1048576 OK in 22s
+[01:41:21] submit iters_grid2896
+[01:41:25] done   iters_grid2896: == iters grid2896 OK in 0s
+[01:41:25] removed /u/cs/112/112550121/pp_data/gapbs/grid2896.wsg (and grid2896.csr if any)
+[01:41:25] all done: grid2896
+[01:41:25] submit check_ref
+[01:44:24] done   check_ref
+[01:44:24] submit prep_LJ
+[01:45:15] done   prep_LJ: == prep LJ OK in 47s
+[01:45:15] submit sweep_LJ
+[01:45:42] done   sweep_LJ: == sweep LJ OK in 25s
+[01:45:42] LJ deltas=2048,4096,8192 best=4096 (E0 ref 512)
+[01:45:42] submit run_LJ_t1_d2048
+[01:47:17] done   run_LJ_t1_d2048: == run LJ_t1_d2048 OK in 88s
+[01:47:17] submit run_LJ_t1_d4096
+[01:48:56] done   run_LJ_t1_d4096: == run LJ_t1_d4096 OK in 97s
+[01:48:56] submit run_LJ_t1_d8192
+[01:50:10] done   run_LJ_t1_d8192: == run LJ_t1_d8192 OK in 70s
+[01:50:10] submit run_LJ_t6_d2048
+[01:51:28] done   run_LJ_t6_d2048: == run LJ_t6_d2048 OK in 76s
+[01:51:28] submit run_LJ_t6_d4096
+[01:52:24] done   run_LJ_t6_d4096: == run LJ_t6_d4096 OK in 53s
+[01:52:24] submit run_LJ_t6_d8192
+[01:53:20] done   run_LJ_t6_d8192: == run LJ_t6_d8192 OK in 53s
+[01:53:20] submit run_LJ_t12_d2048
+[01:54:42] done   run_LJ_t12_d2048: == run LJ_t12_d2048 OK in 78s
+[01:54:42] submit run_LJ_t12_d4096
+[01:55:35] done   run_LJ_t12_d4096: == run LJ_t12_d4096 OK in 51s
+[01:55:35] submit run_LJ_t12_d8192
+[01:56:30] done   run_LJ_t12_d8192: == run LJ_t12_d8192 OK in 51s
+[01:56:30] submit iters_LJ
+[01:56:35] done   iters_LJ: == iters LJ OK in 0s
+[01:56:35] removed /u/cs/112/112550121/pp_data/gapbs/LJ.wsg (and LJ.csr if any)
+[01:56:35] all done: LJ
+[01:56:55] submit prep_NY
+[01:57:01] done   prep_NY: == prep NY OK in 1s
+[01:57:01] submit run_NY_t1_d50000
+[01:57:05] done   run_NY_t1_d50000: == run NY_t1_d50000 OK in 2s
+[01:57:05] submit run_NY_t6_d50000
+[01:57:09] done   run_NY_t6_d50000: == run NY_t6_d50000 OK in 0s
+[01:57:09] submit run_NY_t12_d50000
+[01:57:13] done   run_NY_t12_d50000: == run NY_t12_d50000 OK in 1s
+[01:57:13] removed /u/cs/112/112550121/pp_data/gapbs/NY.wsg
+[01:57:13] submit prep_CTR
+[01:58:03] done   prep_CTR: == prep CTR OK in 46s
+[01:58:03] submit run_CTR_t1_d50000
+[01:59:19] done   run_CTR_t1_d50000: == run CTR_t1_d50000 OK in 72s
+[01:59:19] submit run_CTR_t6_d50000
+[01:59:57] done   run_CTR_t6_d50000: == run CTR_t6_d50000 OK in 36s
+[01:59:57] submit run_CTR_t12_d50000
+[02:00:35] done   run_CTR_t12_d50000: == run CTR_t12_d50000 OK in 36s
+[02:00:35] removed /u/cs/112/112550121/pp_data/gapbs/CTR.wsg
+[02:00:35] submit prep_USA
+[02:01:34] done   prep_USA: == prep USA OK in 54s
+[02:01:34] submit run_USA_t1_d50000
+[02:03:32] done   run_USA_t1_d50000: == run USA_t1_d50000 OK in 115s
+[02:03:32] submit run_USA_t6_d50000
+[02:04:56] done   run_USA_t6_d50000: == run USA_t6_d50000 OK in 80s
+[02:04:56] submit run_USA_t12_d50000
+[02:06:17] done   run_USA_t12_d50000: == run USA_t12_d50000 OK in 79s
+[02:06:17] removed /u/cs/112/112550121/pp_data/gapbs/USA.wsg
+[02:06:17] all done: suggested Delta 50000

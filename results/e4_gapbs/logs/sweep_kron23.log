@@ -1,0 +1,19 @@
+== sweep kron23 on cmpt096.hpc.cc.cs.nctu.edu.tw at 2026-11-19T00:45:14+08:00
+csr: /u/cs/111/111550055/pp_data/csr/kron23.csr
+graph kron23: n=8388608 m=131162466 d_avg=15.64 d_max=152530 w=[1,262143] load=10467.8 ms
+sources: 5360583
+delta-omp all/pop delta=64       t=12 src=5360583   median=   569.066 ms phases=7264 buckets=6979
+delta-omp all/pop delta=128      t=12 src=5360583   median=   509.832 ms phases=4002 buckets=3738
+delta-omp all/pop delta=256      t=12 src=5360583   median=   497.287 ms phases=2190 buckets=1968
+delta-omp all/pop delta=512      t=12 src=5360583   median=   515.534 ms phases=1202 buckets=1022
+delta-omp all/pop delta=1024     t=12 src=5360583   median=   625.678 ms phases=681 buckets=531
+delta-omp all/pop delta=2048     t=12 src=5360583   median=   761.129 ms phases=399 buckets=278
+delta-omp all/pop delta=4096     t=12 src=5360583   median=   938.465 ms phases=239 buckets=148
+delta-omp all/pop delta=8192     t=12 src=5360583   median=  1387.714 ms phases=142 buckets=80
+delta-omp all/pop delta=16384    t=12 src=5360583   median=  1487.225 ms phases=94 buckets=44
+delta-omp all/pop delta=32768    t=12 src=5360583   median=  2407.814 ms phases=57 buckets=23
+delta-omp all/pop delta=65536    t=12 src=5360583   median=  2635.531 ms phases=37 buckets=12
+delta-omp all/pop delta=131072   t=12 src=5360583   median=  3881.285 ms phases=27 buckets=6
+delta-omp all/pop delta=262144   t=12 src=5360583   median=  4333.148 ms phases=23 buckets=3
+all runs verified against Dijkstra
+== sweep kron23 OK in 76s

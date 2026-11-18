@@ -1,0 +1,190 @@
+# E4 GAPBS baseline - metadata (generated 2026-11-19T02:07:39+08:00 by scripts/exp/e4_meta.sh)
+
+## Code
+PP_Final:  algorithm code (src/ include/ tools/ Makefile) at 1ba51d3236163a0229780c338f4e064e706cdf10 = main, unmodified;
+           E4 scripts (scripts/exp/e4_*) as committed on branch exp/e4-gapbs together with these results.
+           build: g++ -O3 -march=native -std=c++20 -fopenmp (Makefile), on a compute node: run -c 4 -- make -j4
+GAPBS:     941462c7c42e786e4e006a9211b0576ef78d23f7  (https://github.com/sbeamer/gapbs, 2026-10-13)
+           build: its own Makefile, unmodified (g++ -std=c++11 -O3 -Wall -fopenmp; no -march=native),
+           built on a compute node with: run -c 4 -- make -j4
+compiler:  g++ (Debian 12.2.0-14+deb12u1) 12.2.0
+
+## Hosts (compute node of each job; ours and GAPBS of one run_* job always share a node and time slot)
+iters_CTR                            cmpt053
+iters_grid2896                       cmpt096
+iters_kron23                         cmpt096
+iters_LJ                             cmpt053
+iters_NY                             cmpt051
+iters_OK                             cmpt096
+iters_urand23                        cmpt051
+iters_USA                            cmpt053
+prep_CTR                             cmpt055
+prep_grid2896                        cmpt051
+prep_kron23                          cmpt096
+prep_LJ                              cmpt096
+prep_NY                              cmpt047
+prep_OK                              cmpt096
+prep_urand23                         cmpt096
+prep_USA                             cmpt047
+run_CTR_t12_d16384                   cmpt096
+run_CTR_t12_d32768                   cmpt096
+run_CTR_t12_d50000                   cmpt096
+run_CTR_t12_d65536                   cmpt096
+run_CTR_t1_d16384                    cmpt052
+run_CTR_t1_d32768                    cmpt096
+run_CTR_t1_d50000                    cmpt096
+run_CTR_t1_d65536                    cmpt096
+run_CTR_t6_d16384                    cmpt096
+run_CTR_t6_d32768                    cmpt096
+run_CTR_t6_d50000                    cmpt096
+run_CTR_t6_d65536                    cmpt096
+run_grid2896_t12_d1048576            cmpt096
+run_grid2896_t12_d262144             cmpt096
+run_grid2896_t12_d524288             cmpt096
+run_grid2896_t1_d1048576             cmpt096
+run_grid2896_t1_d262144              cmpt081
+run_grid2896_t1_d524288              cmpt096
+run_grid2896_t6_d1048576             cmpt096
+run_grid2896_t6_d262144              cmpt096
+run_grid2896_t6_d524288              cmpt096
+run_kron23_t12_d128                  cmpt051
+run_kron23_t12_d256                  cmpt051
+run_kron23_t12_d512                  cmpt051
+run_kron23_t1_d128                   cmpt096
+run_kron23_t1_d256                   cmpt096
+run_kron23_t1_d512                   cmpt096
+run_kron23_t6_d128                   cmpt096
+run_kron23_t6_d256                   cmpt096
+run_kron23_t6_d512                   cmpt096
+run_LJ_t12_d2048                     cmpt047
+run_LJ_t12_d4096                     cmpt047
+run_LJ_t12_d8192                     cmpt053
+run_LJ_t1_d2048                      cmpt096
+run_LJ_t1_d4096                      cmpt053
+run_LJ_t1_d8192                      cmpt053
+run_LJ_t6_d2048                      cmpt051
+run_LJ_t6_d4096                      cmpt051
+run_LJ_t6_d8192                      cmpt051
+run_NY_t12_d16384                    cmpt096
+run_NY_t12_d32768                    cmpt055
+run_NY_t12_d50000                    cmpt055
+run_NY_t12_d65536                    cmpt052
+run_NY_t1_d16384                     cmpt055
+run_NY_t1_d32768                     cmpt096
+run_NY_t1_d50000                     cmpt053
+run_NY_t1_d65536                     cmpt096
+run_NY_t6_d16384                     cmpt096
+run_NY_t6_d32768                     cmpt051
+run_NY_t6_d50000                     cmpt053
+run_NY_t6_d65536                     cmpt051
+run_OK_t12_d1024                     cmpt096
+run_OK_t12_d2048                     cmpt096
+run_OK_t12_d512                      cmpt096
+run_OK_t1_d1024                      cmpt096
+run_OK_t1_d2048                      cmpt096
+run_OK_t1_d512                       cmpt096
+run_OK_t6_d1024                      cmpt096
+run_OK_t6_d2048                      cmpt096
+run_OK_t6_d512                       cmpt096
+run_urand23_t12_d1024                cmpt096
+run_urand23_t12_d2048                cmpt096
+run_urand23_t12_d4096                cmpt096
+run_urand23_t1_d1024                 cmpt096
+run_urand23_t1_d2048                 cmpt051
+run_urand23_t1_d4096                 cmpt096
+run_urand23_t6_d1024                 cmpt051
+run_urand23_t6_d2048                 cmpt096
+run_urand23_t6_d4096                 cmpt051
+run_USA_t12_d16384                   cmpt051
+run_USA_t12_d32768                   cmpt053
+run_USA_t12_d50000                   cmpt051
+run_USA_t12_d65536                   cmpt053
+run_USA_t1_d16384                    cmpt053
+run_USA_t1_d32768                    cmpt053
+run_USA_t1_d50000                    cmpt096
+run_USA_t1_d65536                    cmpt053
+run_USA_t6_d16384                    cmpt053
+run_USA_t6_d32768                    cmpt053
+run_USA_t6_d50000                    cmpt054
+run_USA_t6_d65536                    cmpt053
+sweep_CTR                            cmpt099
+sweep_grid2896                       cmpt081
+sweep_kron23                         cmpt096
+sweep_LJ                             cmpt096
+sweep_NY                             cmpt096
+sweep_OK                             cmpt096
+sweep_urand23                        cmpt096
+sweep_USA                            cmpt053
+
+## Data
+raw:        /u/cs/112/112550121/pp_data/raw  (downloaded with scripts/fetch-datasets.sh; md5sum -c datasets/md5sums.txt all OK)
+reference:  /u/cs/111/111550055/pp_data/csr  (the CSRs E0-E2 use)
+generated:  /u/cs/112/112550121/pp_data/gapbs/GRAPH.wsg, deleted once the graph's runs are done (10 GB home quota);
+            the regenerated .csr and the .wel only live in node-local tmp
+check:      e4_prep.sh rebuilds GRAPH.csr with the exact convert-all.sh / gen-synthetic.sh arguments,
+            cmp's it against the reference (must be identical), checks GAPBS reports the same n and m,
+            and checks the .wsg file size against its layout:
+  CTR        OK n=14081816 m=33866826
+  grid2896   OK n=8386816 m=33535680
+  kron23     OK n=8388608 m=131162466
+  LJ         OK n=4847571 m=68475391
+  NY         OK n=264346 m=730100
+  OK         OK n=3072626 m=234370166
+  urand23    OK n=8388608 m=134217598
+  USA        OK n=23947347 m=57708624
+
+## Delta (deltas.csv): best = fastest in the e4_sweep.sh grid (t=12, 1 source, median of 3);
+## runs use the best and its two neighbours. e0_ref_delta is the spec's E0 reference, recorded only.
+graph,best_delta,deltas,e0_ref_delta
+CTR,32768,16384 32768 65536,512
+grid2896,524288,262144 524288 1048576,-
+kron23,256,128 256 512,-
+LJ,4096,2048 4096 8192,512
+NY,32768,16384 32768 65536,256
+OK,1024,512 1024 2048,-
+urand23,2048,1024 2048 4096,-
+USA,32768,16384 32768 65536,1024
+
+## Sources (bin/sssp --sources 4 --seed 42; 0-based ids, used verbatim for GAPBS -r)
+NY         199622 168925 198826 36023
+CTR        10633961 8998722 10591570 1918966
+USA        18083971 15303106 18011882 3263369
+LJ         3660670 3097750 3646077 660591
+OK         2320310 1963504 2311060 418714
+kron23     5360583 6309451 7577169 789102
+urand23    6334703 5360583 6309451 1143138
+grid2896   6333350 5359438 6308103 1142893
+
+## Commands (every timing job: run -c 12, whole node, regardless of threads)
+prep : run -c 12 -- bash scripts/exp/e4_prep.sh GRAPH
+         gzip -dc raw/X.gz > tmp/X.txt; bin/convert tmp/X.txt -o OUT/X.csr <convert-all.sh args> --emit-wel tmp/X.wel
+         (synthetic: bin/gen <gen-synthetic.sh args> -o OUT/X.csr --emit-wel tmp/X.wel)
+         cmp OUT/X.csr REF/X.csr
+         gapbs/converter -f tmp/X.wel -w -b OUT/X.wsg          (-w keeps weights; no -s, edges stay directed)
+sweep: run -c 12 -- bash scripts/exp/e4_sweep.sh GRAPH
+         bin/sssp -g REF/X.csr -a delta-omp -d 64,...,262144 (grid2896: ...,16777216) -t 12 --sources 1 --seed 42 -r 3 -q --verify --csv sweep/X.csv
+run  : run -c 12 -- bash scripts/exp/e4_run.sh GRAPH T DELTA
+         bin/sssp -g REF/X.csr -a delta-omp -d DELTA -t T --sources 4 --seed 42 -r 3 --verify --csv raw/X_tT_dD.ours.csv
+         for each source S:  OMP_NUM_THREADS=T gapbs/sssp -f tmp/X.wsg -d DELTA -r S -n 3 -v   (.wsg staged to node-local tmp)
+driver (login node; submits the jobs above one at a time; full log in logs/driver.log), in this order:
+         bash scripts/exp/e4_all.sh NY CTR USA OK kron23 urand23 grid2896
+         run -c 12 -- bash scripts/exp/e4_check_ref.sh        (-> ref_check.log)
+         bash scripts/exp/e4_all.sh LJ
+         bash scripts/exp/e4_suggested.sh                     (spec 4.5, Delta=50000 on NY/CTR/USA)
+iters: run -c 12 -- bash scripts/exp/e4_iters.sh GRAPH     (GAPBS -l iteration count at the best Delta, t=12)
+OMP environment: only OMP_NUM_THREADS (GAPBS); ours sets threads with -t. No OMP_PROC_BIND/OMP_PLACES.
+ours schedule: bin/sssp default (--sched dynamic,64, --variant all, --filter pop).
+
+## Deviations from docs/E4-experiment-spec.md
+- raw/ read from $HOME/pp_data/raw (own md5-verified download): the shared raw/ is not readable by this account.
+- outputs in $HOME/pp_data/gapbs instead of the shared $PP_DATA_DIR/gapbs (user's decision).
+- .wel and the regenerated .csr written to node-local tmp, not to gapbs/; each .wsg deleted after its
+  graph is done. Reason: 10 GB home quota (a USA sweep was lost to 'Disk quota exceeded' and rerun).
+- GAPBS converter needs -w (spec 4.3 omitted it; without it the .wsg would be unweighted).
+- LJ: the shared reference LJ.csr does not match a rebuild from the md5-checked raw file (20 vertices
+  differ, 18 duplicate edges; see ref_check.log from e4_check_ref.sh). User decision: ours and GAPBS
+  both run on the regenerated LJ ($E4_OUT/LJ.csr), not on the reference used by E0-E2.
+- Delta from a sweep for every graph (spec allows it); the E0 references were clearly not optimal on NY t=12.
+- sweep uses -r 3 and the median (spec example: -r 1); grid2896's sweep extends to 2^24 because its
+  time still fell at 2^18, the edge of the default grid (2^6..2^18).
+- one job per (graph, threads, Delta) to stay under the 30-min QoS limit.

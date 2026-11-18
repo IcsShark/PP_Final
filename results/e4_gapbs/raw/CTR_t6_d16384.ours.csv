@@ -1,0 +1,13 @@
+graph,algo,variant,filter,sched,threads,delta,source,rep,time_ms,phases,buckets,heavy_passes,edges_scanned,relax_ok,expansions,stale,merge_dropped,reached,verified,stats_build
+CTR,delta-omp,all,pop,dynamic:64,6,16384,10633961,0,342.7210,34867,1444,0,0,0,0,0,0,14081816,1,0
+CTR,delta-omp,all,pop,dynamic:64,6,16384,10633961,1,319.5940,34832,1444,0,0,0,0,0,0,14081816,1,0
+CTR,delta-omp,all,pop,dynamic:64,6,16384,10633961,2,320.1672,34844,1444,0,0,0,0,0,0,14081816,1,0
+CTR,delta-omp,all,pop,dynamic:64,6,16384,8998722,0,318.1494,32319,1345,0,0,0,0,0,0,14081816,1,0
+CTR,delta-omp,all,pop,dynamic:64,6,16384,8998722,1,319.2173,32302,1345,0,0,0,0,0,0,14081816,1,0
+CTR,delta-omp,all,pop,dynamic:64,6,16384,8998722,2,318.5962,32294,1345,0,0,0,0,0,0,14081816,1,0
+CTR,delta-omp,all,pop,dynamic:64,6,16384,10591570,0,329.0776,38373,1622,0,0,0,0,0,0,14081816,1,0
+CTR,delta-omp,all,pop,dynamic:64,6,16384,10591570,1,329.6395,38408,1622,0,0,0,0,0,0,14081816,1,0
+CTR,delta-omp,all,pop,dynamic:64,6,16384,10591570,2,329.6008,38406,1622,0,0,0,0,0,0,14081816,1,0
+CTR,delta-omp,all,pop,dynamic:64,6,16384,1918966,0,339.0586,40761,1832,0,0,0,0,0,0,14081816,1,0
+CTR,delta-omp,all,pop,dynamic:64,6,16384,1918966,1,335.7169,40750,1832,0,0,0,0,0,0,14081816,1,0
+CTR,delta-omp,all,pop,dynamic:64,6,16384,1918966,2,333.2088,40770,1832,0,0,0,0,0,0,14081816,1,0

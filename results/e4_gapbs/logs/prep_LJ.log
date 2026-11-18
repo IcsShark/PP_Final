@@ -1,0 +1,15 @@
+== prep LJ on cmpt096.hpc.cc.cs.nctu.edu.tw at 2026-11-19T01:44:25+08:00, tmp=/tmp/e4_chiangca_hZXx7c
+read /tmp/e4_chiangca_hZXx7c/LJ.txt: n=4847571 input edges=68993773 (1.9 s)
+built CSR: n=4847571 m=68475391 (0.5 s)
+wrote /tmp/e4_chiangca_hZXx7c/LJ.csr (0.3 s)
+wrote /tmp/e4_chiangca_hZXx7c/LJ.wel (4.0 s)
+profile: d_avg=14.13 d_max=20292 w_min=1 w_max=262143 zero_out_degree=553239
+-- csr+wel done (18s); wel size 1454074530 bytes
+-- cmp: differs from /u/cs/111/111550055/pp_data/csr/LJ.csr (known, see e4_env.sh); using the regenerated CSR
+-- kept /u/cs/112/112550121/pp_data/gapbs/LJ.csr for ours
+Read Time:           9.11694
+Build Time:          0.88352
+Graph has 4847571 nodes and 68475391 directed edges for degree: 14
+-- wsg done (47s); size 1173167425 bytes (as expected)
+-- GAPBS graph: n=4847571 m=68475391 (same as ours)
+== prep LJ OK in 47s

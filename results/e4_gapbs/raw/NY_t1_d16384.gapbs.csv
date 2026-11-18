@@ -1,0 +1,13 @@
+graph,impl,threads,delta,source,trial,time_ms,verified,host
+NY,gapbs,1,16384,199622,0,11.3800,1,cmpt055
+NY,gapbs,1,16384,199622,1,10.0000,1,cmpt055
+NY,gapbs,1,16384,199622,2,9.9000,1,cmpt055
+NY,gapbs,1,16384,168925,0,11.6500,1,cmpt055
+NY,gapbs,1,16384,168925,1,10.1800,1,cmpt055
+NY,gapbs,1,16384,168925,2,9.4900,1,cmpt055
+NY,gapbs,1,16384,198826,0,11.3300,1,cmpt055
+NY,gapbs,1,16384,198826,1,10.0400,1,cmpt055
+NY,gapbs,1,16384,198826,2,10.1500,1,cmpt055
+NY,gapbs,1,16384,36023,0,10.9000,1,cmpt055
+NY,gapbs,1,16384,36023,1,9.7400,1,cmpt055
+NY,gapbs,1,16384,36023,2,9.4500,1,cmpt055

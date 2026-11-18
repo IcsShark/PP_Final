@@ -1,0 +1,10 @@
+== prep kron23 on cmpt096.hpc.cc.cs.nctu.edu.tw at 2026-11-19T00:43:48+08:00, tmp=/tmp/e4_chiangca_r8ejDG
+generated kron /tmp/e4_chiangca_r8ejDG/kron23.csr: n=8388608 m=131162466 (7.9 s)
+-- csr+wel done (30s); wel size 2925783690 bytes
+-- cmp OK: /tmp/e4_chiangca_r8ejDG/kron23.csr == /u/cs/111/111550055/pp_data/csr/kron23.csr
+Read Time:           17.20166
+Build Time:          2.30202
+Graph has 8388608 nodes and 131162466 directed edges for degree: 15
+-- wsg done (83s); size 2232817217 bytes (as expected)
+-- GAPBS graph: n=8388608 m=131162466 (same as ours)
+== prep kron23 OK in 83s

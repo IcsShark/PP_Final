@@ -10,16 +10,18 @@ OUT="$E4_RES/META.txt"
 echo "# E4 GAPBS baseline - metadata (generated $(date -Is) by scripts/exp/e4_meta.sh)"
 echo
 echo "## Code"
-echo "PP_Final:  $(git -C "$E4_REPO" rev-parse HEAD)  ($(git -C "$E4_REPO" describe --always --dirty), branch $(git -C "$E4_REPO" rev-parse --abbrev-ref HEAD))"
-echo "           algorithm code unchanged from main; build: g++ -O3 -march=native -std=c++20 -fopenmp (Makefile)"
+echo "PP_Final:  algorithm code (src/ include/ tools/ Makefile) at $(git -C "$E4_REPO" rev-parse HEAD) = main, unmodified;"
+echo "           E4 scripts (scripts/exp/e4_*) as committed on branch exp/e4-gapbs together with these results."
+echo "           build: g++ -O3 -march=native -std=c++20 -fopenmp (Makefile), on a compute node: run -c 4 -- make -j4"
 echo "GAPBS:     $(git -C "$GAPBS_DIR" rev-parse HEAD)  (https://github.com/sbeamer/gapbs, $(git -C "$GAPBS_DIR" log -1 --format=%cd --date=short))"
 echo "           build: its own Makefile, unmodified (g++ -std=c++11 -O3 -Wall -fopenmp; no -march=native),"
 echo "           built on a compute node with: run -c 4 -- make -j4"
 echo "compiler:  $(g++ --version | head -1)"
 echo
-echo "## Hosts (compute nodes that ran each step)"
+echo "## Hosts (compute node of each job; ours and GAPBS of one run_* job always share a node and time slot)"
 for f in "$E4_RES"/logs/*.log; do
   h=$(sed -n 's/^== .* on \([^ ]*\) at .*/\1/p' "$f" | head -1)
+  [ -n "$h" ] || continue
   printf '%-36s %s\n' "$(basename "$f" .log)" "${h%%.*}"
 done
 echo
@@ -55,7 +57,12 @@ sweep: run -c 12 -- bash scripts/exp/e4_sweep.sh GRAPH
 run  : run -c 12 -- bash scripts/exp/e4_run.sh GRAPH T DELTA
          bin/sssp -g REF/X.csr -a delta-omp -d DELTA -t T --sources 4 --seed 42 -r 3 --verify --csv raw/X_tT_dD.ours.csv
          for each source S:  OMP_NUM_THREADS=T gapbs/sssp -f tmp/X.wsg -d DELTA -r S -n 3 -v   (.wsg staged to node-local tmp)
-driver: nohup bash scripts/exp/e4_all.sh  (login node; submits the jobs above one at a time)
+driver (login node; submits the jobs above one at a time; full log in logs/driver.log), in this order:
+         bash scripts/exp/e4_all.sh NY CTR USA OK kron23 urand23 grid2896
+         run -c 12 -- bash scripts/exp/e4_check_ref.sh        (-> ref_check.log)
+         bash scripts/exp/e4_all.sh LJ
+         bash scripts/exp/e4_suggested.sh                     (spec 4.5, Delta=50000 on NY/CTR/USA)
+iters: run -c 12 -- bash scripts/exp/e4_iters.sh GRAPH     (GAPBS -l iteration count at the best Delta, t=12)
 CMDS
 echo "OMP environment: only OMP_NUM_THREADS (GAPBS); ours sets threads with -t. No OMP_PROC_BIND/OMP_PLACES."
 echo "ours schedule: bin/sssp default (--sched dynamic,64, --variant all, --filter pop)."

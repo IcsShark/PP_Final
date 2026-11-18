@@ -1,0 +1,14 @@
+== prep OK on cmpt096.hpc.cc.cs.nctu.edu.tw at 2026-11-19T00:12:43+08:00, tmp=/tmp/e4_chiangca_cvNAK3
+read /tmp/e4_chiangca_cvNAK3/OK.txt: n=3072626 input edges=117185083 (11.5 s)
+built CSR: n=3072626 m=234370166 (6.4 s)
+wrote /tmp/e4_chiangca_cvNAK3/OK.csr (0.8 s)
+wrote /tmp/e4_chiangca_cvNAK3/OK.wel (59.5 s)
+profile: d_avg=76.28 d_max=33313 w_min=1 w_max=262143 zero_out_degree=185
+-- csr+wel done (105s); wel size 5080784764 bytes
+-- cmp OK: /tmp/e4_chiangca_cvNAK3/OK.csr == /u/cs/111/111550055/pp_data/csr/OK.csr
+Read Time:           30.11275
+Build Time:          3.79230
+Graph has 3072626 nodes and 234370166 directed edges for degree: 76
+-- wsg done (314s); size 3799084705 bytes (as expected)
+-- GAPBS graph: n=3072626 m=234370166 (same as ours)
+== prep OK OK in 314s

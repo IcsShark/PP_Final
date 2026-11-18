@@ -1,0 +1,74 @@
+== run USA_t1_d32768 on cmpt053 at 2026-11-18T23:52:07+08:00, SLURM_CPUS_PER_TASK=12
+graph USA: n=23947347 m=57708624 d_avg=2.41 d_max=9 w=[1,368855] load=147.8 ms
+sources: 18083971 15303106 18011882 3263369
+  delta-omp delta=32768    t=1  src=18083971  rep=0    1543.602 ms  phases=52658 reached=23947347 OK
+  delta-omp delta=32768    t=1  src=18083971  rep=1    1526.263 ms  phases=52658 reached=23947347 OK
+  delta-omp delta=32768    t=1  src=18083971  rep=2    1520.557 ms  phases=52658 reached=23947347 OK
+delta-omp all/pop delta=32768    t=1  src=18083971  median=  1526.263 ms phases=52658 buckets=1358
+  delta-omp delta=32768    t=1  src=15303106  rep=0    1548.654 ms  phases=48934 reached=23947347 OK
+  delta-omp delta=32768    t=1  src=15303106  rep=1    1516.711 ms  phases=48934 reached=23947347 OK
+  delta-omp delta=32768    t=1  src=15303106  rep=2    1522.432 ms  phases=48934 reached=23947347 OK
+delta-omp all/pop delta=32768    t=1  src=15303106  median=  1522.432 ms phases=48934 buckets=1215
+  delta-omp delta=32768    t=1  src=18011882  rep=0    1523.659 ms  phases=55027 reached=23947347 OK
+  delta-omp delta=32768    t=1  src=18011882  rep=1    1512.636 ms  phases=55027 reached=23947347 OK
+  delta-omp delta=32768    t=1  src=18011882  rep=2    1515.572 ms  phases=55027 reached=23947347 OK
+delta-omp all/pop delta=32768    t=1  src=18011882  median=  1515.572 ms phases=55027 buckets=1417
+  delta-omp delta=32768    t=1  src=3263369   rep=0    1488.549 ms  phases=63206 reached=23947347 OK
+  delta-omp delta=32768    t=1  src=3263369   rep=1    1482.268 ms  phases=63206 reached=23947347 OK
+  delta-omp delta=32768    t=1  src=3263369   rep=2    1488.490 ms  phases=63206 reached=23947347 OK
+delta-omp all/pop delta=32768    t=1  src=3263369   median=  1488.490 ms phases=63206 buckets=1653
+all runs verified against Dijkstra
+-- ours done (29s), sources: 18083971 15303106 18011882 3263369
+-- gapbs d=32768 t=1 src=18083971
+Read Time:           0.31180
+Graph has 23947347 nodes and 57708624 directed edges for degree: 2
+Trial Time:          1.04203
+Verification:           PASS
+Verification Time:   2.39486
+Trial Time:          1.05082
+Verification:           PASS
+Verification Time:   2.39847
+Trial Time:          1.03802
+Verification:           PASS
+Verification Time:   2.46594
+Average Time:        1.04362
+-- gapbs d=32768 t=1 src=15303106
+Read Time:           0.29214
+Graph has 23947347 nodes and 57708624 directed edges for degree: 2
+Trial Time:          1.06941
+Verification:           PASS
+Verification Time:   2.50704
+Trial Time:          1.07388
+Verification:           PASS
+Verification Time:   2.48567
+Trial Time:          1.05886
+Verification:           PASS
+Verification Time:   2.45241
+Average Time:        1.06739
+-- gapbs d=32768 t=1 src=18011882
+Read Time:           0.24882
+Graph has 23947347 nodes and 57708624 directed edges for degree: 2
+Trial Time:          1.03725
+Verification:           PASS
+Verification Time:   2.38044
+Trial Time:          1.03065
+Verification:           PASS
+Verification Time:   2.38737
+Trial Time:          1.03325
+Verification:           PASS
+Verification Time:   2.36640
+Average Time:        1.03372
+-- gapbs d=32768 t=1 src=3263369
+Read Time:           0.24264
+Graph has 23947347 nodes and 57708624 directed edges for degree: 2
+Trial Time:          1.05552
+Verification:           PASS
+Verification Time:   2.48632
+Trial Time:          1.04937
+Verification:           PASS
+Verification Time:   2.49177
+Trial Time:          1.06204
+Verification:           PASS
+Verification Time:   2.47939
+Average Time:        1.05564
+== run USA_t1_d32768 OK in 73s

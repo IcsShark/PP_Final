@@ -1,0 +1,75 @@
+== run USA_t6_d50000 on cmpt054 at 2026-11-19T02:03:35+08:00, SLURM_CPUS_PER_TASK=12
+csr: /u/cs/111/111550055/pp_data/csr/USA.csr
+graph USA: n=23947347 m=57708624 d_avg=2.41 d_max=9 w=[1,368855] load=10524.7 ms
+sources: 18083971 15303106 18011882 3263369
+  delta-omp delta=50000    t=6  src=18083971  rep=0     564.118 ms  phases=47126 reached=23947347 OK
+  delta-omp delta=50000    t=6  src=18083971  rep=1     534.037 ms  phases=47143 reached=23947347 OK
+  delta-omp delta=50000    t=6  src=18083971  rep=2     533.072 ms  phases=47110 reached=23947347 OK
+delta-omp all/pop delta=50000    t=6  src=18083971  median=   534.037 ms phases=47110 buckets=890
+  delta-omp delta=50000    t=6  src=15303106  rep=0     522.649 ms  phases=43823 reached=23947347 OK
+  delta-omp delta=50000    t=6  src=15303106  rep=1     523.931 ms  phases=43871 reached=23947347 OK
+  delta-omp delta=50000    t=6  src=15303106  rep=2     522.590 ms  phases=43850 reached=23947347 OK
+delta-omp all/pop delta=50000    t=6  src=15303106  median=   522.649 ms phases=43850 buckets=797
+  delta-omp delta=50000    t=6  src=18011882  rep=0     536.564 ms  phases=49182 reached=23947347 OK
+  delta-omp delta=50000    t=6  src=18011882  rep=1     539.985 ms  phases=49162 reached=23947347 OK
+  delta-omp delta=50000    t=6  src=18011882  rep=2     537.398 ms  phases=49175 reached=23947347 OK
+delta-omp all/pop delta=50000    t=6  src=18011882  median=   537.398 ms phases=49175 buckets=929
+  delta-omp delta=50000    t=6  src=3263369   rep=0     553.675 ms  phases=56978 reached=23947347 OK
+  delta-omp delta=50000    t=6  src=3263369   rep=1     549.711 ms  phases=57029 reached=23947347 OK
+  delta-omp delta=50000    t=6  src=3263369   rep=2     550.604 ms  phases=56957 reached=23947347 OK
+delta-omp all/pop delta=50000    t=6  src=3263369   median=   550.604 ms phases=56957 buckets=1084
+all runs verified against Dijkstra
+-- ours done (28s), sources: 18083971 15303106 18011882 3263369
+-- gapbs d=50000 t=6 src=18083971
+Read Time:           0.24330
+Graph has 23947347 nodes and 57708624 directed edges for degree: 2
+Trial Time:          0.26923
+Verification:           PASS
+Verification Time:   2.51282
+Trial Time:          0.26628
+Verification:           PASS
+Verification Time:   2.51638
+Trial Time:          0.27022
+Verification:           PASS
+Verification Time:   2.52186
+Average Time:        0.26858
+-- gapbs d=50000 t=6 src=15303106
+Read Time:           0.28358
+Graph has 23947347 nodes and 57708624 directed edges for degree: 2
+Trial Time:          0.28504
+Verification:           PASS
+Verification Time:   2.53770
+Trial Time:          0.26437
+Verification:           PASS
+Verification Time:   2.52803
+Trial Time:          0.26438
+Verification:           PASS
+Verification Time:   2.56743
+Average Time:        0.27127
+-- gapbs d=50000 t=6 src=18011882
+Read Time:           0.25304
+Graph has 23947347 nodes and 57708624 directed edges for degree: 2
+Trial Time:          0.27614
+Verification:           PASS
+Verification Time:   2.50576
+Trial Time:          0.26738
+Verification:           PASS
+Verification Time:   2.52619
+Trial Time:          0.28598
+Verification:           PASS
+Verification Time:   2.49434
+Average Time:        0.27650
+-- gapbs d=50000 t=6 src=3263369
+Read Time:           0.23536
+Graph has 23947347 nodes and 57708624 directed edges for degree: 2
+Trial Time:          0.26841
+Verification:           PASS
+Verification Time:   2.38996
+Trial Time:          0.27311
+Verification:           PASS
+Verification Time:   2.39092
+Trial Time:          0.26274
+Verification:           PASS
+Verification Time:   2.37761
+Average Time:        0.26809
+== run USA_t6_d50000 OK in 80s

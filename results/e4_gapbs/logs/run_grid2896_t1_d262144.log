@@ -1,0 +1,75 @@
+== run grid2896_t1_d262144 on cmpt081 at 2026-11-19T01:36:29+08:00, SLURM_CPUS_PER_TASK=12
+csr: /u/cs/111/111550055/pp_data/csr/grid2896.csr
+graph grid2896: n=8386816 m=33535680 d_avg=4.00 d_max=4 w=[1,262143] load=96.2 ms
+sources: 6333350 5359438 6308103 1142893
+  delta-omp delta=262144   t=1  src=6333350   rep=0     615.693 ms  phases=10884 reached=8386816 OK
+  delta-omp delta=262144   t=1  src=6333350   rep=1     605.312 ms  phases=10884 reached=8386816 OK
+  delta-omp delta=262144   t=1  src=6333350   rep=2     604.178 ms  phases=10884 reached=8386816 OK
+delta-omp all/pop delta=262144   t=1  src=6333350   median=   605.312 ms phases=10884 buckets=1124
+  delta-omp delta=262144   t=1  src=5359438   rep=0     587.154 ms  phases=8267 reached=8386816 OK
+  delta-omp delta=262144   t=1  src=5359438   rep=1     594.533 ms  phases=8267 reached=8386816 OK
+  delta-omp delta=262144   t=1  src=5359438   rep=2     585.557 ms  phases=8267 reached=8386816 OK
+delta-omp all/pop delta=262144   t=1  src=5359438   median=   587.154 ms phases=8267 buckets=845
+  delta-omp delta=262144   t=1  src=6308103   rep=0     551.356 ms  phases=9920 reached=8386816 OK
+  delta-omp delta=262144   t=1  src=6308103   rep=1     556.932 ms  phases=9920 reached=8386816 OK
+  delta-omp delta=262144   t=1  src=6308103   rep=2     550.754 ms  phases=9920 reached=8386816 OK
+delta-omp all/pop delta=262144   t=1  src=6308103   median=   551.356 ms phases=9920 buckets=1021
+  delta-omp delta=262144   t=1  src=1142893   rep=0     580.988 ms  phases=9798 reached=8386816 OK
+  delta-omp delta=262144   t=1  src=1142893   rep=1     580.430 ms  phases=9798 reached=8386816 OK
+  delta-omp delta=262144   t=1  src=1142893   rep=2     582.529 ms  phases=9798 reached=8386816 OK
+delta-omp all/pop delta=262144   t=1  src=1142893   median=   580.988 ms phases=9798 buckets=1003
+all runs verified against Dijkstra
+-- ours done (12s), sources: 6333350 5359438 6308103 1142893
+-- gapbs d=262144 t=1 src=6333350
+Read Time:           0.12959
+Graph has 8386816 nodes and 33535680 directed edges for degree: 3
+Trial Time:          0.49314
+Verification:           PASS
+Verification Time:   1.15270
+Trial Time:          0.47668
+Verification:           PASS
+Verification Time:   1.13864
+Trial Time:          0.46786
+Verification:           PASS
+Verification Time:   1.12100
+Average Time:        0.47922
+-- gapbs d=262144 t=1 src=5359438
+Read Time:           0.15070
+Graph has 8386816 nodes and 33535680 directed edges for degree: 3
+Trial Time:          0.46239
+Verification:           PASS
+Verification Time:   1.15547
+Trial Time:          0.44656
+Verification:           PASS
+Verification Time:   1.13983
+Trial Time:          0.44608
+Verification:           PASS
+Verification Time:   1.14784
+Average Time:        0.45168
+-- gapbs d=262144 t=1 src=6308103
+Read Time:           0.12408
+Graph has 8386816 nodes and 33535680 directed edges for degree: 3
+Trial Time:          0.40311
+Verification:           PASS
+Verification Time:   1.04643
+Trial Time:          0.39929
+Verification:           PASS
+Verification Time:   1.08897
+Trial Time:          0.39913
+Verification:           PASS
+Verification Time:   1.07977
+Average Time:        0.40051
+-- gapbs d=262144 t=1 src=1142893
+Read Time:           0.12167
+Graph has 8386816 nodes and 33535680 directed edges for degree: 3
+Trial Time:          0.43268
+Verification:           PASS
+Verification Time:   1.08381
+Trial Time:          0.42353
+Verification:           PASS
+Verification Time:   1.12180
+Trial Time:          0.42296
+Verification:           PASS
+Verification Time:   1.12230
+Average Time:        0.42639
+== run grid2896_t1_d262144 OK in 42s

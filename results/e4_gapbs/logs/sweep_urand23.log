@@ -1,0 +1,19 @@
+== sweep urand23 on cmpt096.hpc.cc.cs.nctu.edu.tw at 2026-11-19T01:02:20+08:00
+csr: /u/cs/111/111550055/pp_data/csr/urand23.csr
+graph urand23: n=8388608 m=134217598 d_avg=16.00 d_max=40 w=[1,262143] load=18004.4 ms
+sources: 6334703
+delta-omp all/pop delta=64       t=12 src=6334703   median=  1066.295 ms phases=8651 buckets=6924
+delta-omp all/pop delta=128      t=12 src=6334703   median=   933.956 ms phases=4756 buckets=3580
+delta-omp all/pop delta=256      t=12 src=6334703   median=   900.159 ms phases=2655 buckets=1844
+delta-omp all/pop delta=512      t=12 src=6334703   median=   870.651 ms phases=1538 buckets=949
+delta-omp all/pop delta=1024     t=12 src=6334703   median=   893.340 ms phases=882 buckets=487
+delta-omp all/pop delta=2048     t=12 src=6334703   median=   852.547 ms phases=521 buckets=249
+delta-omp all/pop delta=4096     t=12 src=6334703   median=   855.399 ms phases=319 buckets=128
+delta-omp all/pop delta=8192     t=12 src=6334703   median=   869.146 ms phases=202 buckets=66
+delta-omp all/pop delta=16384    t=12 src=6334703   median=   918.387 ms phases=131 buckets=35
+delta-omp all/pop delta=32768    t=12 src=6334703   median=   971.499 ms phases=92 buckets=17
+delta-omp all/pop delta=65536    t=12 src=6334703   median=  1127.269 ms phases=64 buckets=9
+delta-omp all/pop delta=131072   t=12 src=6334703   median=  1404.284 ms phases=52 buckets=5
+delta-omp all/pop delta=262144   t=12 src=6334703   median=  1622.752 ms phases=45 buckets=3
+all runs verified against Dijkstra
+== sweep urand23 OK in 67s

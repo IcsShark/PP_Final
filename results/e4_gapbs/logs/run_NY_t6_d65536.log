@@ -1,0 +1,74 @@
+== run NY_t6_d65536 on cmpt051 at 2026-11-18T23:23:43+08:00, SLURM_CPUS_PER_TASK=12
+graph NY: n=264346 m=730100 d_avg=2.76 d_max=8 w=[1,36946] load=5.3 ms
+sources: 199622 168925 198826 36023
+  delta-omp delta=65536    t=6  src=199622    rep=0      11.829 ms  phases=1157 reached=264346 OK
+  delta-omp delta=65536    t=6  src=199622    rep=1      10.236 ms  phases=1153 reached=264346 OK
+  delta-omp delta=65536    t=6  src=199622    rep=2      10.060 ms  phases=1153 reached=264346 OK
+delta-omp all/pop delta=65536    t=6  src=199622    median=    10.236 ms phases=1153 buckets=16
+  delta-omp delta=65536    t=6  src=168925    rep=0      11.179 ms  phases=1381 reached=264346 OK
+  delta-omp delta=65536    t=6  src=168925    rep=1      10.897 ms  phases=1375 reached=264346 OK
+  delta-omp delta=65536    t=6  src=168925    rep=2      10.843 ms  phases=1368 reached=264346 OK
+delta-omp all/pop delta=65536    t=6  src=168925    median=    10.897 ms phases=1368 buckets=19
+  delta-omp delta=65536    t=6  src=198826    rep=0      10.460 ms  phases=1216 reached=264346 OK
+  delta-omp delta=65536    t=6  src=198826    rep=1      10.321 ms  phases=1219 reached=264346 OK
+  delta-omp delta=65536    t=6  src=198826    rep=2      10.435 ms  phases=1212 reached=264346 OK
+delta-omp all/pop delta=65536    t=6  src=198826    median=    10.435 ms phases=1212 buckets=18
+  delta-omp delta=65536    t=6  src=36023     rep=0      10.339 ms  phases=1106 reached=264346 OK
+  delta-omp delta=65536    t=6  src=36023     rep=1      10.212 ms  phases=1107 reached=264346 OK
+  delta-omp delta=65536    t=6  src=36023     rep=2      10.179 ms  phases=1117 reached=264346 OK
+delta-omp all/pop delta=65536    t=6  src=36023     median=    10.212 ms phases=1117 buckets=15
+all runs verified against Dijkstra
+-- ours done (0s), sources: 199622 168925 198826 36023
+-- gapbs d=65536 t=6 src=199622
+Read Time:           0.00438
+Graph has 264346 nodes and 730100 directed edges for degree: 2
+Trial Time:          0.00576
+Verification:           PASS
+Verification Time:   0.02188
+Trial Time:          0.00523
+Verification:           PASS
+Verification Time:   0.02148
+Trial Time:          0.00504
+Verification:           PASS
+Verification Time:   0.02123
+Average Time:        0.00534
+-- gapbs d=65536 t=6 src=168925
+Read Time:           0.00525
+Graph has 264346 nodes and 730100 directed edges for degree: 2
+Trial Time:          0.00714
+Verification:           PASS
+Verification Time:   0.02116
+Trial Time:          0.00579
+Verification:           PASS
+Verification Time:   0.02074
+Trial Time:          0.00635
+Verification:           PASS
+Verification Time:   0.02055
+Average Time:        0.00643
+-- gapbs d=65536 t=6 src=198826
+Read Time:           0.00441
+Graph has 264346 nodes and 730100 directed edges for degree: 2
+Trial Time:          0.00603
+Verification:           PASS
+Verification Time:   0.02196
+Trial Time:          0.00512
+Verification:           PASS
+Verification Time:   0.02134
+Trial Time:          0.00519
+Verification:           PASS
+Verification Time:   0.02103
+Average Time:        0.00545
+-- gapbs d=65536 t=6 src=36023
+Read Time:           0.00438
+Graph has 264346 nodes and 730100 directed edges for degree: 2
+Trial Time:          0.00593
+Verification:           PASS
+Verification Time:   0.02198
+Trial Time:          0.00503
+Verification:           PASS
+Verification Time:   0.02174
+Trial Time:          0.00531
+Verification:           PASS
+Verification Time:   0.02130
+Average Time:        0.00543
+== run NY_t6_d65536 OK in 0s

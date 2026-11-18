@@ -1,0 +1,14 @@
+== prep NY on cmpt047.hpc.cc.cs.nctu.edu.tw at 2026-11-19T01:56:57+08:00, tmp=/tmp/e4_chiangca_ZmrjaV
+read /tmp/e4_chiangca_ZmrjaV/NY.txt: n=264346 input edges=733846 (0.0 s)
+built CSR: n=264346 m=730100 (0.0 s)
+wrote /tmp/e4_chiangca_ZmrjaV/NY.csr (0.0 s)
+wrote /tmp/e4_chiangca_ZmrjaV/NY.wel (0.0 s)
+profile: d_avg=2.76 d_max=8 w_min=1 w_max=36946 zero_out_degree=0
+-- csr+wel done (0s); wel size 12904270 bytes
+-- cmp OK: /tmp/e4_chiangca_ZmrjaV/NY.csr == /u/cs/111/111550055/pp_data/csr/NY.csr
+Read Time:           0.10141
+Build Time:          0.00950
+Graph has 264346 nodes and 730100 directed edges for degree: 2
+-- wsg done (1s); size 15911169 bytes (as expected)
+-- GAPBS graph: n=264346 m=730100 (same as ours)
+== prep NY OK in 1s

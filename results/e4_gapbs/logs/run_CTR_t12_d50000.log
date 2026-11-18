@@ -1,0 +1,75 @@
+== run CTR_t12_d50000 on cmpt096 at 2026-11-19T01:59:58+08:00, SLURM_CPUS_PER_TASK=12
+csr: /u/cs/111/111550055/pp_data/csr/CTR.csr
+graph CTR: n=14081816 m=33866826 d_avg=2.41 d_max=8 w=[1,214013] load=92.6 ms
+sources: 10633961 8998722 10591570 1918966
+  delta-omp delta=50000    t=12 src=10633961  rep=0     330.699 ms  phases=26052 reached=14081816 OK
+  delta-omp delta=50000    t=12 src=10633961  rep=1     360.037 ms  phases=26069 reached=14081816 OK
+  delta-omp delta=50000    t=12 src=10633961  rep=2     360.264 ms  phases=26074 reached=14081816 OK
+delta-omp all/pop delta=50000    t=12 src=10633961  median=   360.037 ms phases=26074 buckets=475
+  delta-omp delta=50000    t=12 src=8998722   rep=0     311.833 ms  phases=24369 reached=14081816 OK
+  delta-omp delta=50000    t=12 src=8998722   rep=1     310.631 ms  phases=24411 reached=14081816 OK
+  delta-omp delta=50000    t=12 src=8998722   rep=2     308.909 ms  phases=24414 reached=14081816 OK
+delta-omp all/pop delta=50000    t=12 src=8998722   median=   310.631 ms phases=24414 buckets=442
+  delta-omp delta=50000    t=12 src=10591570  rep=0     324.466 ms  phases=28782 reached=14081816 OK
+  delta-omp delta=50000    t=12 src=10591570  rep=1     337.885 ms  phases=28816 reached=14081816 OK
+  delta-omp delta=50000    t=12 src=10591570  rep=2     321.756 ms  phases=28786 reached=14081816 OK
+delta-omp all/pop delta=50000    t=12 src=10591570  median=   324.466 ms phases=28786 buckets=532
+  delta-omp delta=50000    t=12 src=1918966   rep=0     329.413 ms  phases=30361 reached=14081816 OK
+  delta-omp delta=50000    t=12 src=1918966   rep=1     328.659 ms  phases=30345 reached=14081816 OK
+  delta-omp delta=50000    t=12 src=1918966   rep=2     411.016 ms  phases=30340 reached=14081816 OK
+delta-omp all/pop delta=50000    t=12 src=1918966   median=   329.413 ms phases=30340 buckets=601
+all runs verified against Dijkstra
+-- ours done (11s), sources: 10633961 8998722 10591570 1918966
+-- gapbs d=50000 t=12 src=10633961
+Read Time:           0.16115
+Graph has 14081816 nodes and 33866826 directed edges for degree: 2
+Trial Time:          0.15595
+Verification:           PASS
+Verification Time:   1.64662
+Trial Time:          0.15225
+Verification:           PASS
+Verification Time:   1.62193
+Trial Time:          0.15242
+Verification:           PASS
+Verification Time:   1.63810
+Average Time:        0.15354
+-- gapbs d=50000 t=12 src=8998722
+Read Time:           0.18561
+Graph has 14081816 nodes and 33866826 directed edges for degree: 2
+Trial Time:          0.15936
+Verification:           PASS
+Verification Time:   1.65334
+Trial Time:          0.15437
+Verification:           PASS
+Verification Time:   1.65032
+Trial Time:          0.15353
+Verification:           PASS
+Verification Time:   1.80019
+Average Time:        0.15575
+-- gapbs d=50000 t=12 src=10591570
+Read Time:           0.16665
+Graph has 14081816 nodes and 33866826 directed edges for degree: 2
+Trial Time:          0.18356
+Verification:           PASS
+Verification Time:   1.68982
+Trial Time:          0.15676
+Verification:           PASS
+Verification Time:   1.62788
+Trial Time:          0.15543
+Verification:           PASS
+Verification Time:   1.65457
+Average Time:        0.16525
+-- gapbs d=50000 t=12 src=1918966
+Read Time:           0.15715
+Graph has 14081816 nodes and 33866826 directed edges for degree: 2
+Trial Time:          0.15743
+Verification:           PASS
+Verification Time:   1.60313
+Trial Time:          0.15399
+Verification:           PASS
+Verification Time:   1.57433
+Trial Time:          0.15451
+Verification:           PASS
+Verification Time:   1.57692
+Average Time:        0.15531
+== run CTR_t12_d50000 OK in 36s

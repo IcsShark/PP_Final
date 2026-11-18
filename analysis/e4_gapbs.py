@@ -43,7 +43,7 @@ plt.rcParams.update({
     "text.color": INK, "axes.titlecolor": INK, "axes.titlesize": 11, "axes.titleweight": "bold",
     "font.size": 9, "axes.spines.top": False, "axes.spines.right": False,
     "axes.grid": True, "axes.grid.axis": "y", "grid.color": GRID, "grid.linewidth": 0.6,
-    "legend.frameon": False,
+    "legend.frameon": False, "axes.axisbelow": True,
 })
 
 
@@ -93,11 +93,23 @@ def write_tables(s: pd.DataFrame, res: Path):
     out.to_csv(res / "e4_summary.csv", index=False, float_format="%.4f")
     lines = ["| graph | t | Δ | ours (ms) | GAPBS (ms) | GAPBS / ours |", "|---|---:|---:|---:|---:|---:|"]
     for r in out.itertuples():
-        d = f"**{r.delta}**" if r.best_delta else f"{r.delta}"
+        d = f"**{r.delta}**" if r.best_delta else (f"{r.delta}†" if r.delta == 50000 else f"{r.delta}")
         lines.append(f"| {r.graph} | {r.threads} | {d} | {r.ours_ms:.2f} | {r.gapbs_ms:.2f} | "
                      f"{r.ratio_gapbs_over_ours:.2f} |")
     text = ("Mean over 4 sources of the median of 3 trials. **Bold Δ** = best Δ from the sweep. "
-            "GAPBS / ours > 1 means ours is faster.\n\n" + "\n".join(lines) + "\n")
+            "† = GAPBS's suggested road Δ (spec 4.5). GAPBS / ours > 1 means ours is faster.\n\n" + "\n".join(lines) + "\n")
+    # Spec 4.5: GAPBS's suggested road Delta (bench.mk: -d50000) vs the best of our sweep.
+    sug = s[s.delta == 50000]
+    if len(sug):
+        rows = ["| graph | t | GAPBS @ Δ=50000 (ms) | GAPBS @ our best Δ (ms) | ours @ best Δ (ms) |",
+                "|---|---:|---:|---:|---:|"]
+        for r in sug.itertuples():
+            b = s[(s.graph == r.graph) & (s.threads == r.threads) & s.best_delta]
+            if len(b):
+                rows.append(f"| {r.graph} | {r.threads} | {r.gapbs_ms:.2f} | {b.gapbs_ms.iloc[0]:.2f} "
+                            f"(Δ={b.delta.iloc[0]}) | {b.ours_ms.iloc[0]:.2f} |")
+        text += ("\nGAPBS's own suggested Δ for road graphs (benchmark/bench.mk: `-d50000`), spec 4.5.\n\n"
+                 + "\n".join(rows) + "\n")
     it_files = sorted((res / "iters").glob("*.csv"))
     if it_files:
         it = pd.concat([pd.read_csv(f) for f in it_files], ignore_index=True)

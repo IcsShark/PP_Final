@@ -1,0 +1,19 @@
+== sweep LJ on cmpt096.hpc.cc.cs.nctu.edu.tw at 2026-11-19T01:45:16+08:00
+csr: /u/cs/112/112550121/pp_data/gapbs/LJ.csr
+graph LJ: n=4847571 m=68475391 d_avg=14.13 d_max=20292 w=[1,262143] load=7851.8 ms
+sources: 3660670
+delta-omp all/pop delta=64       t=12 src=3660670   median=   393.526 ms phases=13199 buckets=11995
+delta-omp all/pop delta=128      t=12 src=3660670   median=   335.616 ms phases=7426 buckets=6426
+delta-omp all/pop delta=256      t=12 src=3660670   median=   348.426 ms phases=4264 buckets=3417
+delta-omp all/pop delta=512      t=12 src=3660670   median=   279.819 ms phases=2514 buckets=1809
+delta-omp all/pop delta=1024     t=12 src=3660670   median=   264.413 ms phases=1514 buckets=953
+delta-omp all/pop delta=2048     t=12 src=3660670   median=   258.349 ms phases=913 buckets=501
+delta-omp all/pop delta=4096     t=12 src=3660670   median=   257.183 ms phases=598 buckets=265
+delta-omp all/pop delta=8192     t=12 src=3660670   median=   264.587 ms phases=402 buckets=138
+delta-omp all/pop delta=16384    t=12 src=3660670   median=   285.908 ms phases=267 buckets=72
+delta-omp all/pop delta=32768    t=12 src=3660670   median=   335.912 ms phases=185 buckets=37
+delta-omp all/pop delta=65536    t=12 src=3660670   median=   376.230 ms phases=131 buckets=19
+delta-omp all/pop delta=131072   t=12 src=3660670   median=   425.595 ms phases=90 buckets=10
+delta-omp all/pop delta=262144   t=12 src=3660670   median=   856.149 ms phases=68 buckets=5
+all runs verified against Dijkstra
+== sweep LJ OK in 25s

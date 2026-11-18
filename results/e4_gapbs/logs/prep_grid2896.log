@@ -1,0 +1,10 @@
+== prep grid2896 on cmpt051.hpc.cc.cs.nctu.edu.tw at 2026-11-19T01:31:37+08:00, tmp=/tmp/e4_chiangca_WklHNh
+generated grid /tmp/e4_chiangca_WklHNh/grid2896.csr: n=8386816 m=33535680 (0.4 s)
+-- csr+wel done (1s); wel size 748240758 bytes
+-- cmp OK: /tmp/e4_chiangca_WklHNh/grid2896.csr == /u/cs/111/111550055/pp_data/csr/grid2896.csr
+Read Time:           4.43270
+Build Time:          0.24675
+Graph has 8386816 nodes and 33535680 directed edges for degree: 3
+-- wsg done (26s); size 670759969 bytes (as expected)
+-- GAPBS graph: n=8386816 m=33535680 (same as ours)
+== prep grid2896 OK in 26s

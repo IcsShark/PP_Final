@@ -1,0 +1,75 @@
+== run kron23_t1_d256 on cmpt096 at 2026-11-19T00:48:31+08:00, SLURM_CPUS_PER_TASK=12
+csr: /u/cs/111/111550055/pp_data/csr/kron23.csr
+graph kron23: n=8388608 m=131162466 d_avg=15.64 d_max=152530 w=[1,262143] load=415.4 ms
+sources: 5360583 6309451 7577169 789102
+  delta-omp delta=256      t=1  src=5360583   rep=0    1839.490 ms  phases=2191 reached=3846665 OK
+  delta-omp delta=256      t=1  src=5360583   rep=1    1774.162 ms  phases=2191 reached=3846665 OK
+  delta-omp delta=256      t=1  src=5360583   rep=2    1797.323 ms  phases=2191 reached=3846665 OK
+delta-omp all/pop delta=256      t=1  src=5360583   median=  1797.323 ms phases=2191 buckets=1968
+  delta-omp delta=256      t=1  src=6309451   rep=0    1802.818 ms  phases=2178 reached=3846665 OK
+  delta-omp delta=256      t=1  src=6309451   rep=1    1794.370 ms  phases=2178 reached=3846665 OK
+  delta-omp delta=256      t=1  src=6309451   rep=2    1799.545 ms  phases=2178 reached=3846665 OK
+delta-omp all/pop delta=256      t=1  src=6309451   median=  1799.545 ms phases=2178 buckets=1966
+  delta-omp delta=256      t=1  src=7577169   rep=0    1762.684 ms  phases=2195 reached=3846665 OK
+  delta-omp delta=256      t=1  src=7577169   rep=1    1751.976 ms  phases=2195 reached=3846665 OK
+  delta-omp delta=256      t=1  src=7577169   rep=2    1748.240 ms  phases=2195 reached=3846665 OK
+delta-omp all/pop delta=256      t=1  src=7577169   median=  1751.976 ms phases=2195 buckets=1969
+  delta-omp delta=256      t=1  src=789102    rep=0    1748.577 ms  phases=2185 reached=3846665 OK
+  delta-omp delta=256      t=1  src=789102    rep=1    1752.869 ms  phases=2185 reached=3846665 OK
+  delta-omp delta=256      t=1  src=789102    rep=2    1745.571 ms  phases=2185 reached=3846665 OK
+delta-omp all/pop delta=256      t=1  src=789102    median=  1748.577 ms phases=2185 buckets=1965
+all runs verified against Dijkstra
+-- ours done (37s), sources: 5360583 6309451 7577169 789102
+-- gapbs d=256 t=1 src=5360583
+Read Time:           0.43118
+Graph has 8388608 nodes and 131162466 directed edges for degree: 15
+Trial Time:          1.44380
+Verification:           PASS
+Verification Time:   3.78186
+Trial Time:          1.46385
+Verification:           PASS
+Verification Time:   3.73077
+Trial Time:          1.44215
+Verification:           PASS
+Verification Time:   3.67639
+Average Time:        1.44993
+-- gapbs d=256 t=1 src=6309451
+Read Time:           2.53576
+Graph has 8388608 nodes and 131162466 directed edges for degree: 15
+Trial Time:          1.51298
+Verification:           PASS
+Verification Time:   3.24130
+Trial Time:          1.53239
+Verification:           PASS
+Verification Time:   3.27372
+Trial Time:          1.45875
+Verification:           PASS
+Verification Time:   3.13973
+Average Time:        1.50137
+-- gapbs d=256 t=1 src=7577169
+Read Time:           0.41205
+Graph has 8388608 nodes and 131162466 directed edges for degree: 15
+Trial Time:          1.42720
+Verification:           PASS
+Verification Time:   3.08812
+Trial Time:          1.42884
+Verification:           PASS
+Verification Time:   3.08810
+Trial Time:          1.39903
+Verification:           PASS
+Verification Time:   3.09339
+Average Time:        1.41836
+-- gapbs d=256 t=1 src=789102
+Read Time:           0.40339
+Graph has 8388608 nodes and 131162466 directed edges for degree: 15
+Trial Time:          1.42263
+Verification:           PASS
+Verification Time:   3.13176
+Trial Time:          1.39264
+Verification:           PASS
+Verification Time:   3.10151
+Trial Time:          1.38841
+Verification:           PASS
+Verification Time:   3.12194
+Average Time:        1.40123
+== run kron23_t1_d256 OK in 101s

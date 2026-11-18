@@ -1,0 +1,18 @@
+== sweep NY on cmpt096.hpc.cc.cs.nctu.edu.tw at 2026-11-18T23:21:05+08:00
+graph NY: n=264346 m=730100 d_avg=2.76 d_max=8 w=[1,36946] load=9.0 ms
+sources: 199622
+delta-omp all/pop delta=64       t=12 src=199622    median=    57.739 ms phases=15414 buckets=15052
+delta-omp all/pop delta=128      t=12 src=199622    median=    40.245 ms phases=8658 buckets=7665
+delta-omp all/pop delta=256      t=12 src=199622    median=    28.008 ms phases=6090 buckets=3880
+delta-omp all/pop delta=512      t=12 src=199622    median=    18.815 ms phases=4229 buckets=1958
+delta-omp all/pop delta=1024     t=12 src=199622    median=    14.976 ms phases=3172 buckets=984
+delta-omp all/pop delta=2048     t=12 src=199622    median=    12.335 ms phases=2478 buckets=493
+delta-omp all/pop delta=4096     t=12 src=199622    median=    10.400 ms phases=2025 buckets=247
+delta-omp all/pop delta=8192     t=12 src=199622    median=     9.259 ms phases=1703 buckets=124
+delta-omp all/pop delta=16384    t=12 src=199622    median=     8.462 ms phases=1464 buckets=62
+delta-omp all/pop delta=32768    t=12 src=199622    median=     8.442 ms phases=1308 buckets=31
+delta-omp all/pop delta=65536    t=12 src=199622    median=     9.233 ms phases=1156 buckets=16
+delta-omp all/pop delta=131072   t=12 src=199622    median=    11.932 ms phases=1064 buckets=8
+delta-omp all/pop delta=262144   t=12 src=199622    median=    18.235 ms phases=965 buckets=5
+all runs verified against Dijkstra
+== sweep NY OK in 0s

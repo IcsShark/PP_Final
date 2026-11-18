@@ -1,0 +1,4 @@
+== iters LJ on cmpt053.hpc.cc.cs.nctu.edu.tw at 2026-11-19T01:56:34+08:00
+graph,delta,threads,source,gapbs_iterations,ours_phases
+LJ,4096,12,3660670,272,598
+== iters LJ OK in 0s

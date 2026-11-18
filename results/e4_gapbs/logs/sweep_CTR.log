@@ -1,0 +1,18 @@
+== sweep CTR on cmpt099.hpc.cc.cs.nctu.edu.tw at 2026-11-18T23:24:43+08:00
+graph CTR: n=14081816 m=33866826 d_avg=2.41 d_max=8 w=[1,214013] load=5239.9 ms
+sources: 10633961
+delta-omp all/pop delta=64       t=12 src=10633961  median=  2346.500 ms phases=378752 buckets=364151
+delta-omp all/pop delta=128      t=12 src=10633961  median=  1519.161 ms phases=236019 buckets=182961
+delta-omp all/pop delta=256      t=12 src=10633961  median=   979.588 ms phases=171433 buckets=91760
+delta-omp all/pop delta=512      t=12 src=10633961  median=   659.063 ms phases=115403 buckets=45968
+delta-omp all/pop delta=1024     t=12 src=10633961  median=   537.038 ms phases=84627 buckets=23022
+delta-omp all/pop delta=2048     t=12 src=10633961  median=   443.694 ms phases=64910 buckets=11522
+delta-omp all/pop delta=4096     t=12 src=10633961  median=   388.008 ms phases=51553 buckets=5765
+delta-omp all/pop delta=8192     t=12 src=10633961  median=   344.772 ms phases=41950 buckets=2886
+delta-omp all/pop delta=16384    t=12 src=10633961  median=   321.184 ms phases=34830 buckets=1444
+delta-omp all/pop delta=32768    t=12 src=10633961  median=   306.630 ms phases=28944 buckets=723
+delta-omp all/pop delta=65536    t=12 src=10633961  median=   314.811 ms phases=24319 buckets=362
+delta-omp all/pop delta=131072   t=12 src=10633961  median=   366.803 ms phases=20665 buckets=181
+delta-omp all/pop delta=262144   t=12 src=10633961  median=   501.105 ms phases=17410 buckets=91
+all runs verified against Dijkstra
+== sweep CTR OK in 35s

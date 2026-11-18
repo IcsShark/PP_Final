@@ -1,0 +1,18 @@
+== sweep USA on cmpt053.hpc.cc.cs.nctu.edu.tw at 2026-11-18T23:49:41+08:00
+graph USA: n=23947347 m=57708624 d_avg=2.41 d_max=9 w=[1,368855] load=7585.5 ms
+sources: 18083971
+delta-omp all/pop delta=64       t=12 src=18083971  median=  3971.007 ms phases=709182 buckets=684008
+delta-omp all/pop delta=128      t=12 src=18083971  median=  2415.088 ms phases=431781 buckets=344014
+delta-omp all/pop delta=256      t=12 src=18083971  median=  1704.191 ms phases=308693 buckets=172807
+delta-omp all/pop delta=512      t=12 src=18083971  median=  1130.000 ms phases=211815 buckets=86631
+delta-omp all/pop delta=1024     t=12 src=18083971  median=   893.688 ms phases=154658 buckets=43359
+delta-omp all/pop delta=2048     t=12 src=18083971  median=   743.726 ms phases=118441 buckets=21688
+delta-omp all/pop delta=4096     t=12 src=18083971  median=   640.814 ms phases=93847 buckets=10847
+delta-omp all/pop delta=8192     t=12 src=18083971  median=   570.407 ms phases=75911 buckets=5426
+delta-omp all/pop delta=16384    t=12 src=18083971  median=   523.805 ms phases=62630 buckets=2715
+delta-omp all/pop delta=32768    t=12 src=18083971  median=   503.245 ms phases=52460 buckets=1358
+delta-omp all/pop delta=65536    t=12 src=18083971  median=   517.683 ms phases=44125 buckets=679
+delta-omp all/pop delta=131072   t=12 src=18083971  median=   587.502 ms phases=37275 buckets=340
+delta-omp all/pop delta=262144   t=12 src=18083971  median=   795.930 ms phases=31090 buckets=170
+all runs verified against Dijkstra
+== sweep USA OK in 56s

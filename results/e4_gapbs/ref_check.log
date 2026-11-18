@@ -1,0 +1,32 @@
+== check_ref on cmpt096.hpc.cc.cs.nctu.edu.tw at 2026-11-19T01:41:27+08:00
+===== NY
+identical to /u/cs/111/111550055/pp_data/csr/NY.csr
+===== CTR
+identical to /u/cs/111/111550055/pp_data/csr/CTR.csr
+===== USA
+identical to /u/cs/111/111550055/pp_data/csr/USA.csr
+===== LJ
+DIFFERENT from /u/cs/111/111550055/pp_data/csr/LJ.csr  (A = rebuilt, B = reference)
+A n=4847571 m=68475391 | B n=4847571 m=68475391
+A: out-of-order=0 duplicate-dst=0 self-loops=0
+B: out-of-order=0 duplicate-dst=18 self-loops=0
+vertex 235549 (degree 45), first neighbours as (dst,w) sorted by dst:
+  A: (13530,156408) (14302,127909) (15389,166104) (17161,249366) (17333,131778) (28200,22256)
+  B: (13530,156408) (14302,127909) (15389,166104) (17333,131778) (28200,22256) (28200,229345)
+vertex 235550 (degree 41), first neighbours as (dst,w) sorted by dst:
+  A: (16067,99050) (39419,111107) (42574,175400) (45154,215289) (69118,184704) (71672,163603)
+  B: (13530,86302) (14302,52498) (15389,99050) (17161,175400) (17333,64667) (30097,20400)
+vertex 235551 (degree 15), first neighbours as (dst,w) sorted by dst:
+  A: (1918,253278) (24613,252153) (54747,3045) (63944,49464) (69118,39486) (90949,7498)
+  B: (16067,73517) (39419,94343) (120531,7498) (338478,39486) (386138,236390) (506091,138323)
+vertices with different adjacency: 20 of 4847571
+same dst, different weight: 21; different dst: 606
+===== OK
+identical to /u/cs/111/111550055/pp_data/csr/OK.csr
+===== kron23
+identical to /u/cs/111/111550055/pp_data/csr/kron23.csr
+===== urand23
+identical to /u/cs/111/111550055/pp_data/csr/urand23.csr
+===== grid2896
+identical to /u/cs/111/111550055/pp_data/csr/grid2896.csr
+== check_ref OK in 172s

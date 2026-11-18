@@ -1,0 +1,4 @@
+== iters CTR on cmpt053.hpc.cc.cs.nctu.edu.tw at 2026-11-18T23:49:27+08:00
+graph,delta,threads,source,gapbs_iterations,ours_phases
+CTR,32768,12,10633961,723,28972
+== iters CTR OK in 8s
