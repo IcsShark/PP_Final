@@ -245,7 +245,7 @@ int main(int argc, char** argv) {
                            "edges,max_vertex_edges\n");
     }
 
-    std::vector<dist_t> dist, oracle;
+    std::vector<dist_t> dist, oracle;  // oracle is implemented using Dijkstra, to check the correctness of our algorithm
     DeltaWorkspace ws;
     std::vector<PhaseRecord> phases;
     int failures = 0;

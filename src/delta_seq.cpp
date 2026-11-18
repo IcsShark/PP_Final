@@ -81,6 +81,7 @@ void delta_stepping_seq(const CSRGraph& g, vid_t src, const DeltaOptions& opt, D
     }
     bins.advance(cur);  // pulls overflow entries that now fit the window
 
+    // build frontier F (the vertices which will be expanded and used to relax their neighbors in this round)
     std::vector<vid_t>& slot = bins.slot(cur);
     bins.taken(cur);
     F.clear();
@@ -97,6 +98,8 @@ void delta_stepping_seq(const CSRGraph& g, vid_t src, const DeltaOptions& opt, D
       ++stats.buckets;
       last_phase_bucket = cur;
     }
+
+    // Light phase
     uint64_t pe = 0, px = 0, pm = 0;
     for (vid_t u : F) {
       const dist_t du = dist[u];
@@ -107,7 +110,7 @@ void delta_stepping_seq(const CSRGraph& g, vid_t src, const DeltaOptions& opt, D
       eid_t b = off[u], e = off[u + 1];
       if (lh) {
         e = light_end(u);
-        if (ws.settled_epoch[u] != epoch) {
+        if (ws.settled_epoch[u] != epoch) {  // make sure S does not contain duplicate vertices
           ws.settled_epoch[u] = static_cast<uint32_t>(epoch);
           S.push_back(u);
         }

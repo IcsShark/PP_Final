@@ -9,6 +9,7 @@
 
 namespace {
 
+// avoid false sharing between threads
 struct alignas(64) PaddedU64 {
   uint64_t v = 0;
 };
