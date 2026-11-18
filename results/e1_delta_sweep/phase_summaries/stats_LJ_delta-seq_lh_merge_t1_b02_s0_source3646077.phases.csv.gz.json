@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "path": "/u/cs/111/111550055/devin/results_raw/e1/stats_LJ_delta-seq_lh_merge_t1_b02_s0_source3646077.phases.csv.gz",
+  "size": 2668,
+  "mtime_ns": 1795012186639266459,
+  "reduction_seconds": 0.004482651129364967,
+  "rows": [
+    {
+      "graph": "LJ",
+      "algo": "delta-seq",
+      "variant": "lh",
+      "filter": "merge",
+      "threads": "1",
+      "delta": "131072",
+      "source": "3646077",
+      "phases": 104,
+      "empty_frontier": 0,
+      "empty_expanded": 0,
+      "empty_edges": 5,
+      "heavy_phases": 11,
+      "frontier_sum": 14678964,
+      "expanded_sum": 14678964,
+      "edges_sum": 157232920
+    },
+    {
+      "graph": "LJ",
+      "algo": "delta-seq",
+      "variant": "lh",
+      "filter": "merge",
+      "threads": "1",
+      "delta": "262144",
+      "source": "3646077",
+      "phases": 77,
+      "empty_frontier": 0,
+      "empty_expanded": 0,
+      "empty_edges": 6,
+      "heavy_phases": 6,
+      "frontier_sum": 16843994,
+      "expanded_sum": 16843994,
+      "edges_sum": 263414525
+    }
+  ]
+}

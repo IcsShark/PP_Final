@@ -108,6 +108,24 @@ def worker(job):
     if any(int(r['stats_build']) != int(is_stats) for r in rows):
         raise RuntimeError('wrong executable build')
     os.replace(partial, final)
+    reducer = ROOT / 'analysis/e1_phase_reduce.py'
+    reduction_timeout = min(150, 1160 - (time.time() - start))
+    if reducer.exists() and reduction_timeout >= 5:
+        reduction_cmd = ['python3', str(reducer), '--files', *phase_paths,
+                         '--backlog-graphs', 'NY', 'LJ', job['graph'],
+                         '--budget-seconds', str(min(90, reduction_timeout)), '--max-files', '24']
+        with (OUT / 'META.txt').open('a') as f:
+            f.write(json.dumps(dict(analysis_command=reduction_cmd, hostname=host,
+                                    timing_note='post-kernel reduction; excluded from CSV kernel timings')) + '\n')
+        try:
+            with (OUT / 'phase_reduction.log').open('a') as reduction_log:
+                result = subprocess.run(reduction_cmd, stdout=reduction_log, stderr=subprocess.STDOUT,
+                                        timeout=reduction_timeout)
+            if result.returncode:
+                (OUT / 'phase_reduction.failed').write_text(f'{job["id"]}: reducer exited {result.returncode}\n')
+        except subprocess.TimeoutExpired:
+            (OUT / 'phase_reduction.failed').write_text(
+                f'{job["id"]}: reducer exceeded {reduction_timeout:.1f}s; cache is resumable\n')
     record = dict(job=job['id'], seconds=time.time() - start, hostname=host, rows=len(rows),
                   csv_sha256=digest(final), manifest_sha256=digest(OUT / 'jobs.json'),
                   phase_logs=phase_paths, commands=commands)
