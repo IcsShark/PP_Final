@@ -1,0 +1,27 @@
+NY: 3360 verified rows; 32 gzip phase headers/first rows checked
+NY: jobs=22 compute_minutes=7.08 max_job_minutes=0.96 estimated_minutes=71.64
+LJ: 3712 verified rows; 80 gzip phase headers/first rows checked
+LJ: jobs=54 compute_minutes=87.67 max_job_minutes=3.52 estimated_minutes=461.06
+BEST NY delta-seq t=1 all/pop delta=256 mean_source_median_ms=12.0829
+BEST NY delta-omp t=6 all/pop delta=16384 mean_source_median_ms=7.6006
+BEST NY delta-omp t=12 all/pop delta=16384 mean_source_median_ms=8.3295
+PHASES NY delta-seq all/pop: 245998.5 -> 1213.0; adjacent increases=0
+PHASES NY delta-seq all/merge: 222569.0 -> 1213.0; adjacent increases=0
+PHASES NY delta-seq lh/pop: 468567.5 -> 1230.0; adjacent increases=0
+PHASES NY delta-seq lh/merge: 445138.0 -> 1230.0; adjacent increases=0
+PHASES NY delta-omp all/pop: 245999.0 -> 1214.8; adjacent increases=0
+PHASES NY delta-omp all/merge: 222569.0 -> 1212.8; adjacent increases=0
+PHASES NY delta-omp lh/pop: 468566.0 -> 1231.2; adjacent increases=0
+PHASES NY delta-omp lh/merge: 445138.0 -> 1233.2; adjacent increases=0
+BEST LJ delta-seq t=1 all/pop delta=1024 mean_source_median_ms=1201.2426
+BEST LJ delta-omp t=6 all/merge delta=4096 mean_source_median_ms=288.8517
+BEST LJ delta-omp t=12 all/merge delta=4096 mean_source_median_ms=254.6349
+PHASES LJ delta-seq all/pop: 429808.0 -> 62.5; adjacent increases=0
+PHASES LJ delta-seq all/merge: 412108.8 -> 62.5; adjacent increases=0
+PHASES LJ delta-seq lh/pop: 841916.8 -> 68.0; adjacent increases=0
+PHASES LJ delta-seq lh/merge: 824217.5 -> 68.0; adjacent increases=0
+PHASES LJ delta-omp all/pop: 429807.8 -> 65.0; adjacent increases=0
+PHASES LJ delta-omp all/merge: 412108.8 -> 63.8; adjacent increases=0
+PHASES LJ delta-omp lh/pop: 841916.5 -> 70.8; adjacent increases=0
+PHASES LJ delta-omp lh/merge: 824217.5 -> 71.5; adjacent increases=0
+ETA: 681 jobs remain, observed/model=0.178, projected_compute_hours=16.10; add scheduler/NFS overhead

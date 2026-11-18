@@ -34,7 +34,7 @@ for path in sorted(out.glob('*.csv')):
     rows.append(row)
 with (out / 'medians.tsv').open('w') as f:
     keys = ['graph', 'algo', 'delta', 'threads', 'source', 'time_ms', 'phases', 'file']
-    writer = csv.DictWriter(f, keys, delimiter='\t', extrasaction='ignore')
+    writer = csv.DictWriter(f, keys, delimiter='\t', extrasaction='ignore', lineterminator='\n')
     writer.writeheader()
     writer.writerows(rows)
 print((out / 'medians.tsv').read_text())
