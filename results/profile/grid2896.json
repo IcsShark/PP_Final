@@ -1,0 +1,14 @@
+{
+  "graph": "/u/cs/111/111550055/pp_data/csr/grid2896.csr",
+  "n": 8386816,
+  "m": 33535680,
+  "d_avg": 3.9986,
+  "d_max": 4,
+  "w_min": 1,
+  "w_max": 262143,
+  "zero_out_degree": 0,
+  "sorted_by_weight": true,
+  "delta_rule_dmax": 65535.75,
+  "delta_rule_davg": 65558.39,
+  "delta_sweep": [1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536, 131072, 262144]
+}

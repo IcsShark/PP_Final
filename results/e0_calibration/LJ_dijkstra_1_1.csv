@@ -1,0 +1,4 @@
+graph,algo,variant,filter,sched,threads,delta,source,rep,time_ms,phases,buckets,heavy_passes,edges_scanned,relax_ok,expansions,stale,merge_dropped,reached,verified,stats_build
+LJ,dijkstra,-,-,-,1,0,3660670,0,3146.4876,0,0,0,0,0,0,0,0,4400347,1,0
+LJ,dijkstra,-,-,-,1,0,3660670,1,3153.3927,0,0,0,0,0,0,0,0,4400347,1,0
+LJ,dijkstra,-,-,-,1,0,3660670,2,3146.7240,0,0,0,0,0,0,0,0,4400347,1,0

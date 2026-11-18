@@ -1,0 +1,4 @@
+graph,algo,variant,filter,sched,threads,delta,source,rep,time_ms,phases,buckets,heavy_passes,edges_scanned,relax_ok,expansions,stale,merge_dropped,reached,verified,stats_build
+NY,dijkstra,-,-,-,1,0,199622,0,22.9486,0,0,0,0,0,0,0,0,264346,1,0
+NY,dijkstra,-,-,-,1,0,199622,1,22.1729,0,0,0,0,0,0,0,0,264346,1,0
+NY,dijkstra,-,-,-,1,0,199622,2,22.0919,0,0,0,0,0,0,0,0,264346,1,0

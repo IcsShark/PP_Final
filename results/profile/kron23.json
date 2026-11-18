@@ -1,0 +1,14 @@
+{
+  "graph": "/u/cs/111/111550055/pp_data/csr/kron23.csr",
+  "n": 8388608,
+  "m": 131162466,
+  "d_avg": 15.6358,
+  "d_max": 152530,
+  "w_min": 1,
+  "w_max": 262143,
+  "zero_out_degree": 4535356,
+  "sorted_by_weight": true,
+  "delta_rule_dmax": 1.72,
+  "delta_rule_davg": 16765.58,
+  "delta_sweep": [1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536, 131072, 262144]
+}

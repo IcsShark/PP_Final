@@ -1,0 +1,4 @@
+graph,algo,variant,filter,sched,threads,delta,source,rep,time_ms,phases,buckets,heavy_passes,edges_scanned,relax_ok,expansions,stale,merge_dropped,reached,verified,stats_build
+urand23,delta-seq,all,pop,-,1,512,6334703,0,3446.7647,1538,949,0,0,0,0,0,0,8388607,1,0
+urand23,delta-seq,all,pop,-,1,512,6334703,1,3382.8460,1538,949,0,0,0,0,0,0,8388607,1,0
+urand23,delta-seq,all,pop,-,1,512,6334703,2,3371.9941,1538,949,0,0,0,0,0,0,8388607,1,0

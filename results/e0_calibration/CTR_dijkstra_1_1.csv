@@ -1,0 +1,4 @@
+graph,algo,variant,filter,sched,threads,delta,source,rep,time_ms,phases,buckets,heavy_passes,edges_scanned,relax_ok,expansions,stale,merge_dropped,reached,verified,stats_build
+CTR,dijkstra,-,-,-,1,0,10633961,0,1700.7316,0,0,0,0,0,0,0,0,14081816,1,0
+CTR,dijkstra,-,-,-,1,0,10633961,1,1693.5304,0,0,0,0,0,0,0,0,14081816,1,0
+CTR,dijkstra,-,-,-,1,0,10633961,2,1706.6650,0,0,0,0,0,0,0,0,14081816,1,0

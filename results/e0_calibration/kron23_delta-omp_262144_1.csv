@@ -1,0 +1,4 @@
+graph,algo,variant,filter,sched,threads,delta,source,rep,time_ms,phases,buckets,heavy_passes,edges_scanned,relax_ok,expansions,stale,merge_dropped,reached,verified,stats_build
+kron23,delta-omp,all,pop,dynamic:64,1,262144,5360583,0,13244.2171,19,3,0,0,0,0,0,0,3846665,1,0
+kron23,delta-omp,all,pop,dynamic:64,1,262144,5360583,1,13183.6017,19,3,0,0,0,0,0,0,3846665,1,0
+kron23,delta-omp,all,pop,dynamic:64,1,262144,5360583,2,13210.6189,19,3,0,0,0,0,0,0,3846665,1,0
