@@ -51,7 +51,7 @@ prep : run -c 12 -- bash scripts/exp/e4_prep.sh GRAPH
          cmp OUT/X.csr REF/X.csr
          gapbs/converter -f tmp/X.wel -w -b OUT/X.wsg          (-w keeps weights; no -s, edges stay directed)
 sweep: run -c 12 -- bash scripts/exp/e4_sweep.sh GRAPH
-         bin/sssp -g REF/X.csr -a delta-omp -d 64,...,262144 -t 12 --sources 1 --seed 42 -r 3 -q --verify --csv sweep/X.csv
+         bin/sssp -g REF/X.csr -a delta-omp -d 64,...,262144 (grid2896: ...,16777216) -t 12 --sources 1 --seed 42 -r 3 -q --verify --csv sweep/X.csv
 run  : run -c 12 -- bash scripts/exp/e4_run.sh GRAPH T DELTA
          bin/sssp -g REF/X.csr -a delta-omp -d DELTA -t T --sources 4 --seed 42 -r 3 --verify --csv raw/X_tT_dD.ours.csv
          for each source S:  OMP_NUM_THREADS=T gapbs/sssp -f tmp/X.wsg -d DELTA -r S -n 3 -v   (.wsg staged to node-local tmp)
@@ -70,7 +70,8 @@ echo "- LJ: the shared reference LJ.csr does not match a rebuild from the md5-ch
 echo "  differ, 18 duplicate edges; see ref_check.log from e4_check_ref.sh). User decision: ours and GAPBS"
 echo "  both run on the regenerated LJ (\$E4_OUT/LJ.csr), not on the reference used by E0-E2."
 echo "- Delta from a sweep for every graph (spec allows it); the E0 references were clearly not optimal on NY t=12."
-echo "- sweep uses -r 3 and the median (spec example: -r 1)."
+echo "- sweep uses -r 3 and the median (spec example: -r 1); grid2896's sweep extends to 2^24 because its"
+echo "  time still fell at 2^18, the edge of the default grid (2^6..2^18)."
 echo "- one job per (graph, threads, Delta) to stay under the 30-min QoS limit."
 } > "$OUT"
 echo "wrote $OUT"

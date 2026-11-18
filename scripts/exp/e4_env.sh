@@ -24,6 +24,10 @@ declare -A E4_REF_DELTA=([NY]=256 [CTR]=512 [USA]=1024 [LJ]=512)
 
 # Sweep grid: 2^6 .. 2^18.
 E4_SWEEP_DELTAS="64,128,256,512,1024,2048,4096,8192,16384,32768,65536,131072,262144"
+# Per-graph extension: on grid2896 the time still fell at 2^18 (the edge of
+# the default grid), so its sweep continues past w_max up to 2^24.
+declare -A E4_SWEEP_DELTAS_FOR=([grid2896]="$E4_SWEEP_DELTAS,524288,1048576,2097152,4194304,8388608,16777216")
+e4_sweep_deltas() { echo "${E4_SWEEP_DELTAS_FOR[$1]:-$E4_SWEEP_DELTAS}"; }
 
 # Graphs whose shared reference CSR is NOT used. The reference LJ.csr does not
 # match a rebuild from the md5-checked raw file: 20 vertices differ and it has

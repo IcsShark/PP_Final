@@ -12,7 +12,7 @@ G="${1:?usage: e4_pick_delta.sh GRAPH}"
 CSV="$E4_RES/sweep/$G.csv"
 [ -s "$CSV" ] || e4_die "no sweep for $G ($CSV)"
 # CSV columns: ... 7=delta ... 10=time_ms ... 20=verified
-awk -F, -v grid="$E4_SWEEP_DELTAS" -v ref="${E4_REF_DELTA[$G]:--}" '
+awk -F, -v grid="$(e4_sweep_deltas "$G")" -v ref="${E4_REF_DELTA[$G]:--}" '
   NR == 1 { next }
   $20 == 0 { bad = 1 }
   { k = ++cnt[$7]; t[$7, k] = $10 + 0 }

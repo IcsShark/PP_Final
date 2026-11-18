@@ -41,16 +41,16 @@ while [ -n "$(squeue -u "$USER" -h 2>/dev/null)" ]; do sleep 10; done
 graphs=("$@")
 [ ${#graphs[@]} -gt 0 ] || graphs=("${E4_GRAPHS[@]}")
 mkdir -p "$E4_RES"
-NSWEEP=$(( $(tr ',' '\n' <<< "$E4_SWEEP_DELTAS" | wc -l) * 3 + 1 ))
 for G in "${graphs[@]}"; do
   if ok "iters_$G"; then echo "[$(date +%T)] skip $G (done)"; continue; fi
   # .wsg deleted after an earlier, partly finished pass: rebuild it.
   { [ -f "$E4_OUT/$G.wsg" ] && { ! e4_fresh "$G" || [ -f "$E4_OUT/$G.csr" ]; }; } || rm -f "$E4_RES/status/prep_$G"
   job "prep_$G" scripts/exp/e4_prep.sh "$G"
   job "sweep_$G" scripts/exp/e4_sweep.sh "$G"
+  NSWEEP=$(( $(tr ',' '\n' <<< "$(e4_sweep_deltas "$G")" | wc -l) * 3 + 1 ))
   wait_lines "$E4_RES/sweep/$G.csv" "$NSWEEP" || e4_die "sweep/$G.csv incomplete on the login node"
-  IFS=$'\t' read -r DELTAS BEST REF < <(bash scripts/exp/e4_pick_delta.sh "$G")
-  [ -n "${BEST:-}" ] || e4_die "no Delta picked for $G"
+  PICK=$(bash scripts/exp/e4_pick_delta.sh "$G") || e4_die "no Delta picked for $G (see message above)"
+  IFS=$'\t' read -r DELTAS BEST REF <<< "$PICK"
   echo "[$(date +%T)] $G deltas=$DELTAS best=$BEST (E0 ref $REF)"
   # deltas.csv: one line per graph (latest wins)
   DC="$E4_RES/deltas.csv"
