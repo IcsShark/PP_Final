@@ -6,6 +6,7 @@
 - [x] 演算法實作與正確性測試（seq / OpenMP、light/heavy、stale filter）
 - [x] 資料集下載與轉換（road: NY / CTR / USA，social: LJ / OK）
 - [ ] 實驗（proposal 的 Q1–Q4）
+- [ ] GABPS baseline
 
 > Note: 在計中工作站上跑任何東西之前，記得 `module load pp`。
 
