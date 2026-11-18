@@ -1,34 +1,42 @@
 # PP_Final
+
+
 ## 進度
-目前的測資都是簡單生出來測試演算法正確性而已，proposal裡面要驗證的部分都還沒有做。
 
-已經確認過演算法的程式碼可以在課堂上用的工作站上面跑，記得跑之前一樣要```module load pp```。
+- [x] 演算法實作與正確性測試（seq / OpenMP、light/heavy、stale filter）
+- [x] 資料集下載與轉換（road: NY / CTR / USA，social: LJ / OK）
+- [ ] 實驗（proposal 的 Q1–Q4）
 
-## testcsae
-  測試資料都放在/test/testcase/下，在測試時會透過tools/下的程式轉換成CSR
-  - `Delta` 是一個正整數（Delta-stepping 的 Δ）
-  - `*.in.txt` 是測試用的圖檔，跟論文使用的正式格式不同，是簡單的 txt 檔，格式如下（`#` 後面是說明，實際檔案裡沒有）：
-    ```txt
-    TEST       # 測試資料數
-    n m s      # 第一筆測資點的數量、邊的數量、起點
-    u1 v1 w1   # 有向邊 (u --> v)，權重 w
-    u2 v2 w2
-    ...
-    um vm wm
-    n m s
-    ...
-    ```
-    點的編號是 `1 ~ n`，邊權是非負整數。
-- 測資已兩個檔案為一組，\*.in是要測試的資，\*.ans是該測資的答案
+> Note: 在計中工作站上跑任何東西之前，記得 `module load pp`。
+
 
 ## build & test
-在工作站裡面:
+
 ```bash
 module load pp
 cd PP_Final
-run -c 4 -- make -j4
-run -c 6 -- make test # sssp正確性測試
+run -c 4 -- make -j4      # build
+run -c 6 -- make test     # 正確性測試，詳見 tests/README.md
 ```
 
+要跑實驗的話，先依照 [`datasets/README.md`](datasets/README.md) 設定 `PP_DATA_DIR`，然後底下有寫怎麽跑。
+
+
+## datasets
+
+這個 project 正式使用的資料集都在 `datasets/` 下。
+
+關於這部分的說明（包含來源、怎麽使用），詳見 [`datasets/README.md`](datasets/README.md)。
+
+
+## tests
+
+這是測試演算法正確性的 unit tests。
+
+關於這部分的說明，詳見 [`tests/README.md`](tests/README.md)。
+
+
 ## example
-Delta-stepping 逐步演示.html 是 Claude 生成的 Delta-stepping algorithm 的演示動畫。
+
+`example/Delta-stepping 逐步演示.html` 是 Claude 生成的 Delta-stepping 演示動畫。
+

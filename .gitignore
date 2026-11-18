@@ -2,3 +2,6 @@ build/
 bin/
 graphs/
 data/
+
+datasets/raw/
+datasets/csr/

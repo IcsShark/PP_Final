@@ -1,0 +1,5 @@
+8e741894569c20267ac59be6dcf57a83  dimacs9_USA-road-d.USA.gr.gz
+2554efa6619020a3c4c70d6db10890a3  dimacs9_USA-road-d.CTR.gr.gz
+66f4bfb48892ab46ca8e213e4034f35f  dimacs9_USA-road-d.NY.gr.gz
+54fdcca873c051681e24972a39c81560  snap_soc-LiveJournal1.txt.gz
+056746d96b9a980f610007e59a9a4e35  snap_com-orkut.ungraph.txt.gz
