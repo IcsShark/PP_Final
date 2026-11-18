@@ -8,9 +8,14 @@ import subprocess
 import time
 
 from e1_common import OUT, RAW, ROOT, digest, job_path, load_manifest, read_rows, revision, validate_rows
+from e2_driver import main as combined_main
 
 
 def main():
+    return combined_main()
+
+
+def e1_only():
     OUT.mkdir(parents=True, exist_ok=True)
     lock = (OUT / 'driver.lock').open('w')
     fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
@@ -61,4 +66,10 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    try:
+        main()
+    except BlockingIOError:
+        raise
+    except Exception as error:
+        (OUT / 'STOPPED').write_text(str(error) + '\n')
+        raise
