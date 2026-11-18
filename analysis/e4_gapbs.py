@@ -6,9 +6,11 @@
 
     uv run analysis/e4_gapbs.py [RESULTS_DIR]      (default results/e4_gapbs)
 
-Reads   RESULTS_DIR/raw/*.ours.csv, *.gapbs.csv, deltas.csv, sweep/*.csv
+Reads   RESULTS_DIR/raw/*.ours.csv, *.gapbs.csv (only runs whose status/run_* is OK),
+        deltas.csv, sweep/*.csv, iters/*.csv
 Writes  RESULTS_DIR/e4_summary.csv   graph x threads x Delta: ours, GAPBS, ratio
-        RESULTS_DIR/e4_summary.md    the same as a Markdown table (best Delta marked)
+        RESULTS_DIR/e4_summary.md    the same as a Markdown table (best Delta marked),
+                                     plus GAPBS iterations vs our phases
         RESULTS_DIR/plots/e4_bars_best_delta.{pdf,png}
         RESULTS_DIR/plots/e4_ratio_best_delta.{pdf,png}
         RESULTS_DIR/plots/e4_sweep.{pdf,png}
@@ -45,9 +47,16 @@ plt.rcParams.update({
 })
 
 
+def finished(res: Path, f: Path) -> bool:
+    """Only use a run whose job reported OK (skips runs still in progress)."""
+    tag = f.name.split(".")[0]
+    st = res / "status" / f"run_{tag}"
+    return st.exists() and st.read_text().startswith("OK")
+
+
 def load(res: Path):
-    ours_files = sorted((res / "raw").glob("*.ours.csv"))
-    gap_files = sorted((res / "raw").glob("*.gapbs.csv"))
+    ours_files = [f for f in sorted((res / "raw").glob("*.ours.csv")) if finished(res, f)]
+    gap_files = [f for f in sorted((res / "raw").glob("*.gapbs.csv")) if finished(res, f)]
     if not ours_files or not gap_files:
         sys.exit(f"no raw CSVs under {res / 'raw'}")
     ours = pd.concat([pd.read_csv(f) for f in ours_files], ignore_index=True)
@@ -87,9 +96,21 @@ def write_tables(s: pd.DataFrame, res: Path):
         d = f"**{r.delta}**" if r.best_delta else f"{r.delta}"
         lines.append(f"| {r.graph} | {r.threads} | {d} | {r.ours_ms:.2f} | {r.gapbs_ms:.2f} | "
                      f"{r.ratio_gapbs_over_ours:.2f} |")
-    (res / "e4_summary.md").write_text(
-        "Mean over 4 sources of the median of 3 trials. **Bold Δ** = best Δ from the sweep. "
-        "GAPBS / ours > 1 means ours is faster.\n\n" + "\n".join(lines) + "\n")
+    text = ("Mean over 4 sources of the median of 3 trials. **Bold Δ** = best Δ from the sweep. "
+            "GAPBS / ours > 1 means ours is faster.\n\n" + "\n".join(lines) + "\n")
+    it_files = sorted((res / "iters").glob("*.csv"))
+    if it_files:
+        it = pd.concat([pd.read_csv(f) for f in it_files], ignore_index=True)
+        it["graph"] = pd.Categorical(it.graph, [g for g in GRAPHS if g in set(it.graph)], ordered=True)
+        it = it.sort_values("graph")
+        it.to_csv(res / "e4_iters.csv", index=False)
+        rows = ["| graph | Δ | GAPBS iterations | ours phases | ours / GAPBS |", "|---|---:|---:|---:|---:|"]
+        for r in it.itertuples():
+            rows.append(f"| {r.graph} | {r.delta} | {r.gapbs_iterations} | {r.ours_phases} | "
+                        f"{r.ours_phases / r.gapbs_iterations:.1f}× |")
+        text += ("\nSynchronised rounds at the best Δ, t=12, first source (GAPBS `-l`; ours: `phases`).\n\n"
+                 + "\n".join(rows) + "\n")
+    (res / "e4_summary.md").write_text(text)
 
 
 def save(fig, res: Path, name: str):
