@@ -25,6 +25,15 @@ declare -A E4_REF_DELTA=([NY]=256 [CTR]=512 [USA]=1024 [LJ]=512)
 # Sweep grid: 2^6 .. 2^18.
 E4_SWEEP_DELTAS="64,128,256,512,1024,2048,4096,8192,16384,32768,65536,131072,262144"
 
+# Graphs whose shared reference CSR is NOT used. The reference LJ.csr does not
+# match a rebuild from the md5-checked raw file: 20 vertices differ and it has
+# 18 duplicate edges, which build_csr cannot produce (see e4_check_ref.sh).
+# User decision (2026-11-19): run ours and GAPBS on the regenerated LJ.
+E4_FRESH=(LJ)
+e4_fresh() { local g; for g in "${E4_FRESH[@]}"; do [ "$g" = "$1" ] && return 0; done; return 1; }
+# CSR that ours reads for GRAPH.
+e4_csr() { if e4_fresh "$1"; then echo "$E4_OUT/$1.csr"; else echo "$E4_REF_CSR/$1.csr"; fi; }
+
 # Node-local scratch for the current job (removed by the caller's trap).
 e4_mktmp() { mktemp -d "${TMPDIR:-/tmp}/e4_${USER}_XXXXXX"; }
 

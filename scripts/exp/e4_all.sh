@@ -44,7 +44,7 @@ NSWEEP=$(( $(tr ',' '\n' <<< "$E4_SWEEP_DELTAS" | wc -l) * 3 + 1 ))
 for G in "${graphs[@]}"; do
   if ok "iters_$G"; then echo "[$(date +%T)] skip $G (done)"; continue; fi
   # .wsg deleted after an earlier, partly finished pass: rebuild it.
-  [ -f "$E4_OUT/$G.wsg" ] || rm -f "$E4_RES/status/prep_$G"
+  { [ -f "$E4_OUT/$G.wsg" ] && { ! e4_fresh "$G" || [ -f "$E4_OUT/$G.csr" ]; }; } || rm -f "$E4_RES/status/prep_$G"
   job "prep_$G" scripts/exp/e4_prep.sh "$G"
   job "sweep_$G" scripts/exp/e4_sweep.sh "$G"
   wait_lines "$E4_RES/sweep/$G.csv" "$NSWEEP" || e4_die "sweep/$G.csv incomplete on the login node"
@@ -66,8 +66,8 @@ for G in "${graphs[@]}"; do
   done
   job "iters_$G" scripts/exp/e4_iters.sh "$G"
   if [ "${E4_KEEP_WSG:-0}" != 1 ]; then
-    rm -f "$E4_OUT/$G.wsg"
-    echo "[$(date +%T)] removed $E4_OUT/$G.wsg"
+    rm -f "$E4_OUT/$G.wsg" "$E4_OUT/$G.csr"
+    echo "[$(date +%T)] removed $E4_OUT/$G.wsg (and $G.csr if any)"
   fi
 done
 echo "[$(date +%T)] all done: ${graphs[*]}"

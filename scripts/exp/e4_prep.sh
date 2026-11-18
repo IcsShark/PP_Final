@@ -10,7 +10,8 @@
 #   GAPBS converter -f tmp/GRAPH.wel -w -b $E4_OUT/GRAPH.wsg
 #
 # The regenerated .csr and the .wel only live in node-local tmp (deleted when
-# the job ends): the home quota (10 GB) cannot hold them. Only the .wsg is
+# the job ends): the home quota (10 GB) cannot hold them. Exception: graphs in
+# E4_FRESH (e4_env.sh) keep the regenerated .csr in $E4_OUT for ours. Only the .wsg is
 # kept, and e4_all.sh deletes it once the graph's runs are done.
 # `run` always exits 0, so the result is written to $E4_RES/status/prep_GRAPH.
 set -euo pipefail
@@ -59,8 +60,19 @@ read -r ON OM < <(grep -oE 'n=[0-9]+ m=[0-9]+' "$TMP/ours.out" | tail -1 | sed '
 [ -n "${OM:-}" ] || e4_die "cannot parse n/m from our tool output"
 echo "-- csr+wel done (${SECONDS}s); wel size $(stat -c %s "$WEL") bytes"
 
-cmp "$CSR" "$E4_REF_CSR/$G.csr" || e4_die "$CSR differs from $E4_REF_CSR/$G.csr"
-echo "-- cmp OK: $CSR == $E4_REF_CSR/$G.csr"
+if e4_fresh "$G"; then
+  # Reference not used for this graph (e4_env.sh): keep the regenerated CSR
+  # for ours, so both implementations read the same edges.
+  if cmp -s "$CSR" "$E4_REF_CSR/$G.csr"; then echo "-- cmp: identical to the reference"
+  else echo "-- cmp: differs from $E4_REF_CSR/$G.csr (known, see e4_env.sh); using the regenerated CSR"; fi
+  cp "$CSR" "$E4_OUT/$G.csr.part"
+  [ "$(stat -c %s "$E4_OUT/$G.csr.part")" = "$(stat -c %s "$CSR")" ] || e4_die "copy of $G.csr incomplete (disk quota?)"
+  mv "$E4_OUT/$G.csr.part" "$E4_OUT/$G.csr"
+  echo "-- kept $E4_OUT/$G.csr for ours"
+else
+  cmp "$CSR" "$E4_REF_CSR/$G.csr" || e4_die "$CSR differs from $E4_REF_CSR/$G.csr"
+  echo "-- cmp OK: $CSR == $E4_REF_CSR/$G.csr"
+fi
 
 M_WEL=$(wc -l < "$WEL")
 [ "$M_WEL" = "$OM" ] || e4_die ".wel has $M_WEL edges but our CSR has m=$OM"

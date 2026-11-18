@@ -34,7 +34,8 @@ echo "== run $TAG on $HOST at $(date -Is), SLURM_CPUS_PER_TASK=${SLURM_CPUS_PER_
 SECONDS=0
 
 # ---- ours
-"$E4_REPO/bin/sssp" -g "$E4_REF_CSR/$G.csr" -a delta-omp -d "$DELTAS" -t "$T" \
+echo "csr: $(e4_csr "$G")"
+"$E4_REPO/bin/sssp" -g "$(e4_csr "$G")" -a delta-omp -d "$DELTAS" -t "$T" \
   --sources 4 --seed 42 -r 3 --verify --csv "$OURS" | tee "$TMP/ours.out"
 SOURCES=$(sed -n 's/^sources: *//p' "$TMP/ours.out")
 [ -n "$SOURCES" ] || e4_die "no sources line in bin/sssp output"

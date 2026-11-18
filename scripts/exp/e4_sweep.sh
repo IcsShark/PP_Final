@@ -18,7 +18,8 @@ rm -f "$CSV"
 
 echo "== sweep $G on $(hostname) at $(date -Is)"
 SECONDS=0
-"$E4_REPO/bin/sssp" -g "$E4_REF_CSR/$G.csr" -a delta-omp -d "$E4_SWEEP_DELTAS" -t 12 \
+echo "csr: $(e4_csr "$G")"
+"$E4_REPO/bin/sssp" -g "$(e4_csr "$G")" -a delta-omp -d "$E4_SWEEP_DELTAS" -t 12 \
   --sources 1 --seed 42 -r 3 -q --verify --csv "$CSV"
 # 13 deltas x 3 reps + header; a short file means a lost write (e.g. quota).
 ROWS=$(wc -l < "$CSV")
