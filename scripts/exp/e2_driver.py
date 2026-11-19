@@ -20,6 +20,9 @@ def complete(job, out):
     if digest(path) != record['csv_sha256']:
         raise ValueError(f'completed CSV changed: {path}')
     validate_rows(read_rows(path), len(job['sources']) * len(job['deltas']) * job['reps'])
+    if out == E1 and record.get('phase_summary'):
+        if digest(E1 / 'phase_summaries' / os.path.basename(record['phase_summary'])) != record['phase_summary_sha256']:
+            raise ValueError('E1 phase summary changed')
     if job['kind'] == 'stats' and out == E2:
         if digest(out / (job['id'] + '.phases.json')) != record['summary_sha256']:
             raise ValueError('E2 phase summary changed')

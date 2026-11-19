@@ -64,19 +64,22 @@ as **PDF + PNG** under `results/plots/e1_<graph>_*.{pdf,png}`.
 
 ## Compute-side phase reduction
 
-`analysis/e1_phase_reduce.py` streams the gzipped phase logs and retains only
-small per-run summaries. The E1 worker invokes it **after kernel measurements**
-inside its existing whole-node allocation: its own new phase logs first, then a
-bounded NY/LJ/current-graph backlog. It uses a 90-second soft budget, 24-file limit,
-and a 150-second subprocess timeout, shortened to leave 30 seconds before the
-worker's outer 1190-second deadline (and skipped with under five seconds available).
-Individual files are atomic cache units. Reduction
-failure is recorded in `phase_reduction.failed` without stopping verified SSSP jobs;
-incomplete caches are retried. Original phase logs remain untouched in
-`~/devin/results_raw/e1/` and are never committed.
+New stats workers send `--phase-log` to a FIFO and concurrently run
+`analysis/e1_phase_reduce.py:summarize` inside the whole-node allocation. No new
+raw phase files (compressed or otherwise) are written. The FIFO transport accepts
+an explicit header or supplies the CSV header when the kernel's append-mode file
+opener omits it for a FIFO. Reducer errors terminate the producer and stop the queue.
+Only atomic `phase_summaries/<job>.stream.json` files are published, after phase,
+edge, and heavy-pass totals and run coverage agree with verified stats CSVs.
 
-The login driver is not restarted or changed and no second job is submitted.
-Future stats workers reduce their own logs automatically; rerun the VM analysis
+Existing NY/LJ gzip logs remain untouched in `~/devin/results_raw/e1/`.
+`analysis/e1_phase_reduce.py --files <old-log.gz>` still reduces those logs on
+compute nodes to the original version-1 JSON cache. Analysis reads the identical
+`rows` representation from both legacy caches and version-2 streaming summaries.
+The 1190-second outer cap remains in force; reduction is concurrent with CSV
+serialization after each kernel measurement, not included in kernel `time_ms`.
+
+No second job is submitted for reduction. Rerun the VM analysis
 after synchronizing the new CSVs/markers/summaries. `ANALYSIS_META.json` records
 input hashes (CSVs, profiles and phase summaries), manifest hash, analysis source
 hash and completeness.

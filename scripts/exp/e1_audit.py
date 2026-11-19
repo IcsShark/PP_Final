@@ -4,6 +4,7 @@ import argparse
 import collections
 import gzip
 import json
+import pathlib
 import statistics
 
 from e1_common import OUT, PHASE_HEADER, digest, job_path, load_manifest, read_rows, validate_rows
@@ -31,6 +32,7 @@ def main():
             raise RuntimeError(f'{graph} is incomplete')
         graph_rows = []
         logs = 0
+        reduced_runs = 0
         for job, record in records:
             if job['graph'] != graph:
                 continue
@@ -39,6 +41,19 @@ def main():
             if digest(job_path(job)) != record['csv_sha256']:
                 raise RuntimeError(f'CSV digest mismatch: {job["id"]}')
             graph_rows.extend(rows)
+            if record.get('phase_summary'):
+                path = OUT / 'phase_summaries' / pathlib.Path(record['phase_summary']).name
+                if digest(path) != record['phase_summary_sha256']:
+                    raise RuntimeError(f'phase summary digest mismatch: {job["id"]}')
+                reduced = json.loads(path.read_text())['rows']
+                if len(reduced) != len(rows):
+                    raise RuntimeError(f'phase summary coverage mismatch: {job["id"]}')
+                for r in reduced:
+                    row = next(x for x in rows if x['source'] == r['source'] and x['delta'] == r['delta'])
+                    if any(r[a] != int(row[b]) for a, b in (('phases', 'phases'), ('edges_sum', 'edges_scanned'),
+                                                          ('heavy_phases', 'heavy_passes'))):
+                        raise RuntimeError(f'phase summary counter mismatch: {job["id"]}')
+                reduced_runs += len(reduced)
             for path in record['phase_logs']:
                 with gzip.open(path, 'rt') as f:
                     header = f.readline().strip().split(',')
@@ -56,7 +71,8 @@ def main():
                         raise RuntimeError(f'zero stats counter: {row}')
                     key = (graph, row['algo'], row['variant'], row['filter'], int(row['delta']))
                     stats[key].append(int(row['phases']))
-        report.append(f'{graph}: {len(graph_rows)} verified rows; {logs} gzip phase headers/first rows checked')
+        report.append(f'{graph}: {len(graph_rows)} verified rows; {logs} gzip phase headers/first rows checked; '
+                      f'{reduced_runs} streamed phase runs checked')
         seconds = [r['seconds'] for j, r in records if j['graph'] == graph]
         estimated = sum(j['estimate_seconds'] for j, r in records if j['graph'] == graph)
         report.append(f'{graph}: jobs={len(seconds)} compute_minutes={sum(seconds)/60:.2f} '

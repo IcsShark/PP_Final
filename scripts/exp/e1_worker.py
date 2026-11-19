@@ -1,26 +1,31 @@
 #!/usr/bin/env python3
 """Compute-node worker. Only publishes a CSV/.done after full verification."""
 import argparse
-import csv
-import gzip
 import json
 import os
 import signal
 import socket
 import subprocess
+import sys
 import time
 import traceback
 
-from e1_common import DATA, OUT, PHASE_HEADER, RAW, ROOT, digest, job_path, load_manifest, read_rows, revision, validate_rows
+from e1_common import DATA, OUT, ROOT, digest, job_path, load_manifest, read_rows, revision, validate_rows
+from phase_stream import PhaseStream
+
+sys.path.insert(0, str(ROOT / 'analysis'))
+from e1_phase_reduce import summarize
 
 
-def run_checked(cmd, csv_path, log_path):
+def run_checked(cmd, csv_path, log_path, check=None):
     with log_path.open('a') as log:
         proc = subprocess.Popen(cmd, cwd=ROOT, stdout=log, stderr=subprocess.STDOUT,
                                 start_new_session=True)
         try:
             deadline = time.monotonic() + 1100
             while proc.poll() is None:
+                if check:
+                    check()
                 if time.monotonic() > deadline:
                     raise TimeoutError('kernel invocation exceeded 1100 seconds')
                 for row in read_rows(csv_path):
@@ -31,6 +36,8 @@ def run_checked(cmd, csv_path, log_path):
                 time.sleep(0.5)
             if proc.returncode:
                 raise RuntimeError(f'kernel exited {proc.returncode}; see {log_path}')
+            if check:
+                check()
         except BaseException:
             if proc.poll() is None:
                 os.killpg(proc.pid, signal.SIGKILL)
@@ -41,7 +48,6 @@ def run_checked(cmd, csv_path, log_path):
 
 def worker(job):
     OUT.mkdir(parents=True, exist_ok=True)
-    RAW.mkdir(parents=True, exist_ok=True)
     stem = OUT / job['id']
     final = job_path(job)
     done = stem.with_suffix('.done')
@@ -69,7 +75,7 @@ def worker(job):
         validate_rows(rows, 4)
         sources = [int(r['source']) for r in rows]
         source_groups = [sources[i] for i in job['sources']]
-    phase_paths = []
+    phase_rows = []
     commands = []
     for source in source_groups:
         cmd = [str(ROOT / 'bin' / ('sssp_stats' if is_stats else 'sssp')),
@@ -78,57 +84,47 @@ def worker(job):
                '--variant', job['variant'], '--filter', job['filter'],
                '--seed', '42', '-r', str(job['reps']), '--verify', '--csv', str(partial), '-q']
         cmd += ['--sources', '4'] if source is None else ['--source', str(source)]
-        phase = None
-        if is_stats and not is_dij:
-            phase = RAW / f'{job["id"]}_source{source}.phases.csv.partial'
-            if phase.exists():
-                phase.rename(str(phase) + f'.previous.{time.time_ns()}')
-            cmd += ['--phase-log', str(phase)]
-        commands.append(cmd)
         metadata = dict(job=job['id'], commit=revision(), manifest_sha256=digest(OUT / 'jobs.json'),
-                        hostname=host, affinity=affinity, command=cmd, time=time.time(),
+                        hostname=host, affinity=affinity, time=time.time(),
                         OMP_PROC_BIND=os.getenv('OMP_PROC_BIND', 'unset'),
-                        OMP_PLACES=os.getenv('OMP_PLACES', 'unset'), phase_log=str(phase))
-        with (OUT / 'META.txt').open('a') as f:
-            f.write(json.dumps(metadata) + '\n')
-        run_checked(cmd, partial, log)
-        if phase:
-            with phase.open() as f:
-                if next(csv.reader(f)) != PHASE_HEADER:
-                    raise RuntimeError(f'wrong phase log header: {phase}')
-            compressed = phase.with_suffix('.gz')
-            with phase.open('rb') as src, gzip.open(str(compressed) + '.partial', 'wb', compresslevel=1) as dst:
-                while chunk := src.read(1024 * 1024):
-                    dst.write(chunk)
-            os.replace(str(compressed) + '.partial', compressed)
-            phase.unlink()
-            phase_paths.append(str(compressed))
+                        OMP_PLACES=os.getenv('OMP_PLACES', 'unset'), phase_transport='fifo' if is_stats and not is_dij else None)
+        if is_stats and not is_dij:
+            with PhaseStream(summarize) as stream:
+                cmd += ['--phase-log', str(stream.path)]
+                commands.append(cmd)
+                with (OUT / 'META.txt').open('a') as f:
+                    f.write(json.dumps(dict(metadata, command=cmd)) + '\n')
+                run_checked(cmd, partial, log, check=stream.check)
+            phase_rows.extend(stream.rows)
+        else:
+            commands.append(cmd)
+            with (OUT / 'META.txt').open('a') as f:
+                f.write(json.dumps(dict(metadata, command=cmd)) + '\n')
+            run_checked(cmd, partial, log)
     rows = read_rows(partial)
     validate_rows(rows, len(job['sources']) * len(job['deltas']) * job['reps'])
     if any(int(r['stats_build']) != int(is_stats) for r in rows):
         raise RuntimeError('wrong executable build')
+    phase_summary = None
+    if phase_rows:
+        if len(phase_rows) != len(rows):
+            raise ValueError('missing streamed phase runs')
+        for r in phase_rows:
+            row = next(x for x in rows if x['source'] == r['source'] and x['delta'] == r['delta'])
+            if any(r[a] != int(row[b]) for a, b in (('phases', 'phases'), ('edges_sum', 'edges_scanned'),
+                                                      ('heavy_phases', 'heavy_passes'))):
+                raise ValueError('streamed phases disagree with stats CSV')
+        directory = OUT / 'phase_summaries'
+        directory.mkdir(exist_ok=True)
+        phase_summary = directory / (job['id'] + '.stream.json')
+        temporary = phase_summary.with_suffix('.json.partial')
+        temporary.write_text(json.dumps(dict(version=2, transport='fifo', rows=phase_rows), indent=2) + '\n')
+        temporary.replace(phase_summary)
     os.replace(partial, final)
-    reducer = ROOT / 'analysis/e1_phase_reduce.py'
-    reduction_timeout = min(150, 1160 - (time.time() - start))
-    if reducer.exists() and reduction_timeout >= 5:
-        reduction_cmd = ['python3', str(reducer), '--files', *phase_paths,
-                         '--backlog-graphs', 'NY', 'LJ', job['graph'],
-                         '--budget-seconds', str(min(90, reduction_timeout)), '--max-files', '24']
-        with (OUT / 'META.txt').open('a') as f:
-            f.write(json.dumps(dict(analysis_command=reduction_cmd, hostname=host,
-                                    timing_note='post-kernel reduction; excluded from CSV kernel timings')) + '\n')
-        try:
-            with (OUT / 'phase_reduction.log').open('a') as reduction_log:
-                result = subprocess.run(reduction_cmd, stdout=reduction_log, stderr=subprocess.STDOUT,
-                                        timeout=reduction_timeout)
-            if result.returncode:
-                (OUT / 'phase_reduction.failed').write_text(f'{job["id"]}: reducer exited {result.returncode}\n')
-        except subprocess.TimeoutExpired:
-            (OUT / 'phase_reduction.failed').write_text(
-                f'{job["id"]}: reducer exceeded {reduction_timeout:.1f}s; cache is resumable\n')
     record = dict(job=job['id'], seconds=time.time() - start, hostname=host, rows=len(rows),
                   csv_sha256=digest(final), manifest_sha256=digest(OUT / 'jobs.json'),
-                  phase_logs=phase_paths, commands=commands)
+                  phase_logs=[], phase_summary=str(phase_summary) if phase_summary else None,
+                  phase_summary_sha256=digest(phase_summary) if phase_summary else None, commands=commands)
     done.with_suffix('.done.tmp').write_text(json.dumps(record, indent=2) + '\n')
     os.replace(done.with_suffix('.done.tmp'), done)
     print(f'{job["id"]}: verified {len(rows)} rows in {record["seconds"]:.2f}s', flush=True)
