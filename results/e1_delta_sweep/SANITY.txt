@@ -1,14 +1,14 @@
-grid2896: 3536 verified rows; 0 gzip phase headers/first rows checked; 640 streamed phase runs checked
-grid2896: jobs=114 compute_minutes=451.34 max_job_minutes=14.48 estimated_minutes=873.70
-BEST grid2896 delta-seq t=1 all/pop delta=65536 mean_source_median_ms=561.6339
-BEST grid2896 delta-omp t=6 all/pop delta=262144 mean_source_median_ms=178.5260
-BEST grid2896 delta-omp t=12 all/pop delta=262144 mean_source_median_ms=150.3298
-PHASES grid2896 delta-seq all/pop: 10822252.8 -> 9717.2; adjacent increases=0
-PHASES grid2896 delta-seq all/merge: 8212521.5 -> 9717.2; adjacent increases=0
-PHASES grid2896 delta-seq lh/pop: 19034774.2 -> 10715.5; adjacent increases=0
-PHASES grid2896 delta-seq lh/merge: 16425043.0 -> 10715.5; adjacent increases=0
-PHASES grid2896 delta-omp all/pop: 10822252.8 -> 9709.0; adjacent increases=0
-PHASES grid2896 delta-omp all/merge: 8212521.5 -> 9709.0; adjacent increases=0
-PHASES grid2896 delta-omp lh/pop: 19034775.0 -> 10704.0; adjacent increases=0
-PHASES grid2896 delta-omp lh/merge: 16425043.0 -> 10708.8; adjacent increases=0
-ETA: 567 jobs remain, observed/model=0.387, projected_compute_hours=29.29; add scheduler/NFS overhead
+CTR: 3712 verified rows; 0 gzip phase headers/first rows checked; 672 streamed phase runs checked
+CTR: jobs=106 compute_minutes=279.04 max_job_minutes=7.87 estimated_minutes=775.24
+BEST CTR delta-seq t=1 all/pop delta=4096 mean_source_median_ms=909.1649
+BEST CTR delta-omp t=6 all/pop delta=16384 mean_source_median_ms=324.0900
+BEST CTR delta-omp t=12 all/pop delta=32768 mean_source_median_ms=317.4086
+PHASES CTR delta-seq all/pop: 10377688.2 -> 18733.0; adjacent increases=0
+PHASES CTR delta-seq all/merge: 9906536.8 -> 18733.0; adjacent increases=0
+PHASES CTR delta-seq lh/pop: 20284225.0 -> 18831.2; adjacent increases=0
+PHASES CTR delta-seq lh/merge: 19813073.5 -> 18831.2; adjacent increases=0
+PHASES CTR delta-omp all/pop: 10377693.2 -> 18696.8; adjacent increases=0
+PHASES CTR delta-omp all/merge: 9906536.8 -> 18676.8; adjacent increases=0
+PHASES CTR delta-omp lh/pop: 20284227.5 -> 18769.5; adjacent increases=0
+PHASES CTR delta-omp lh/merge: 19813073.5 -> 18781.0; adjacent increases=0
+ETA: 464 jobs remain, observed/model=0.378, projected_compute_hours=23.81; add scheduler/NFS overhead

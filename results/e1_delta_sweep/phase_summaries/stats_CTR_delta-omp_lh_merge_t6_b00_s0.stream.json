@@ -1,0 +1,57 @@
+{
+  "version": 2,
+  "transport": "fifo",
+  "rows": [
+    {
+      "graph": "CTR",
+      "algo": "delta-omp",
+      "variant": "lh",
+      "filter": "merge",
+      "threads": "6",
+      "delta": "1",
+      "source": "10633961",
+      "phases": 19757270,
+      "empty_frontier": 0,
+      "empty_expanded": 0,
+      "empty_edges": 9878211,
+      "heavy_phases": 9878635,
+      "frontier_sum": 28163632,
+      "expanded_sum": 28163632,
+      "edges_sum": 33866826
+    },
+    {
+      "graph": "CTR",
+      "algo": "delta-omp",
+      "variant": "lh",
+      "filter": "merge",
+      "threads": "6",
+      "delta": "1",
+      "source": "8998722",
+      "phases": 18862222,
+      "empty_frontier": 0,
+      "empty_expanded": 0,
+      "empty_edges": 9430688,
+      "heavy_phases": 9431111,
+      "frontier_sum": 28163632,
+      "expanded_sum": 28163632,
+      "edges_sum": 33866826
+    },
+    {
+      "graph": "CTR",
+      "algo": "delta-omp",
+      "variant": "lh",
+      "filter": "merge",
+      "threads": "6",
+      "delta": "1",
+      "source": "10591570",
+      "phases": 20248446,
+      "empty_frontier": 0,
+      "empty_expanded": 0,
+      "empty_edges": 10123806,
+      "heavy_phases": 10124223,
+      "frontier_sum": 28163632,
+      "expanded_sum": 28163632,
+      "edges_sum": 33866826
+    }
+  ]
+}
