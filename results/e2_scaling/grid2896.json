@@ -1,0 +1,372 @@
+{
+  "graph": "grid2896",
+  "variant": "all",
+  "filter": "pop",
+  "anchors": {
+    "6": 262144,
+    "12": 262144
+  },
+  "deltas": [
+    131072,
+    262144
+  ],
+  "e1_sha256": {
+    "dijkstra_stats_grid2896.csv": "18c813da8dea875ccb1632ef9793c3c7ea6ce1100722acb19575bb64ab186f14",
+    "dijkstra_timing_grid2896.csv": "f70feeda9d7a68d6ecb116866bd1796d759d1ca44e5c05076f5533e423c79421",
+    "timing_grid2896_delta-seq_all_pop_t1_b00_s0.csv": "c2a4ce44a6603704db71a2a87bb97469ab80948738bad1cf18ce7ce363074a04",
+    "timing_grid2896_delta-seq_all_pop_t1_b01_s0.csv": "e4264aa4f5803ec0e5a097d43fbee0173b78eb25b766d8c692fa662662fba615",
+    "timing_grid2896_delta-omp_all_pop_t6_b00_s0.csv": "70e0101f7997359f31c24cf5ca838a8aff36016532582390e82a770c6739cb2f",
+    "timing_grid2896_delta-omp_all_pop_t6_b00_s2.csv": "e82f02fbc4438001735418c8f2a4f3f9b42837ec83aaa522aa85b895c4d2b668",
+    "timing_grid2896_delta-omp_all_pop_t6_b01_s0.csv": "922604ca05a808f8650b5062e1d9901babcfad32eed90c7cf41a49d3a242834f",
+    "timing_grid2896_delta-omp_all_pop_t6_b01_s3.csv": "4dac273bbde878521a0f615b6e257686c9c74882962609cbd94633699fd3307d",
+    "timing_grid2896_delta-omp_all_pop_t6_b02_s0.csv": "19650d2998ec15f951a15d5e9a67b2af06dd4088d88195adb1bab6a34ef5188f",
+    "timing_grid2896_delta-omp_all_pop_t6_b03_s0.csv": "f57461a7620984ce895e5eb361f1af794b8f540cd0f65cda02763e68c6ee909f",
+    "timing_grid2896_delta-omp_all_pop_t6_b04_s0.csv": "329c6a709dd2401f117bc272fb03bea14fc1f44c60340ed2e1bdb1fe24b7b07e",
+    "timing_grid2896_delta-omp_all_pop_t6_b05_s0.csv": "d63488c64e62a66ff79c0502a370207a380d23706daa3eed1225695509c9df13",
+    "timing_grid2896_delta-omp_all_pop_t6_b06_s0.csv": "a40efc9bbdc99a1378b66e54208cbb0c072278f588911dfe8ec82aeeb666646a",
+    "timing_grid2896_delta-omp_all_pop_t12_b00_s0.csv": "2760f2acfe792a76d214d9b692d63d4648978f7ae1ee77384f86b86b9456daa8",
+    "timing_grid2896_delta-omp_all_pop_t12_b00_s3.csv": "6605bd1b4c49b5a5c54cd3ac695bf6edbbe428241f4f9386e9cbff495ac1958d",
+    "timing_grid2896_delta-omp_all_pop_t12_b01_s0.csv": "4e4d73cf246911d2d9b6d39259f24e08cc67118150a09075b292e90ef170fbcf",
+    "timing_grid2896_delta-omp_all_pop_t12_b02_s0.csv": "e4e4a07156e743d1def84c0ce69259cd5dbcb2930ffd9fd9f4906c2144288b30",
+    "timing_grid2896_delta-omp_all_pop_t12_b03_s0.csv": "79129145aec32e8993f119aeb4057e31b868740f100623cd0b6ebea500f5fe59",
+    "timing_grid2896_delta-omp_all_pop_t12_b04_s0.csv": "3ad5aaaeb089e2a96d05b465deed99c52bf29a12e126da5d3ba60994c1a753ae",
+    "timing_grid2896_delta-omp_all_pop_t12_b05_s0.csv": "836aa2cbad11589b937c687764e5d15e9b6e41a5526988f02658297c95e7b1d2",
+    "timing_grid2896_delta-omp_all_pop_t12_b06_s0.csv": "83e5820bc091dd816bda5c9168f2e598801055070acaaa57b6263776415ecc97",
+    "stats_grid2896_delta-seq_all_pop_t1_b00_s0.csv": "9c86ae12bc13819aa886b6724de392c5e183dec68ee05966d309a33caeefe3c7",
+    "stats_grid2896_delta-seq_all_pop_t1_b01_s0.csv": "4cc22c9590c7471e52bbd7ea04d529da9b979282f5a686f980026c644cb8ea52",
+    "stats_grid2896_delta-omp_all_pop_t6_b00_s0.csv": "fd2898ee29c0562be454803d8effe35f485ebf2ce0994fb605d9b9f172fdd2d4",
+    "stats_grid2896_delta-omp_all_pop_t6_b00_s3.csv": "9eba2a7b8028f53a33922d90c221a5ca7f71d5a137f2e5b462aa5d208ed2922a",
+    "stats_grid2896_delta-omp_all_pop_t6_b01_s0.csv": "7a51a0db77db588b214e90c73a71e9683f21ff0a99842b70d56cd28bfea03f3d",
+    "stats_grid2896_delta-omp_all_pop_t6_b02_s0.csv": "bfa43b098de329c8ec9c6fa4224229d0901f8ef03e11ce09bc8e4695379ae099",
+    "stats_grid2896_delta-omp_all_pop_t6_b03_s0.csv": "6177f7b55a5786f67938f6807459b1e865f86d794c91053b1117d09c2e79bd44",
+    "stats_grid2896_delta-omp_all_pop_t6_b04_s0.csv": "0988b2ca44a86dba9222082406f0118f04fe0aefa6da76555879f99fef9382f8",
+    "stats_grid2896_delta-omp_all_pop_t6_b05_s0.csv": "84a44f916fecf90b1ddf1951832fe1ca3d89c006673403b37ca4b4c09803bc55",
+    "timing_grid2896_delta-seq_all_merge_t1_b00_s0.csv": "17d95eee487aa46fd4a9edddbe651a8f0a6805ec7b2aba5074489dc20e6e9029",
+    "timing_grid2896_delta-seq_all_merge_t1_b01_s0.csv": "199b05ed6df35f20a77d08df4bb0848addca9e718f5d1f63002ceae658d67a2d",
+    "timing_grid2896_delta-omp_all_merge_t6_b00_s0.csv": "f688aa02636e1feb755b7031d83c2723a7b0eda4617794a01df4ff2d43cdf7f2",
+    "timing_grid2896_delta-omp_all_merge_t6_b00_s2.csv": "93640b2b2bdb6903b7d193c7dbeafc9cec92f9b5afeed8f9299b755b809a2759",
+    "timing_grid2896_delta-omp_all_merge_t6_b01_s0.csv": "dbc1d2b5735d0b575fe262822d6d6f10d6be0b50d60dae38b1d99a8c78f014da",
+    "timing_grid2896_delta-omp_all_merge_t6_b01_s3.csv": "581548f2687a900b06f9c883d85de074687464b49e2b32803644e3c08c9273dc",
+    "timing_grid2896_delta-omp_all_merge_t6_b02_s0.csv": "d840429157f8424ed061e904da2af9fded8fb70eb168dd5acad4e46481f12204",
+    "timing_grid2896_delta-omp_all_merge_t6_b03_s0.csv": "4d102e459ee6e15994010fae1a3a888c128ce5e49572ba5b1ef58bad7e805175",
+    "timing_grid2896_delta-omp_all_merge_t6_b04_s0.csv": "646fd0b54f5bf2f2cfed78a2e732e10ebfa2614ca907e55916260e9a9ec449ff",
+    "timing_grid2896_delta-omp_all_merge_t6_b05_s0.csv": "20ff73b95b6333b644df63fce18363b35a07c2206797b41d68962ea1ba1c6cd2",
+    "timing_grid2896_delta-omp_all_merge_t6_b06_s0.csv": "23c4b09074bafbbf2e93b4ff6b194dc2af1e589a53e9ef6011c641fd50607c16",
+    "timing_grid2896_delta-omp_all_merge_t12_b00_s0.csv": "315b4927e88f0eee0016454b759a26e57069a1118b830a085c1adff35ac706fa",
+    "timing_grid2896_delta-omp_all_merge_t12_b00_s3.csv": "6d5dae5a9ba7eb851f76867e8c55762bb7f23d2625ffd37ce33ca92cd7c0990d",
+    "timing_grid2896_delta-omp_all_merge_t12_b01_s0.csv": "7feeb461c73c93c12602a321c0e1126e2ea8e91d8cbb45bc6e4f6ac220454002",
+    "timing_grid2896_delta-omp_all_merge_t12_b02_s0.csv": "7d51ebe78981279c828ff7c2f07a4bd01ef5e9d0e4e61a4746ba286af2bf2267",
+    "timing_grid2896_delta-omp_all_merge_t12_b03_s0.csv": "9ec4aea6bb14b4aa19c98fcf80be043fff4f2876b8c21ede336478634b25aaac",
+    "timing_grid2896_delta-omp_all_merge_t12_b04_s0.csv": "935dd1e13b9bdb9ebd0aa313fb0cffd4347870fa495746c1c0cf382f1850f6bc",
+    "timing_grid2896_delta-omp_all_merge_t12_b05_s0.csv": "02d0effeba7f40bdd9d3e30ed7e391bdf8b1534f4c0c68ba6b6918a54cba3dc7",
+    "timing_grid2896_delta-omp_all_merge_t12_b06_s0.csv": "22b21ded81d7de0322bff9d251e6da9836b99b8ca9b4645fbde654e7d87156ef",
+    "stats_grid2896_delta-seq_all_merge_t1_b00_s0.csv": "be6f3e1833dd458a10b7601cfb26ac61a2c2b5bfca65efea38c092fb590943a1",
+    "stats_grid2896_delta-seq_all_merge_t1_b01_s0.csv": "3b7ed3113f5278178b39ee7930c780e12e8bbf887b670904a27201cc68095388",
+    "stats_grid2896_delta-omp_all_merge_t6_b00_s0.csv": "ccea3d615540d38a44a8406a0b42f3811d13b58dc09acb35dc00cf4c3a521f5a",
+    "stats_grid2896_delta-omp_all_merge_t6_b00_s3.csv": "90aa7bf6d14f4347ecb63e38fd68eae1ce0bb9a344b101e75379f6904a5c7a22",
+    "stats_grid2896_delta-omp_all_merge_t6_b01_s0.csv": "7002b2d521eab342b1acd313327378499f7cabb8c66a56996d12a2057bfbab55",
+    "stats_grid2896_delta-omp_all_merge_t6_b02_s0.csv": "0340aca67ccc680499f251625f06a73df445033db7e6e2a23ec224aaa918c91c",
+    "stats_grid2896_delta-omp_all_merge_t6_b03_s0.csv": "d8a6531385c24b4b2e3fef6d580e1aab99f571fe4b9cbba54df9543f71e568f2",
+    "stats_grid2896_delta-omp_all_merge_t6_b04_s0.csv": "57287c4c102740d298e68f90ce46bab4a3808c17ce6a23321cf4b1a9afd17c56",
+    "stats_grid2896_delta-omp_all_merge_t6_b05_s0.csv": "cc48ef753d4c5782c88eb3941252ebee99798c8dec5f0ca6e202d9f0e85fa97c",
+    "timing_grid2896_delta-seq_lh_pop_t1_b00_s0.csv": "e35448c41b14e925d9bc3a63aa9ba208b95ec5c4b4fcf7900c19b57ecb545b85",
+    "timing_grid2896_delta-seq_lh_pop_t1_b01_s0.csv": "6e891ec3e2aa9b33725f001b479dc4b74900b315efa0b7cd8b6b60d76e16f987",
+    "timing_grid2896_delta-omp_lh_pop_t6_b00_s0.csv": "5129db34a433b86c7525ad4dbf2a8247b5c1125139cdabf944686462ea00bb58",
+    "timing_grid2896_delta-omp_lh_pop_t6_b00_s2.csv": "0b7c45cf9bd2f792bc6fa80a366d47f0442cd386b73a7202ae64d0a245390a36",
+    "timing_grid2896_delta-omp_lh_pop_t6_b01_s0.csv": "7beabc5aa923cd2ec3a207136e525042fc749d0ed9e1f9be62c66e5bdb58094c",
+    "timing_grid2896_delta-omp_lh_pop_t6_b01_s3.csv": "a65cc377134dd07a167fc3447bd5d704a633d2cbccf43fc110b97bcb78f96fef",
+    "timing_grid2896_delta-omp_lh_pop_t6_b02_s0.csv": "e420e661033aca787ae1203e10f472112fed74a2d516262a81874aaccbe1878a",
+    "timing_grid2896_delta-omp_lh_pop_t6_b03_s0.csv": "fe5242bbdfd08154f067ad65106f92597260c47fcc1d31f4b9827681bcfacd79",
+    "timing_grid2896_delta-omp_lh_pop_t6_b04_s0.csv": "3cacff425ca1d328ecf24799510a13f8621b965496a7292682ade57353afc5f8",
+    "timing_grid2896_delta-omp_lh_pop_t6_b05_s0.csv": "62b04a889a8ef8b12234cef00e580acaa8aa891df33ef40bd4756d298def4f86",
+    "timing_grid2896_delta-omp_lh_pop_t6_b06_s0.csv": "5c0dfc9dc8610bbc048a99c7965b822eb5c3ba3215616e2e8529aea7be12faee",
+    "timing_grid2896_delta-omp_lh_pop_t12_b00_s0.csv": "7649a546a61d549ec2fb33d17342bbe067bed1d37897a1b02eaa47ac2d98f04a",
+    "timing_grid2896_delta-omp_lh_pop_t12_b00_s3.csv": "62a3fb429fd67971fd486c472fe6f0880719a8369b509453a27ec11d51064640",
+    "timing_grid2896_delta-omp_lh_pop_t12_b01_s0.csv": "c27b34c22e7d58762e13c91f7f62ebf90ac7ee5abd21b5528ccbf57688d3b184",
+    "timing_grid2896_delta-omp_lh_pop_t12_b02_s0.csv": "7cd7a1b1ea4af7a7e247e2d9cc9f9eefe41a4ace84842454fe7e076c5b84c2c0",
+    "timing_grid2896_delta-omp_lh_pop_t12_b03_s0.csv": "030a64466b300f50b2712e6558321e57b512d24b573d06313adee0e6fedf1d67",
+    "timing_grid2896_delta-omp_lh_pop_t12_b04_s0.csv": "6ab6e60e045f7503378f389cc93713f9fab9082865cc7b045e702582c272a007",
+    "timing_grid2896_delta-omp_lh_pop_t12_b05_s0.csv": "cd7947fb240db856dcf6160b72cd42ed24ea569ead184148e30a779fa54fa584",
+    "timing_grid2896_delta-omp_lh_pop_t12_b06_s0.csv": "19cddbae8dd1dd797f4124430e43044b5ca779fb3eae08978df003d17560e126",
+    "stats_grid2896_delta-seq_lh_pop_t1_b00_s0.csv": "4a759ec4e6e5670a1023631e78c58c4c3187059dfc677697a4168c8a3ddc0ed8",
+    "stats_grid2896_delta-seq_lh_pop_t1_b01_s0.csv": "26b1487ad20e8089cac196d754ff3b05488b56aae9d0f6b849f918b541c8a59a",
+    "stats_grid2896_delta-omp_lh_pop_t6_b00_s0.csv": "85e54ec879c8501b159fdcec929738184d4e2a5d8816ee743d7e00e82bc418df",
+    "stats_grid2896_delta-omp_lh_pop_t6_b00_s3.csv": "adf9e09883f06fc45f8514c65f85e773fe69265f3eff846fa5c8dcef7ae555f2",
+    "stats_grid2896_delta-omp_lh_pop_t6_b01_s0.csv": "3d024ef83aa3ed52eaf7d01e205ff4943e0f838866c61ce8dabea6411daf2e29",
+    "stats_grid2896_delta-omp_lh_pop_t6_b02_s0.csv": "6650a9276579d5cc244c5c49e80f630b6d4e216a6c77826287399a7648cc7b81",
+    "stats_grid2896_delta-omp_lh_pop_t6_b03_s0.csv": "4b8f6cfd234697d02598a555fa124b00895b74bbd62cbd2ca622ec0d108dc95e",
+    "stats_grid2896_delta-omp_lh_pop_t6_b04_s0.csv": "75dae5c10b0ffbafda2ffca81d7394913d267f511871ca76d1237eaf677fe6a9",
+    "stats_grid2896_delta-omp_lh_pop_t6_b05_s0.csv": "161d1683b4a1150aa661ddb15ae1a837d6786012b67e154f75f7d373c20fda8b",
+    "timing_grid2896_delta-seq_lh_merge_t1_b00_s0.csv": "e2aaa44b9a0cd2d970aa9cfb450ec24ec65d91ebd18b30f77ce4a406f5025caf",
+    "timing_grid2896_delta-seq_lh_merge_t1_b01_s0.csv": "fc2dd5b14d8af47f5503a13974891bb1f39469cd3fc17fc2ab4ed174abb394c6",
+    "timing_grid2896_delta-omp_lh_merge_t6_b00_s0.csv": "37e2d4fc55b8fc7f4c2d375c4ad1bb59a08d3cb423684fb22013e00aa9600b26",
+    "timing_grid2896_delta-omp_lh_merge_t6_b00_s2.csv": "fdc207bb0e860026bf14d5b4f5f32ac23ead3673ea281b50537b047810533b7f",
+    "timing_grid2896_delta-omp_lh_merge_t6_b01_s0.csv": "b88757c60ef67eb10eb30b22b05572145c34298ac4b916b016279df5f6779ccd",
+    "timing_grid2896_delta-omp_lh_merge_t6_b01_s3.csv": "d5473b4e8b564eba59de155f948f46dea26266a5da49865c97f67115d2fba387",
+    "timing_grid2896_delta-omp_lh_merge_t6_b02_s0.csv": "712f27f90654ce3bfc669dd38c0e848436f8b79fa62d2d6efa6cd83c28e1215d",
+    "timing_grid2896_delta-omp_lh_merge_t6_b03_s0.csv": "51c7f43a5905cc1da69cc56d4b7d7d8db81514bbad756ca3f2bdf7fc5f5cb1c1",
+    "timing_grid2896_delta-omp_lh_merge_t6_b04_s0.csv": "4589b10b01a1cb8c45fc711d1f20fcf8fde1e69f31a6d08a3f060dc9bfee1f97",
+    "timing_grid2896_delta-omp_lh_merge_t6_b05_s0.csv": "9999fe6f926cbee14034c7988e4dd0cdd2e14432df22f628f3deb4860fb93768",
+    "timing_grid2896_delta-omp_lh_merge_t6_b06_s0.csv": "99e795987ab05f93acda667171647454ac219b0c5864ec3d49087efb457f93ef",
+    "timing_grid2896_delta-omp_lh_merge_t12_b00_s0.csv": "3a7f01374a9ef65e18c94808fa84d1b87b4ff8df05f190d8a936eb76b734b6e6",
+    "timing_grid2896_delta-omp_lh_merge_t12_b00_s3.csv": "2034dd6160cffa6acbefe6e537f674be42c8515354c75c304c0d948863be6d3f",
+    "timing_grid2896_delta-omp_lh_merge_t12_b01_s0.csv": "680f57a946e5f3ab3971c1959dc28093412999654624149ce39933345156ce44",
+    "timing_grid2896_delta-omp_lh_merge_t12_b02_s0.csv": "d83460d5377a70c92f5e4027a0df9534dbf2e0392f8f8beeedb0dbf4e6956736",
+    "timing_grid2896_delta-omp_lh_merge_t12_b03_s0.csv": "11fb2777b34f6ec14e1938ed6d30107fc69081e4c07b6f3f55fbeda4f3ac17e8",
+    "timing_grid2896_delta-omp_lh_merge_t12_b04_s0.csv": "339bf57fa1de5d0ac6c6bfa0a4e5fc0912360443738e6978c9d7cd87575602a5",
+    "timing_grid2896_delta-omp_lh_merge_t12_b05_s0.csv": "a1c5775a25ca9a92ccc8d01beece1d5b337e6e8070058429832bdaf52e61122c",
+    "timing_grid2896_delta-omp_lh_merge_t12_b06_s0.csv": "0907c3d2dd91351055e726f2ebaee2c94b6ae33e76d0c072c74cedccbe2cc020",
+    "stats_grid2896_delta-seq_lh_merge_t1_b00_s0.csv": "bf396524d8410494b92cfeb4a287fa03b77df5051be2a956e3c44cff5177725b",
+    "stats_grid2896_delta-seq_lh_merge_t1_b01_s0.csv": "d452d44864f79f176f1c55a23e6b60e5dd0364b1a0a4f93d5be4aefbd7efc142",
+    "stats_grid2896_delta-omp_lh_merge_t6_b00_s0.csv": "99c18d1d92113412ebcd110bb79a11e88441d37940b2338be8d5abeca417f620",
+    "stats_grid2896_delta-omp_lh_merge_t6_b00_s3.csv": "68f21115baf7d69a0f8422a9dd97c3d5c0b7fef58d102ac9ed199ac2890a428e",
+    "stats_grid2896_delta-omp_lh_merge_t6_b01_s0.csv": "b049a0f7c3e6f20636c1f4217c3768d8799c7981e1256176d78cb4a9f4c2e6c1",
+    "stats_grid2896_delta-omp_lh_merge_t6_b02_s0.csv": "cbcacd9c0353ab3c4584573c78af493440eb958867c457230e20014f0829178c",
+    "stats_grid2896_delta-omp_lh_merge_t6_b03_s0.csv": "c9c2c986068ffa355e8dce99909e491e1c075ef0fc0051a3894b32e50424005a",
+    "stats_grid2896_delta-omp_lh_merge_t6_b04_s0.csv": "b592a2cdaf2a35976a2ab8253b46a1606ebbca18e8ea72555c021479af275c30",
+    "stats_grid2896_delta-omp_lh_merge_t6_b05_s0.csv": "7dff24b082871de209a70a7830b34f012592bdf3cb793f1cd7c43f1199f57c8e"
+  },
+  "selection": "global fastest E1 OMP pair; pair held fixed for t6/t12 anchors",
+  "jobs": [
+    {
+      "id": "timing_grid2896_all_pop_t1_b0",
+      "graph": "grid2896",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 1,
+      "deltas": [
+        131072,
+        262144
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_grid2896_all_pop_t2_b0",
+      "graph": "grid2896",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 2,
+      "deltas": [
+        131072,
+        262144
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_grid2896_all_pop_t4_b0",
+      "graph": "grid2896",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 4,
+      "deltas": [
+        131072,
+        262144
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_grid2896_all_pop_t6_b0",
+      "graph": "grid2896",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 6,
+      "deltas": [
+        131072,
+        262144
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_grid2896_all_pop_t8_b0",
+      "graph": "grid2896",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 8,
+      "deltas": [
+        131072,
+        262144
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_grid2896_all_pop_t12_b0",
+      "graph": "grid2896",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 12,
+      "deltas": [
+        131072,
+        262144
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_grid2896_all_pop_t1_b0",
+      "graph": "grid2896",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 1,
+      "deltas": [
+        131072,
+        262144
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_grid2896_all_pop_t2_b0",
+      "graph": "grid2896",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 2,
+      "deltas": [
+        131072,
+        262144
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_grid2896_all_pop_t4_b0",
+      "graph": "grid2896",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 4,
+      "deltas": [
+        131072,
+        262144
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_grid2896_all_pop_t6_b0",
+      "graph": "grid2896",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 6,
+      "deltas": [
+        131072,
+        262144
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_grid2896_all_pop_t8_b0",
+      "graph": "grid2896",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 8,
+      "deltas": [
+        131072,
+        262144
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_grid2896_all_pop_t12_b0",
+      "graph": "grid2896",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 12,
+      "deltas": [
+        131072,
+        262144
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  ]
+}
