@@ -1,0 +1,63 @@
+E3 load imbalance (Q3a) — metadata
+generated: 2026-11-20 17:15:59 CST
+
+## Code
+repo: https://github.com/IcsShark/PP_Final.git
+branch: exp/e3
+commit (HEAD): 1ba51d3236163a0229780c338f4e064e706cdf10
+working tree: HEAD + E3 code change (spec section 4), saved as code_change.patch:
+   include/sssp.hpp    |  8 ++++++++
+   src/delta_omp.cpp   | 43 +++++++++++++++++++++++++++++++++++++++++++
+   src/delta_seq.cpp   |  4 ++--
+   src/main_sssp.cpp   |  9 +++++----
+   tests/test_main.cpp | 19 +++++++++++++++++++
+   5 files changed, 77 insertions(+), 6 deletions(-)
+  The timing build's machine code is identical to HEAD (checked by objdump);
+  only the stats build (-DSSSP_STATS) gains max_thread_edges and barrier-wait timing.
+compiler: g++ (Debian 12.2.0-14+deb12u1) 12.2.0
+build: run -c 4 -- make -j4   (CXXFLAGS -O3 -march=native -std=c++20 -fopenmp)
+
+## Platform
+every job: run -c 12 (whole node), see hosts.log for per-job hostname and lscpu.
+hosts used: cmpt047.hpc.cc.cs.nctu.edu.tw
+CPU: Intel i5-10500, 6 physical cores / 12 hardware threads. The VM's lscpu reports
+12 cores x 1 thread per core, so which logical CPUs are SMT siblings cannot be
+controlled or observed. No OMP_PROC_BIND / OMP_PLACES set (OpenMP defaults).
+OMP env: 
+
+## Data
+PP_DATA_DIR=/u/cs/111/111550055/pp_data (read-only)
+  /u/cs/111/111550055/pp_data/csr/LJ.csr  586583744 bytes
+  /u/cs/111/111550055/pp_data/csr/OK.csr  1899542384 bytes
+  /u/cs/111/111550055/pp_data/csr/kron23.csr  1116408640 bytes
+  /u/cs/111/111550055/pp_data/csr/USA.csr  653247816 bytes
+
+## Delta per graph (delta.csv)
+No E1 results (results/e1_*) on main when E3 ran, so per spec section 5 delta was
+chosen by a cheap sweep: timing build, -d sweep (2^i * max(w_min,1) up to >= w_max),
+t=12, sched dynamic,64, --sources 1 --seed 42 -r 1; fastest delta wins (delta_sweep.csv).
+variant/filter: defaults (all, pop) — E1 had not selected a better combination.
+  graph,delta,time_ms,reason
+  LJ,2048,256.612,fastest delta in sweep (t=12 1 source 1 rep; no E1 results on main)
+  OK,512,590.085,fastest delta in sweep (t=12 1 source 1 rep; no E1 results on main)
+  kron23,256,494.47,fastest delta in sweep (t=12 1 source 1 rep; no E1 results on main)
+  USA,32768,492.203,fastest delta in sweep (t=12 1 source 1 rep; no E1 results on main)
+
+## Commands (all from scripts/exp/, see e3_all.sh for the order)
+  common: graphs=LJ OK kron23 USA scheds=static dynamic,1 dynamic,64 dynamic,256 guided threads=6,12 sources=4 seed=42
+  timing: ./bin/sssp -g CSR -a delta-omp -d DELTA -t 6,12 --sched S --sources 4 --seed 42 -r 3 --verify -q --csv ...
+  stats : ./bin/sssp_stats -g CSR -a delta-omp -d DELTA -t 6,12 --sched S --sources 4 --seed 42 -r 1 --verify -q --csv ... --phase-log ...
+  every run is verified against Dijkstra; verification happens outside the timed region.
+
+## Phase logs (not committed)
+/u/cs/112/112550106/workspace/PP_Final/results/e3_imbalance/phase_logs/phases_<graph>_<sched>.csv.gz on the workstation (login03.hpc.cc.cs.nctu.edu.tw)
+  total: 38M	/u/cs/112/112550106/workspace/PP_Final/results/e3_imbalance/phase_logs
+
+## Analysis
+analysis/e3_imbalance.py (numpy/pandas/matplotlib). The cluster's Python has no numpy,
+so the analysis runs off-cluster on copies of these CSVs and phase logs; plots and
+tables are copied back into results/e3_imbalance/.
+
+## Code change commit
+The code change above (code_change.patch) was later committed unchanged as
+506a59ed681a9431f5747ab02a6a9ec739b7300e (feat/phase-imbalance), on top of 1ba51d3.

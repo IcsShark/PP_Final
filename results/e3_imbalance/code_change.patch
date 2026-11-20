@@ -1,0 +1,193 @@
+diff --git a/include/sssp.hpp b/include/sssp.hpp
+old mode 100644
+new mode 100755
+index 4fd6243..d6bead1
+--- a/include/sssp.hpp
++++ b/include/sssp.hpp
+@@ -45,6 +45,14 @@ struct PhaseRecord {
+   uint64_t expanded;          // vertices actually relaxed
+   uint64_t edges;             // edges scanned in this phase
+   uint64_t max_vertex_edges;  // largest single-vertex work item (load-imbalance bound)
++  // Largest per-thread edge count in this phase. Per-phase imbalance is
++  // max_thread_edges / (edges / T); 1.0 = perfectly balanced. Sequential: = edges.
++  uint64_t max_thread_edges = 0;
++  // Time threads spent waiting at the barrier that ends the relax loop
++  // (OpenMP only, measured with omp_get_wtime around that barrier): the
++  // maximum and the mean over threads, in seconds. 0 for the sequential code.
++  double max_wait_s = 0;
++  double mean_wait_s = 0;
+ };
+ 
+ // Scratch memory reused across runs so that allocation is not timed again
+diff --git a/src/delta_omp.cpp b/src/delta_omp.cpp
+old mode 100644
+new mode 100755
+index 2bffd18..cd49d97
+--- a/src/delta_omp.cpp
++++ b/src/delta_omp.cpp
+@@ -19,6 +19,13 @@ struct alignas(64) ThreadCounters {
+   uint64_t ph_edges = 0, ph_exp = 0, ph_max = 0;  // last phase (stats build)
+ };
+ 
++// Per-thread barrier wait times, one entry per phase (stats build + phase log
++// only). Each thread appends only to its own vector, so no synchronisation is
++// needed; the vectors are merged after the parallel region.
++struct alignas(64) ThreadWaits {
++  std::vector<double> v;
++};
++
+ }  // namespace
+ 
+ // OpenMP delta-stepping (proposal Algorithm 1 + Figure 2).
+@@ -58,6 +65,9 @@ void delta_stepping_omp(const CSRGraph& g, vid_t src, const DeltaOptions& opt, i
+ 
+   std::vector<PaddedU64> nexts(nthreads), sizes(nthreads), ssizes(nthreads);
+   std::vector<ThreadCounters> tc(nthreads);
++#ifdef SSSP_STATS
++  std::vector<ThreadWaits> waits(phase_log ? nthreads : 0);
++#endif
+ 
+   const eid_t* off = g.offsets.data();
+   const vid_t* dst = g.dst.data();
+@@ -160,7 +170,18 @@ void delta_stepping_omp(const CSRGraph& g, vid_t src, const DeltaOptions& opt, i
+         c.ph_exp = px;
+         c.ph_max = pm;
+       }
++#ifdef SSSP_STATS
++      // Barrier wait = idle time caused by imbalance. #ifdef (not if constexpr)
++      // so the timing build does not even capture `waits`: its machine code
++      // stays identical to the version without this measurement.
++      const double wait_start = phase_log ? omp_get_wtime() : 0.0;
++#endif
+ #pragma omp barrier
++#ifdef SSSP_STATS
++      // Stored in the thread's own vector; thread 0 must not read other
++      // threads' values here (they may not have written them yet).
++      if (phase_log) waits[tid].v.push_back(omp_get_wtime() - wait_start);
++#endif
+       if (tid == 0) {
+         ++stats.phases;
+         if (mode == 2) {
+@@ -175,6 +196,7 @@ void delta_stepping_omp(const CSRGraph& g, vid_t src, const DeltaOptions& opt, i
+               r.expanded += tc[t].ph_exp;
+               r.edges += tc[t].ph_edges;
+               r.max_vertex_edges = std::max(r.max_vertex_edges, tc[t].ph_max);
++              r.max_thread_edges = std::max(r.max_thread_edges, tc[t].ph_edges);
+             }
+             if (mode == 2) r.expanded = cnt;
+             phase_log->push_back(r);
+@@ -228,6 +250,27 @@ void delta_stepping_omp(const CSRGraph& g, vid_t src, const DeltaOptions& opt, i
+ 
+   ws.epoch = epoch_end;
+   if constexpr (kStatsEnabled) {
++#ifdef SSSP_STATS
++    if (phase_log) {
++      // Every thread executed every relax() and pushed exactly one wait per
++      // phase, so each non-empty vector has one entry per PhaseRecord.
++      const size_t P = phase_log->size();
++      std::vector<const std::vector<double>*> per_thread;
++      for (const ThreadWaits& w : waits)
++        if (!w.v.empty() || P == 0) per_thread.push_back(&w.v);
++      for (const auto* w : per_thread)
++        if (w->size() != P) throw std::logic_error("barrier wait log does not match phase log");
++      for (size_t i = 0; i < P && !per_thread.empty(); ++i) {
++        double mx = 0, sum = 0;
++        for (const auto* w : per_thread) {
++          mx = std::max(mx, (*w)[i]);
++          sum += (*w)[i];
++        }
++        (*phase_log)[i].max_wait_s = mx;
++        (*phase_log)[i].mean_wait_s = sum / static_cast<double>(per_thread.size());
++      }
++    }
++#endif
+     for (const ThreadCounters& t : tc) {
+       stats.edges_scanned += t.s.edges_scanned;
+       stats.relax_ok += t.s.relax_ok;
+diff --git a/src/delta_seq.cpp b/src/delta_seq.cpp
+old mode 100644
+new mode 100755
+index 664de3d..6de53fb
+--- a/src/delta_seq.cpp
++++ b/src/delta_seq.cpp
+@@ -69,7 +69,7 @@ void delta_stepping_seq(const CSRGraph& g, vid_t src, const DeltaOptions& opt, D
+       ++stats.heavy_passes;
+       if constexpr (kStatsEnabled) {
+         stats.edges_scanned += pe;
+-        if (phase_log) phase_log->push_back({cur, true, S.size(), S.size(), pe, pm});
++        if (phase_log) phase_log->push_back({cur, true, S.size(), S.size(), pe, pm, pe});
+       }
+       S.clear();
+       continue;
+@@ -125,7 +125,7 @@ void delta_stepping_seq(const CSRGraph& g, vid_t src, const DeltaOptions& opt, D
+     if constexpr (kStatsEnabled) {
+       stats.expansions += px;
+       stats.edges_scanned += pe;
+-      if (phase_log) phase_log->push_back({cur, false, F.size(), px, pe, pm});
++      if (phase_log) phase_log->push_back({cur, false, F.size(), px, pe, pm, pe});
+     }
+   }
+   ws.epoch = epoch;
+diff --git a/src/main_sssp.cpp b/src/main_sssp.cpp
+old mode 100644
+new mode 100755
+index b7f8444..ad26730
+--- a/src/main_sssp.cpp
++++ b/src/main_sssp.cpp
+@@ -242,7 +242,7 @@ int main(int argc, char** argv) {
+       else
+         plog = open_append(a.phase_log,
+                            "graph,algo,variant,filter,threads,delta,source,phase,bucket,heavy,frontier,expanded,"
+-                           "edges,max_vertex_edges\n");
++                           "edges,max_vertex_edges,max_thread_edges,max_wait_us,mean_wait_us\n");
+     }
+ 
+     std::vector<dist_t> dist, oracle;  // oracle is implemented using Dijkstra, to check the correctness of our algorithm
+@@ -313,11 +313,12 @@ int main(int argc, char** argv) {
+               if (pl) {
+                 for (size_t i = 0; i < phases.size(); ++i) {
+                   const PhaseRecord& r = phases[i];
+-                  std::fprintf(plog, "%s,%s,%s,%s,%d,%llu,%u,%zu,%llu,%d,%llu,%llu,%llu,%llu\n", gname.c_str(),
+-                               algo.c_str(), vname, fname, t, (unsigned long long)delta, src, i,
++                  std::fprintf(plog, "%s,%s,%s,%s,%d,%llu,%u,%zu,%llu,%d,%llu,%llu,%llu,%llu,%llu,%.3f,%.3f\n",
++                               gname.c_str(), algo.c_str(), vname, fname, t, (unsigned long long)delta, src, i,
+                                (unsigned long long)r.bucket, r.heavy ? 1 : 0, (unsigned long long)r.frontier,
+                                (unsigned long long)r.expanded, (unsigned long long)r.edges,
+-                               (unsigned long long)r.max_vertex_edges);
++                               (unsigned long long)r.max_vertex_edges, (unsigned long long)r.max_thread_edges,
++                               r.max_wait_s * 1e6, r.mean_wait_s * 1e6);
+                 }
+                 std::fflush(plog);
+               }
+diff --git a/tests/test_main.cpp b/tests/test_main.cpp
+old mode 100644
+new mode 100755
+index bfdc6c6..f2c819a
+--- a/tests/test_main.cpp
++++ b/tests/test_main.cpp
+@@ -372,6 +372,25 @@ void test_stats_invariants() {
+   }
+   CHECK(edges == st.edges_scanned);
+   CHECK(exp == st.expansions);
++
++  // Per-thread imbalance fields: edges/T <= max_thread_edges <= edges,
++  // max_thread_edges >= max_vertex_edges (one vertex is done by one thread),
++  // and 0 <= mean_wait <= max_wait.
++  bool bounds_ok = true, waits_ok = true;
++  for (const PhaseRecord& r : log) {
++    bounds_ok &= r.max_thread_edges <= r.edges;
++    bounds_ok &= r.max_thread_edges * 4 >= r.edges;
++    bounds_ok &= r.max_thread_edges >= r.max_vertex_edges;
++    waits_ok &= r.mean_wait_s >= 0 && r.mean_wait_s <= r.max_wait_s + 1e-12;
++  }
++  CHECK(bounds_ok);
++  CHECK(waits_ok);
++
++  // Sequential: one thread does everything, so max_thread_edges == edges.
++  delta_stepping_seq(g, src, o, ws, dist, st, &log);
++  bool seq_ok = !log.empty();
++  for (const PhaseRecord& r : log) seq_ok &= r.max_thread_edges == r.edges && r.max_wait_s == 0;
++  CHECK(seq_ok);
+ }
+ 
+ }  // namespace

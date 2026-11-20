@@ -1,0 +1,2 @@
+NY phase rows=26392 bad=0 mean(max_thread_edges/(edges/T))=7.942
+field check PASSED

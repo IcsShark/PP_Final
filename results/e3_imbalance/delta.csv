@@ -1,0 +1,5 @@
+graph,delta,time_ms,reason
+LJ,2048,256.612,fastest delta in sweep (t=12 1 source 1 rep; no E1 results on main)
+OK,512,590.085,fastest delta in sweep (t=12 1 source 1 rep; no E1 results on main)
+kron23,256,494.47,fastest delta in sweep (t=12 1 source 1 rep; no E1 results on main)
+USA,32768,492.203,fastest delta in sweep (t=12 1 source 1 rep; no E1 results on main)
