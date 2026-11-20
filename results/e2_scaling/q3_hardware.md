@@ -10,6 +10,7 @@ Per graph, nonnegative least squares fits T(k,Δ) = c_edge × mean_source(Tideal
 | USA | 18/7 | 7 | 7.085 | 0.992 | 34.629 | 4.392 | 52.005 | 17.079 |
 | grid2896 | 12/7 | 7 | 9.820 | 0.998 | 6.603 | 2.384 | N/A | 11.765 |
 | kron23 | 24/7 | 7 | 3.412 | 0.942 | 114.706 | 13.691 | 186.894 | 14.083 |
+| urand23 | 30/7 | 7 | 3.167 | 0.959 | 191.776 | 12.341 | 282.534 | 26.189 |
 
 | Graph | t | Δ | Measured ms | Fitted ms | Work ms (%) | Phase/sync ms (%) | Residual ms |
 |---|---:|---:|---:|---:|---:|---:|---:|
@@ -31,6 +32,9 @@ Per graph, nonnegative least squares fits T(k,Δ) = c_edge × mean_source(Tideal
 | kron23 | 1 | 1024 | 1787.821 | 1851.466 | 1851.466 (100.000) | 0.000 (0.000) | -63.645 |
 | kron23 | 6 | 1024 | 521.226 | 477.507 | 308.584 (64.624) | 168.922 (35.376) | 43.720 |
 | kron23 | 12 | 2048 | 486.874 | 307.083 | 155.442 (50.619) | 151.641 (49.381) | 179.791 |
+| urand23 | 1 | 1024 | 3490.068 | 3543.332 | 3543.332 (100.000) | 0.000 (0.000) | -53.264 |
+| urand23 | 6 | 1024 | 929.166 | 888.290 | 590.617 (66.489) | 297.672 (33.511) | 40.877 |
+| urand23 | 12 | 1024 | 848.043 | 796.879 | 295.370 (37.066) | 501.509 (62.934) | 51.164 |
 
 Effective traffic bound = mean_source(edges_scanned) × (8 + 64) bytes / mean-source-median time, in decimal GB/s. This assumes one 8-byte edge read plus a whole 64-byte destination-distance cache line per scan with no reuse. It is not measured DRAM traffic or a bound on all traffic: it omits, for example, bucket writes and extra coherence traffic. Values near or above the approximate 20 GB/s triad reference are consistent with cache reuse and/or memory pressure, not proof of bandwidth saturation or latency limitation.
 
@@ -48,3 +52,5 @@ Effective traffic bound = mean_source(edges_scanned) × (8 + 64) bytes / mean-so
 | grid2896 | 12 | 262144 | 21.050 | 1.053 |
 | kron23 | 6 | 1024 | 18.160 | 0.908 |
 | kron23 | 12 | 2048 | 19.578 | 0.979 |
+| urand23 | 6 | 1024 | 10.484 | 0.524 |
+| urand23 | 12 | 1024 | 11.487 | 0.574 |

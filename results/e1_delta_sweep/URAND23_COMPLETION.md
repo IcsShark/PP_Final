@@ -25,4 +25,25 @@ All eight algorithm/variant/filter phase sweeps have zero adjacent increases.
 E1 analysis now covers seven graphs, with 168 Q4 rows and 4576/4576 reduced
 stats runs. Previous six-graph Q4 rows are unchanged. The time PNG was inspected.
 All 208 legacy NY/LJ gzip paths, sizes and nanosecond mtimes remain unchanged;
-no new nonempty raw phase files exist. E2 was still running at this checkpoint.
+no new nonempty raw phase files exist.
+
+## E2
+
+E2 completed all 36 jobs before the 23:00 +08:00 checkpoint. The fixed pair is
+all/merge; candidates are {512,1024,2048,4096,8192}. Independent validation passed:
+
+```text
+PASS: urand23 E2 36 jobs; exact source/delta/repetition coverage; {'timing': 360, 'stats': 120, 'reduced_phase_runs': 120}
+PASS: E1/plan/CSV/summary digests; CSV/phase counters; ideal T1=edges and max>=no-max costs
+```
+
+| t | Fastest candidate Δ | ms | vs best E1 seq | Efficiency | Ideal max / no-max |
+|---|---:|---:|---:|---:|---:|
+| 6 | 1024 | 929.166 | 3.623× | 60.4% | 5.999× / 6.000× |
+| 12 | 1024 | 848.043 | 3.970× | 33.1% | 11.996× / 12.000× |
+
+The 33.26 compute-minutes of E2 took 34.79 wrapper-minutes. All phase data used
+FIFO reduction with empty `phase_logs` lists. Refreshed analysis covers 144
+Δ/thread points and 42 scaling rows; only OK remains pending. Previous six-graph
+scaling values are unchanged. The E2 ideal PNG was inspected. The same live driver
+moved on to OK E1, with no STOPPED flag and one active allocation.
