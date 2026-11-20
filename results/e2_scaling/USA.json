@@ -1,0 +1,649 @@
+{
+  "graph": "USA",
+  "variant": "all",
+  "filter": "pop",
+  "anchors": {
+    "6": 32768,
+    "12": 32768
+  },
+  "deltas": [
+    16384,
+    32768,
+    65536
+  ],
+  "e1_sha256": {
+    "dijkstra_stats_USA.csv": "6c306f4548080dd24ebed4981285550662180f6977e38c7c340a022f0aaa60cf",
+    "dijkstra_timing_USA.csv": "7d0b95552bffc0bd62a7970bf3b9340842a25597f959065d786d5055f27cb2b4",
+    "timing_USA_delta-seq_all_pop_t1_b00_s0.csv": "ca856e3a6283eda048d1d15c22d91d333fbab7bae180fbff0dea2f9659230fef",
+    "timing_USA_delta-seq_all_pop_t1_b01_s0.csv": "c814d3cb0fbf118d90c48aac8f9a342a451ce8e4aa0df940d70e3a232381a400",
+    "timing_USA_delta-seq_all_pop_t1_b02_s0.csv": "0dfad0636708892d33eef163b027e7c054c0457d3d5d1851189c2cd05120fcec",
+    "timing_USA_delta-seq_all_pop_t1_b03_s0.csv": "f9385969c28da73aa00b88197dab231589c5d368261369901d241a40344638c6",
+    "timing_USA_delta-seq_all_pop_t1_b04_s0.csv": "1574ff023940357fbde1578636dac0614da9cce18c9a028775b0888c481d33f5",
+    "timing_USA_delta-seq_all_pop_t1_b05_s0.csv": "bbb5f07bbe3fcc7310946769f83b1d574c9f6487969d39a0eb237a1d1e9022d5",
+    "timing_USA_delta-omp_all_pop_t6_b00_s0.csv": "bc8c4b42be612d2bc3f5a2e8ac9470fa3b5cf413266accc0a7e127215286546f",
+    "timing_USA_delta-omp_all_pop_t6_b00_s1.csv": "85a0a6d43d96ea9290402333f2d3c1dea3fa9694814591095544aa2e1e110eb0",
+    "timing_USA_delta-omp_all_pop_t6_b00_s2.csv": "00970d5618807fb8165d6ec353c6e6b3bf805c42021f49365c4a81dacdf79bf7",
+    "timing_USA_delta-omp_all_pop_t6_b00_s3.csv": "6d9917d8fa2e928ec0b1a96999ca6990025c4ca46b66b4cca87dccceaddf3993",
+    "timing_USA_delta-omp_all_pop_t6_b01_s0.csv": "f5f8492cf24941f549fa931bb2d633279f6686359425bed07eedc0314c4e6a9b",
+    "timing_USA_delta-omp_all_pop_t6_b01_s2.csv": "ce00d2cf7b91c6f2737991e0ca8c32dbf9a4902805d423bb377c6d53ca45073c",
+    "timing_USA_delta-omp_all_pop_t6_b02_s0.csv": "39ae7454f5a8be9e2d0c5275c1fd6c6273d5f03341efc850e3fd0d571b049cb5",
+    "timing_USA_delta-omp_all_pop_t6_b02_s3.csv": "952f55acdf51070dbc8dc1951d7c6683faf9fa5044b76fec86fe610e098422df",
+    "timing_USA_delta-omp_all_pop_t6_b03_s0.csv": "ff0f43c57b3b3f89f9349f8aa28fc8111d0aa1b8076e60de395ec74fe62ac96a",
+    "timing_USA_delta-omp_all_pop_t6_b04_s0.csv": "fc710575bcef9b2117dc4097b4a5944cb53144627681ff16eb4ca0a6f3b71264",
+    "timing_USA_delta-omp_all_pop_t6_b05_s0.csv": "d548faf55df978bf3aff32ad8b2ae4fc853cf3b28cc64c2227160827776a202b",
+    "timing_USA_delta-omp_all_pop_t6_b06_s0.csv": "3d702e5e2b2b0e3dea9cfa3ed047ae9be1ad83dc8c6f4c817233005b2f936e55",
+    "timing_USA_delta-omp_all_pop_t6_b07_s0.csv": "e4e9ced029e15c5a466a90460c2916d450349ca3c146cad0caf8581c86444bb8",
+    "timing_USA_delta-omp_all_pop_t12_b00_s0.csv": "1c1fc0bc3c750c5fac78f7078ef2405b7bd7603d12cc71382f0e14a1ffef5a05",
+    "timing_USA_delta-omp_all_pop_t12_b00_s2.csv": "a527df614a6900bc1307c52934697ca9cea338c704a95555506bc252236ea089",
+    "timing_USA_delta-omp_all_pop_t12_b01_s0.csv": "8a6f1e25734f1f762c63d70295a1c8a3d659fe674e70598384f3fffe2836016a",
+    "timing_USA_delta-omp_all_pop_t12_b01_s3.csv": "9df653d2c0078e0cc6efe5892c01c70f1e87b962b524e88edf96f04f50df5c68",
+    "timing_USA_delta-omp_all_pop_t12_b02_s0.csv": "9dc2ab3477aff7a239f24a9d399b3b0cab62aa3d6337fbaac4c522478b8cf5ee",
+    "timing_USA_delta-omp_all_pop_t12_b03_s0.csv": "5fbeb2b8cfe64de55e53f516694f456571df43ea0e22949acac8b7362f46a27a",
+    "timing_USA_delta-omp_all_pop_t12_b04_s0.csv": "6b166ed48f3d4af5165fd480e058ceb988ac5b013056243eaf22baeb245e9b5c",
+    "timing_USA_delta-omp_all_pop_t12_b05_s0.csv": "628d168226a9a9595bac666c443e353a4ae7eb549cc10f1d4d1dbe69342c8432",
+    "timing_USA_delta-omp_all_pop_t12_b06_s0.csv": "8c3b8d2418ddd05686fa69812590d18dd9c5c91f5b80aaaf0c1fcaa20a8c80fb",
+    "stats_USA_delta-seq_all_pop_t1_b00_s0.csv": "efdeaaf57c91aaf48923d480813c278cd66bb560606785711b9940c29d09a5d7",
+    "stats_USA_delta-seq_all_pop_t1_b01_s0.csv": "4eb90d1c46b6b0de14d3c3fd2a93b78e02455d6ee488cdf0c3b362ead2a847e4",
+    "stats_USA_delta-seq_all_pop_t1_b02_s0.csv": "83fedd2e3aa1bb93f4336561ecc7df193fab6a1969a53ef435bbacdb9edfcd0a",
+    "stats_USA_delta-seq_all_pop_t1_b03_s0.csv": "4bcaddbc8b41f00ae8efc30befeab3bc971d2071f8c8c0ade468d8e817d50364",
+    "stats_USA_delta-omp_all_pop_t6_b00_s0.csv": "d7a4bec545cbbbd9d0f96812dc3667649487e7e50aedbdf2a2b1df4fbefaf4e9",
+    "stats_USA_delta-omp_all_pop_t6_b00_s2.csv": "f16f206cf8670f2aeed244a6da7a27ff93572170045e18f4aef937cfb9024e65",
+    "stats_USA_delta-omp_all_pop_t6_b01_s0.csv": "9e8fe30295d42a72a4fc37bacead1d099e91081f3d8d80d82a322625f3fb56a2",
+    "stats_USA_delta-omp_all_pop_t6_b01_s3.csv": "92faea79e9fd1fccc5d15fe6b012e20de057ebcf7429f2d2a138e6467d1ba13f",
+    "stats_USA_delta-omp_all_pop_t6_b02_s0.csv": "f349dc0eabb5ec72e720920b88cac0f13f985cde00dca90562a51dbe78f2d169",
+    "stats_USA_delta-omp_all_pop_t6_b03_s0.csv": "336269d8e8b50256acdb971945ff6e816e395149a17debcfa14b7262a4d0d73b",
+    "stats_USA_delta-omp_all_pop_t6_b04_s0.csv": "b6e3e07ec1f049513da29fe1da53f20b4a0c4f6b42a373fa22e1af6f5a2ec7a3",
+    "stats_USA_delta-omp_all_pop_t6_b05_s0.csv": "e04c3f2567444d9e33bf46150e876bc315d0508e8b15236db1eddf6ce2b6ffcc",
+    "timing_USA_delta-seq_all_merge_t1_b00_s0.csv": "0686428098ae3a830beb04ff69fc343b7f8d6611b723abf4a38a358c21dcb74f",
+    "timing_USA_delta-seq_all_merge_t1_b01_s0.csv": "891b9612e3f99a5709e56b89149ce1a4c61826582ef993566ddb5564b82193c2",
+    "timing_USA_delta-seq_all_merge_t1_b02_s0.csv": "3b51a87f830c540c93786438b10c1c7b7d5bb90324f1f1429344ab2185162dcc",
+    "timing_USA_delta-seq_all_merge_t1_b03_s0.csv": "b84d3aafa65cb0f554f58dfb3b8d0ca115f53773f40569d780384ed1e22465e0",
+    "timing_USA_delta-seq_all_merge_t1_b04_s0.csv": "46f176121744f64cc5edb7bcfac3e9e910568565f9cf655ea2f3eba1d7bddb3a",
+    "timing_USA_delta-seq_all_merge_t1_b05_s0.csv": "4f032382ac4bbc29d5c1144f297faf07c9888203f532ce3bb58a4a707e65b0a5",
+    "timing_USA_delta-omp_all_merge_t6_b00_s0.csv": "830bdfe64085c47c3a7f6aebc0ff202e7958decef4eb6d8b1349f6c235fdb672",
+    "timing_USA_delta-omp_all_merge_t6_b00_s1.csv": "318d158b5b782317dc8317794406ceb0412c5d22ef10b3e7b1c17a7ad5acc35a",
+    "timing_USA_delta-omp_all_merge_t6_b00_s2.csv": "ae78b8cfe15849512b96735f4c5f38afa75fb1da8a475eb456b14978cbd80b63",
+    "timing_USA_delta-omp_all_merge_t6_b00_s3.csv": "330be16fb91f9be7f23ec5d38eb466a9ef247160c838d534e40adcede8be5e91",
+    "timing_USA_delta-omp_all_merge_t6_b01_s0.csv": "ae48298262d22233935f59938ab83a359beec63cc4ad48e430e7b84c22f7ec7f",
+    "timing_USA_delta-omp_all_merge_t6_b01_s2.csv": "7d1bbfa2f2ae2e2c18c8886e24581580999a044833b455539e5e8799a5eee241",
+    "timing_USA_delta-omp_all_merge_t6_b02_s0.csv": "b5a6c699aa186540975f6e47aa2e2c03f8ca8023e9e8674b66e055b4f0bb57d7",
+    "timing_USA_delta-omp_all_merge_t6_b02_s3.csv": "90267285e3122f93c54d5d5f907606f5a71ad04d220ff36a8595bc7c6a4d11f8",
+    "timing_USA_delta-omp_all_merge_t6_b03_s0.csv": "59751ad43e6ac6ef702e5f822048194e37f44e3e6f36e6ea5af3b73af829e9f1",
+    "timing_USA_delta-omp_all_merge_t6_b04_s0.csv": "7cc3a00247b65ffa3a495240d6839e0671aff3aa85fd517e26ca075900997259",
+    "timing_USA_delta-omp_all_merge_t6_b05_s0.csv": "70ad07cb563572a47d5d29878e04ac5eee85fc2dce3130d1b4393df93bc5e7a3",
+    "timing_USA_delta-omp_all_merge_t6_b06_s0.csv": "3ac46e112b60f56e1171131bf421ee3a3c04a55d4e7bcb309def744acb35c8b3",
+    "timing_USA_delta-omp_all_merge_t6_b07_s0.csv": "d776349d30d425ef244af80da1e61d84101b65bf555716ffbece12e7e3b0e248",
+    "timing_USA_delta-omp_all_merge_t12_b00_s0.csv": "9d34188660bcf79cad4adc82f2de85451afa7229976e40a8a3861172dbfd6da2",
+    "timing_USA_delta-omp_all_merge_t12_b00_s2.csv": "e173c3c228453fda1699d28d191a6c58d6dbed9db086032672b1a43b88701e66",
+    "timing_USA_delta-omp_all_merge_t12_b01_s0.csv": "6e7694f7ab99107f764a3a85d28c5475f87980bee311063982b43c31b6c1dae8",
+    "timing_USA_delta-omp_all_merge_t12_b01_s3.csv": "2e8912baa545b96a952ded85aa44b87654c5d7626e061f36a8ec16a91aa06f68",
+    "timing_USA_delta-omp_all_merge_t12_b02_s0.csv": "9c733783d6968c475c1e5acce891365b627261a9766facfc3c8c9a1e1d386038",
+    "timing_USA_delta-omp_all_merge_t12_b03_s0.csv": "890ce6b3d3586deebbcc40bd2bab37070294c09d9af6580862b83081aba81f6f",
+    "timing_USA_delta-omp_all_merge_t12_b04_s0.csv": "6817a699d1947d53878719300fd24a130d5811cec370e19a8429b75a2350d806",
+    "timing_USA_delta-omp_all_merge_t12_b05_s0.csv": "02aea2d33273522bb7e33f40b17a2964e4bb7242412cfa17233b020f1fad866a",
+    "timing_USA_delta-omp_all_merge_t12_b06_s0.csv": "035aeeba776b26de02e0c8d3c83a99e8762a4f2ccbf4cdddf43301b22e9d0dbd",
+    "stats_USA_delta-seq_all_merge_t1_b00_s0.csv": "b996f6e70cef58953e94066d1498cd6b0dd27be213e5dfdabaecdc777653eddb",
+    "stats_USA_delta-seq_all_merge_t1_b01_s0.csv": "6f4cd1e1b79d2f5b02049e98df2e791ad3e2630716c2d2d75dde29047da86df4",
+    "stats_USA_delta-seq_all_merge_t1_b02_s0.csv": "35058737e0b3ab36895cdd5aff433668f29d817736ac4bd6d68e850dfda868a3",
+    "stats_USA_delta-seq_all_merge_t1_b03_s0.csv": "4b1dc81a026bf89daace20a5d0d471d2641518e770d5fdbf7eb1e160c013df73",
+    "stats_USA_delta-omp_all_merge_t6_b00_s0.csv": "02cc3134c167fd0f73812a460e2a4a1dfbc7e44e0b82ef169aa919cd460800c3",
+    "stats_USA_delta-omp_all_merge_t6_b00_s2.csv": "456d1a874d4f255a6811038fb1137aac01d514da44c045e6b926d99c37e7a9c5",
+    "stats_USA_delta-omp_all_merge_t6_b01_s0.csv": "ae4b21ec1586c47349893d39a1f2921ba0a700e953a1cff2b6e8d763d4ac2e48",
+    "stats_USA_delta-omp_all_merge_t6_b01_s3.csv": "9b4b0108e82c2f3dc775498a9a26e7b233f6ff930c69abef742d9491806b5e82",
+    "stats_USA_delta-omp_all_merge_t6_b02_s0.csv": "929a6903189a944d0565251baaa8759f63bfb4a4c228f35c0637faf5b3683bfe",
+    "stats_USA_delta-omp_all_merge_t6_b03_s0.csv": "2fced420d70f496d112b0cc4046fb0011fa982e43b9445dd29737d8569d2a5af",
+    "stats_USA_delta-omp_all_merge_t6_b04_s0.csv": "168b18e355cf06202483d137e8c6c1e3f90fd661054b6bc8b26174b79196edc8",
+    "stats_USA_delta-omp_all_merge_t6_b05_s0.csv": "44ea8a141e1d6b18812ec900a0b0804fb426385fe665fdb84ef61b725102a321",
+    "timing_USA_delta-seq_lh_pop_t1_b00_s0.csv": "b04e5bf33929c6953cd141422d296e94338aab82534e32eb969f65bba40968be",
+    "timing_USA_delta-seq_lh_pop_t1_b01_s0.csv": "ad15d55d7129469b03867bea5ab548f2bf23265d3e9f139435181f4c8c450b72",
+    "timing_USA_delta-seq_lh_pop_t1_b02_s0.csv": "aa89c35a73567e2bacdfc1a2bb970fdd7f7e8e6c50ee1c2453741f5eb2b161de",
+    "timing_USA_delta-seq_lh_pop_t1_b03_s0.csv": "f5516bb10e6b255822bb6324cbf3008261e90946b507a581226f5a7cf9c82fc1",
+    "timing_USA_delta-seq_lh_pop_t1_b04_s0.csv": "0796f2bddc55107bacb0a4eec7cfeb8df9ba0929f8084a84741b7509ffac7f08",
+    "timing_USA_delta-seq_lh_pop_t1_b05_s0.csv": "19c5d217d92deaad8fa8ef2cb3ddefb32f627c0adb137ae40cab26818fd31355",
+    "timing_USA_delta-omp_lh_pop_t6_b00_s0.csv": "708b025c6aa423a6ce680364ae1ebdd734be5f515dcee7e29c446117999628f2",
+    "timing_USA_delta-omp_lh_pop_t6_b00_s1.csv": "1f7405bf955de3875ff0a15453b595e6d626c689934b7b481d5476bd69d322f7",
+    "timing_USA_delta-omp_lh_pop_t6_b00_s2.csv": "d2b912bf32dc78640d13379984d14412a1eb9e3cb916265d86a3d1ec688e949c",
+    "timing_USA_delta-omp_lh_pop_t6_b00_s3.csv": "92cac83eeefda412a55baeddad02bd59abf760e8817f4136072af5c131184192",
+    "timing_USA_delta-omp_lh_pop_t6_b01_s0.csv": "f76294f960b751461ec6a034ec6db14d61eef2dd3ccca251d60cff92be908e6d",
+    "timing_USA_delta-omp_lh_pop_t6_b01_s2.csv": "72c1be8766a44b64985e4ea51a77536f08dffd836c32fa5c6e43da68442dddba",
+    "timing_USA_delta-omp_lh_pop_t6_b02_s0.csv": "8733ef9735e1e24569c2cd6823d15bfc362495ce9ff5bd77c2989588832f7525",
+    "timing_USA_delta-omp_lh_pop_t6_b02_s3.csv": "f712643c6c934c7855b295742876d4e1dc8f79acc476c8c927ad02e2b6989c41",
+    "timing_USA_delta-omp_lh_pop_t6_b03_s0.csv": "d96b9e3bb79ca217503343b06f2add9dcad1bb263b722cf38944e3c4d0df6a9e",
+    "timing_USA_delta-omp_lh_pop_t6_b04_s0.csv": "0da4f04343b07e3c10b9338a2015fbcd0869b5e1928b8357b2a667aaa3a15fd1",
+    "timing_USA_delta-omp_lh_pop_t6_b05_s0.csv": "6dc11e6bfc766e8c39564ca9eb38fc6ef2c866d9feba298852496be4ac812a20",
+    "timing_USA_delta-omp_lh_pop_t6_b06_s0.csv": "8eded2e7be4bf0d67705a7dc2d47eda671116b483daf4a22c1f9f8e7aed017cf",
+    "timing_USA_delta-omp_lh_pop_t6_b07_s0.csv": "d39d56636dbc6813290d4ad110efffcb325be5f990bcd9e6577e501f235cc2e9",
+    "timing_USA_delta-omp_lh_pop_t12_b00_s0.csv": "47920e195a2391de4636ba58a6b22ff46c0ec3d9c8bf3eb6c3bf2734b2ffb8c9",
+    "timing_USA_delta-omp_lh_pop_t12_b00_s2.csv": "9cec32480f841b762f36fc70a4174cde937cf6a34f8e640b9b6256f7dba3afb7",
+    "timing_USA_delta-omp_lh_pop_t12_b01_s0.csv": "1bf7a6153d53bf78e6a26f5d3ed6965f7a64a5b264eb51d1bf2a41ffefb48dae",
+    "timing_USA_delta-omp_lh_pop_t12_b01_s3.csv": "454f42f41741143ff70fe79edfba98f32b1320708e35be3e6a7f4d5dad2c553a",
+    "timing_USA_delta-omp_lh_pop_t12_b02_s0.csv": "99484ef7dae76caa9abd810f9531b85251c95b602b0a122d3740a0fd1c6ff20f",
+    "timing_USA_delta-omp_lh_pop_t12_b03_s0.csv": "6c88fc1f24cc308feed5dca12af6dc6b7cdae3b6e97f9fb380f40c50f0194b89",
+    "timing_USA_delta-omp_lh_pop_t12_b04_s0.csv": "9c2fcab51fe57845b753dd09e2def6574a5e20f108bfc928eac4f8ccb45fe592",
+    "timing_USA_delta-omp_lh_pop_t12_b05_s0.csv": "95539c6b070debd8e2a2da4082e4d8e05a805340da65e19a7412f2d806c1156f",
+    "timing_USA_delta-omp_lh_pop_t12_b06_s0.csv": "1fd6bf55f6b58f65708efc9ff8d7493ebabd1dff0f55283099b1a6c5f8402bd0",
+    "stats_USA_delta-seq_lh_pop_t1_b00_s0.csv": "9aa874c2ce8ff9afbb0a8e059903b9e9af03a0ac537f312a2e0f9eeab6802246",
+    "stats_USA_delta-seq_lh_pop_t1_b01_s0.csv": "cf111f14d910b170fe42bc20d6dce5d97977a28e0e06902d002edb29cc699a88",
+    "stats_USA_delta-seq_lh_pop_t1_b02_s0.csv": "c5e34202d3eee25784f0ba33ecbec900a76ab46fbb68dc0f643a0e8afb8dd0fd",
+    "stats_USA_delta-seq_lh_pop_t1_b03_s0.csv": "7ec68c3aa338a84c1d5c83958a94dfb900736d2701d5e68b2555f15c5e881523",
+    "stats_USA_delta-omp_lh_pop_t6_b00_s0.csv": "07f2907ab85375a792ab88a4f10d95466c71bd611d86e1707ac5e2bf491755ae",
+    "stats_USA_delta-omp_lh_pop_t6_b00_s2.csv": "a01b51813ed336669a1cdb5d81bc95825b52aa4669da0d0bc7986fa205e57a1e",
+    "stats_USA_delta-omp_lh_pop_t6_b01_s0.csv": "94806f23eb6fe6f1194639687af1524ae38bbfcc83fac6fc43d4d403692556ad",
+    "stats_USA_delta-omp_lh_pop_t6_b01_s3.csv": "282a043ebb403dfb154b584d2a860bb35f17ed77d55d6b496a4c82bebc774883",
+    "stats_USA_delta-omp_lh_pop_t6_b02_s0.csv": "1ae83f50d07c7ebd77a995ea5b4a378b1d259764bffc9a5dd7eb5a30fe07b313",
+    "stats_USA_delta-omp_lh_pop_t6_b03_s0.csv": "9ea941f238598394f6f9ab6e1564e82283bced81bfd5da6f93d464742f5eeee4",
+    "stats_USA_delta-omp_lh_pop_t6_b04_s0.csv": "a26ccc1b61062c8270e32c9b3a26217f199c27d7769206e53760216ca4fcdaf3",
+    "stats_USA_delta-omp_lh_pop_t6_b05_s0.csv": "bb775a0cb72692c3bd3f6559879e8c47d04f7dd7dc1a4af56b714130bcc23667",
+    "timing_USA_delta-seq_lh_merge_t1_b00_s0.csv": "cfb6a6e632aa612454866eda109dfb662f4e559661fe0652bb094814f7122bd5",
+    "timing_USA_delta-seq_lh_merge_t1_b01_s0.csv": "9e602f0f043568e62d962a88d0077b60eb1d2c5ea1fef414b2ace28780021026",
+    "timing_USA_delta-seq_lh_merge_t1_b02_s0.csv": "ac340f6e4f6badd3d0f5248be67659c7054718fb4f36abfeb812d13215e54041",
+    "timing_USA_delta-seq_lh_merge_t1_b03_s0.csv": "c52489152a16ac76b657af01d5eccbe67c6a167a2b5c09018725cfc82696a6c7",
+    "timing_USA_delta-seq_lh_merge_t1_b04_s0.csv": "b8e6ab7df746d70d80ad70cf5e3c4c0ff0b6b0c8ec4e711a1dc146db63ad6843",
+    "timing_USA_delta-seq_lh_merge_t1_b05_s0.csv": "e05bfd980b3c8a0049ba5a0760fd92f4baf6f7ce956c3179ee137d22eed7e50e",
+    "timing_USA_delta-omp_lh_merge_t6_b00_s0.csv": "3bbbf8b2ba0535d173c3edff966891f2f9bb9ed61bc9de0f7ae418b6bdcb423c",
+    "timing_USA_delta-omp_lh_merge_t6_b00_s1.csv": "8fe32c5502143e84153619ac5cc137e667168419531cb81987ab73be112cc39e",
+    "timing_USA_delta-omp_lh_merge_t6_b00_s2.csv": "a5ad60d25d4e4f779ac32e616ffbbabbb5c01e2d65a006b991138c02c75ba43f",
+    "timing_USA_delta-omp_lh_merge_t6_b00_s3.csv": "9825977b8415beb47a373091269b5079f49f3e682c875085f823c22c0b5bff50",
+    "timing_USA_delta-omp_lh_merge_t6_b01_s0.csv": "30bce6ecf2dceb4053a09d696196cdfa97c919a2f5515944cee309c81bf6e6de",
+    "timing_USA_delta-omp_lh_merge_t6_b01_s2.csv": "f9e1e3ebc6c422dfd82503691273ec5d9c271b9421283896980d4a29da9f2821",
+    "timing_USA_delta-omp_lh_merge_t6_b02_s0.csv": "5a98d283075750e172aff8fbeffeff006faa3376bef9691b3f3754c1b8d1f74b",
+    "timing_USA_delta-omp_lh_merge_t6_b02_s3.csv": "ad5cea7c26dfeca02a1ab1a5a04086fd05eea8ad4e84cf2f758f287bbeb4fb97",
+    "timing_USA_delta-omp_lh_merge_t6_b03_s0.csv": "7ce4aab5be0db7f440b36cf93a2c359702916d79ca34b693df37014a2cb16cf2",
+    "timing_USA_delta-omp_lh_merge_t6_b04_s0.csv": "8a29fed08aa455d8196f6ab63988fb64446947cd2f59995537167b6dbff12b23",
+    "timing_USA_delta-omp_lh_merge_t6_b05_s0.csv": "fc72da95f9a1ea791473819f06d94753d679a4c3c0b5f1007c1889ed285147ca",
+    "timing_USA_delta-omp_lh_merge_t6_b06_s0.csv": "8c766f332102edf5ea9d0feea314d3a1ff918e535dafbac36f5a4d093eeca160",
+    "timing_USA_delta-omp_lh_merge_t6_b07_s0.csv": "ceaf44faa84e03ed3fd2fbd8504c3b85786e61510888b717fba53f897ee72596",
+    "timing_USA_delta-omp_lh_merge_t12_b00_s0.csv": "aae1e83413072b2928b13f0eb41a90a59321cf1915944d7e65d6bde67c723e5e",
+    "timing_USA_delta-omp_lh_merge_t12_b00_s2.csv": "d9a50fb135a57f1f3d1901b6372295d23cef37ff5dd6397b5be8ee60797b24d4",
+    "timing_USA_delta-omp_lh_merge_t12_b01_s0.csv": "e57a446adb8aade3f2e8c4838115d3e3ba1eefdef5dc67d0b3ce2ef78189f3fd",
+    "timing_USA_delta-omp_lh_merge_t12_b01_s3.csv": "f3db355856a1fb91500f2ce1cd8a12e9a9371d0890ee1fd8b7904572d1ec0431",
+    "timing_USA_delta-omp_lh_merge_t12_b02_s0.csv": "4eb86862d17833e22db22929ca7dbe697ffa359363051107c8c93c6ba6e12f98",
+    "timing_USA_delta-omp_lh_merge_t12_b03_s0.csv": "4714856e777983db5f89dd5a36a668cda68a7fe106e2301866b0be5fe2a35948",
+    "timing_USA_delta-omp_lh_merge_t12_b04_s0.csv": "3602d926dd5852d8252d755d9eb5a7a501efe58074e188417319cd5b6d7be652",
+    "timing_USA_delta-omp_lh_merge_t12_b05_s0.csv": "a77e7997a48341b159632dc87d4f0177aa9037b592042140b015896cba000860",
+    "timing_USA_delta-omp_lh_merge_t12_b06_s0.csv": "da7fb6ae7f678a3f025e11776a0bc7fb3041d76af41ae145383786b48f38f073",
+    "stats_USA_delta-seq_lh_merge_t1_b00_s0.csv": "7b16271b3a96073df390f323dccda895d3e39b708faf00434e6296e35a96343d",
+    "stats_USA_delta-seq_lh_merge_t1_b01_s0.csv": "bc4019899da064826d157f1f4644cbb8d3816e6a2929e17f61e4a182ed21290f",
+    "stats_USA_delta-seq_lh_merge_t1_b02_s0.csv": "4e743776f4f4e40097a8f4788caa4c9185502cb68aa5756d0fa352c055b48317",
+    "stats_USA_delta-seq_lh_merge_t1_b03_s0.csv": "43ee2e86b07e255e38d8aa7a49cad9c03b3941adff1c1ce0abe54ff525ded4fe",
+    "stats_USA_delta-omp_lh_merge_t6_b00_s0.csv": "4cb51d1340c44513666c33ebf773a07c68fd8a00b5593444d37a4f5b2d20cc62",
+    "stats_USA_delta-omp_lh_merge_t6_b00_s2.csv": "e181bd523edf725f09bdec4e113348bdd7e841b38e1a43f40ef536bec333c68f",
+    "stats_USA_delta-omp_lh_merge_t6_b01_s0.csv": "e713816b905d31cff677d1a84d2ee176bfd34fe3ba18a6c1ce84eab813851424",
+    "stats_USA_delta-omp_lh_merge_t6_b01_s3.csv": "6475a0c0cfbc0442ba23b23ed3a69f0d304cdc916501d7e76e8588c8232134ae",
+    "stats_USA_delta-omp_lh_merge_t6_b02_s0.csv": "3134196f5728b718e0fcd4769360117fb17a3ba43dd24969bd5001f74fedfb81",
+    "stats_USA_delta-omp_lh_merge_t6_b03_s0.csv": "40c212daa978a2091e86b150ff07463cf1869d2df20d05b978c961d656f77702",
+    "stats_USA_delta-omp_lh_merge_t6_b04_s0.csv": "7452f577511e42a7afa7340216799148082ac968f59cfffb736b490b57621402",
+    "stats_USA_delta-omp_lh_merge_t6_b05_s0.csv": "7b90f031e92eb0eb0a8ebcc687ea81450aa9a9ac2bc632f6a20e926e8f33be2d"
+  },
+  "selection": "global fastest E1 OMP pair; pair held fixed for t6/t12 anchors",
+  "jobs": [
+    {
+      "id": "timing_USA_all_pop_t1_b0",
+      "graph": "USA",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 1,
+      "deltas": [
+        16384,
+        32768
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_USA_all_pop_t1_b1",
+      "graph": "USA",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 1,
+      "deltas": [
+        65536
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_USA_all_pop_t2_b0",
+      "graph": "USA",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 2,
+      "deltas": [
+        16384,
+        32768
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_USA_all_pop_t2_b1",
+      "graph": "USA",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 2,
+      "deltas": [
+        65536
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_USA_all_pop_t4_b0",
+      "graph": "USA",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 4,
+      "deltas": [
+        16384,
+        32768
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_USA_all_pop_t4_b1",
+      "graph": "USA",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 4,
+      "deltas": [
+        65536
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_USA_all_pop_t6_b0",
+      "graph": "USA",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 6,
+      "deltas": [
+        16384,
+        32768
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_USA_all_pop_t6_b1",
+      "graph": "USA",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 6,
+      "deltas": [
+        65536
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_USA_all_pop_t8_b0",
+      "graph": "USA",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 8,
+      "deltas": [
+        16384,
+        32768
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_USA_all_pop_t8_b1",
+      "graph": "USA",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 8,
+      "deltas": [
+        65536
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_USA_all_pop_t12_b0",
+      "graph": "USA",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 12,
+      "deltas": [
+        16384,
+        32768
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_USA_all_pop_t12_b1",
+      "graph": "USA",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 12,
+      "deltas": [
+        65536
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_USA_all_pop_t1_b0",
+      "graph": "USA",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 1,
+      "deltas": [
+        16384,
+        32768
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_USA_all_pop_t1_b1",
+      "graph": "USA",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 1,
+      "deltas": [
+        65536
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_USA_all_pop_t2_b0",
+      "graph": "USA",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 2,
+      "deltas": [
+        16384,
+        32768
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_USA_all_pop_t2_b1",
+      "graph": "USA",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 2,
+      "deltas": [
+        65536
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_USA_all_pop_t4_b0",
+      "graph": "USA",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 4,
+      "deltas": [
+        16384,
+        32768
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_USA_all_pop_t4_b1",
+      "graph": "USA",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 4,
+      "deltas": [
+        65536
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_USA_all_pop_t6_b0",
+      "graph": "USA",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 6,
+      "deltas": [
+        16384,
+        32768
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_USA_all_pop_t6_b1",
+      "graph": "USA",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 6,
+      "deltas": [
+        65536
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_USA_all_pop_t8_b0",
+      "graph": "USA",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 8,
+      "deltas": [
+        16384,
+        32768
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_USA_all_pop_t8_b1",
+      "graph": "USA",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 8,
+      "deltas": [
+        65536
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_USA_all_pop_t12_b0",
+      "graph": "USA",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 12,
+      "deltas": [
+        16384,
+        32768
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_USA_all_pop_t12_b1",
+      "graph": "USA",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 12,
+      "deltas": [
+        65536
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  ]
+}

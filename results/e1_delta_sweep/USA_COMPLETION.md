@@ -38,5 +38,30 @@ to 524288 and 2.34% for light/heavy Pop; Merge has zero empty-expanded phases.
 The USA timing PNG was visually checked. No job needed a retry or further split.
 Remaining E1 estimate: 15.58 compute-hours, plus E2 and scheduler/NFS overhead.
 
-USA E2 final checks and perf remain pending at this snapshot; no final
-`results/SUMMARY.md` has been written yet.
+## E2
+
+2026-11-20 15:33 +08:00: all 24 USA E2 jobs are complete. Driver PID 1310575 has
+continued to kron23, with one scheduler job and no STOPPED flag. E1 is 466/760.
+The fixed pair is all/pop; both E1 anchors are 32768, with E2 candidates
+{16384,32768,65536}.
+
+```text
+PASS: USA E2 24 jobs; exact source/delta/repetition coverage; {'timing': 216, 'stats': 72, 'reduced_phase_runs': 72} max_worker_seconds 48.21
+PASS: 208 legacy NY/LJ gzip paths/sizes/mtimes unchanged; no new nonempty raw files since FIFO restart
+PASS: 90 E2 Δ/thread points; 30 scaling rows; pending ['kron23', 'urand23', 'OK']
+PASS: all prior four-graph E2 analysis CSV values exactly unchanged
+```
+
+E2 CSV, plan and phase-summary hashes pass. All 72 reduced runs match stats
+phase/edge counters; ideal T1 equals scanned edges; max-term costs are at least
+no-max costs at every thread count. The new USA Q3 PNG was visually checked.
+
+| t | Best delta | ms | Speedup vs best E1 seq | Efficiency | Ideal max | Ideal no-max |
+|---|---:|---:|---:|---:|---:|---:|
+| 6 | 16384 | 517.520 | 2.593 | 43.2% | 5.979 | 5.986 |
+| 12 | 32768 | 497.617 | 2.697 | 22.5% | 11.926 | 11.953 |
+
+E2's t6 winner differs from E1's t6 anchor, within the measured candidate set.
+Remaining E1 estimate is 15.30 compute-hours, plus remaining E2 and scheduler/NFS
+overhead. kron23, urand23, OK, optional perf and final `results/SUMMARY.md` remain
+pending.
