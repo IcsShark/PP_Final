@@ -1,14 +1,14 @@
-urand23: 3536 verified rows; 0 gzip phase headers/first rows checked; 640 streamed phase runs checked
-urand23: jobs=114 compute_minutes=222.23 max_job_minutes=3.68 estimated_minutes=938.73
-BEST urand23 delta-seq t=1 all/pop delta=1024 mean_source_median_ms=3366.7350
-BEST urand23 delta-omp t=6 all/merge delta=1024 mean_source_median_ms=929.7471
-BEST urand23 delta-omp t=12 all/merge delta=4096 mean_source_median_ms=847.7322
-PHASES urand23 delta-seq all/pop: 355414.0 -> 44.5; adjacent increases=0
-PHASES urand23 delta-seq all/merge: 223118.5 -> 44.0; adjacent increases=0
-PHASES urand23 delta-seq lh/pop: 578532.5 -> 47.0; adjacent increases=0
-PHASES urand23 delta-seq lh/merge: 446237.0 -> 46.5; adjacent increases=0
-PHASES urand23 delta-omp all/pop: 355414.2 -> 44.8; adjacent increases=0
-PHASES urand23 delta-omp all/merge: 223118.5 -> 44.0; adjacent increases=0
-PHASES urand23 delta-omp lh/pop: 578532.8 -> 46.5; adjacent increases=0
-PHASES urand23 delta-omp lh/merge: 446237.0 -> 46.8; adjacent increases=0
-ETA: 98 jobs remain, observed/model=0.331, projected_compute_hours=4.54; add scheduler/NFS overhead
+OK: 3536 verified rows; 0 gzip phase headers/first rows checked; 640 streamed phase runs checked
+OK: jobs=98 compute_minutes=197.76 max_job_minutes=4.34 estimated_minutes=823.31
+BEST OK delta-seq t=1 all/merge delta=512 mean_source_median_ms=2690.5898
+BEST OK delta-omp t=6 all/merge delta=1024 mean_source_median_ms=607.3513
+BEST OK delta-omp t=12 all/merge delta=1024 mean_source_median_ms=562.2912
+PHASES OK delta-seq all/pop: 274980.5 -> 29.2; adjacent increases=0
+PHASES OK delta-seq all/merge: 172780.0 -> 29.2; adjacent increases=0
+PHASES OK delta-seq lh/pop: 447760.5 -> 31.2; adjacent increases=0
+PHASES OK delta-seq lh/merge: 345560.0 -> 31.2; adjacent increases=0
+PHASES OK delta-omp all/pop: 274980.2 -> 33.5; adjacent increases=0
+PHASES OK delta-omp all/merge: 172780.0 -> 31.0; adjacent increases=0
+PHASES OK delta-omp lh/pop: 447760.5 -> 36.5; adjacent increases=0
+PHASES OK delta-omp lh/merge: 345560.0 -> 33.8; adjacent increases=0
+ETA: 0 jobs remain, observed/model=0.319, projected_compute_hours=0.00; add scheduler/NFS overhead
