@@ -7,6 +7,10 @@ PYTHONDONTWRITEBYTECODE=1 python3 analysis/e1_analysis.py
 PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s analysis
 ```
 
+After both E1 and E2 analyses report no pending graphs, run
+`PYTHONDONTWRITEBYTECODE=1 python3 analysis/summary.py` to regenerate
+`results/SUMMARY.md`. It refuses incomplete or duplicate graph/rule coverage.
+
 Synchronize completed result CSVs **and their `.done` markers**, profiles, and
 `results/e1_delta_sweep/phase_summaries/*.json` from the cluster before rerunning.
 The analysis selects only graphs whose full manifest grid has completed. It refuses
