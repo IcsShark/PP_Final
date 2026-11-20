@@ -205,7 +205,8 @@
     "results/e2_scaling/stats_kron23_lh_pop_t12_b1.csv": "522044689be78bf020a87146d89a038a4cb36b55299ac1ba0677c1f33c1161fa",
     "results/e2_scaling/stats_kron23_lh_pop_t12_b1.phases.json": "860e9f536e91dee3690ab628f7922628353b1c70c250402d1e94fd53ff16f232"
   },
-  "analysis_sha256": "aafc7e07067c99098849aeafb8a0a2642127127da6b1de24a2e9be6db7cd5632",
+  "analysis_sha256": "3b2f7906d47abbb02dd84b5cde849b37015b3bf28f7baee1095595d525393c19",
+  "hardware_sha256": "43ff67c71ac71e1d507f9e62f21125174883cdfbf951f697d475e28b7a0b1a17",
   "pending": [
     "urand23",
     "OK"

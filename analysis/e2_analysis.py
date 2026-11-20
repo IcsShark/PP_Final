@@ -11,6 +11,7 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 from e1_analysis import Data, ROOT, PLOTS, sha, write_csv
+from e2_hardware import analyze, markdown as hardware_markdown
 
 sys.path.insert(0, str(ROOT / 'scripts/exp'))
 from e1_common import read_rows, validate_rows
@@ -84,7 +85,7 @@ def load():
         for t in THREADS:
             for d in plan['deltas']:
                 time_ms = times[t, d]
-                counters, ideals, free = [], [], []
+                counters, ideals, free, costs, edges = [], [], [], [], []
                 for source in sources:
                     r, p = stats[t, d, source], summaries[t, d, source]
                     if int(r['phases']) != p['phases'] or int(r['edges_scanned']) != p['edges']:
@@ -94,13 +95,16 @@ def load():
                     counters.append((p['phases'], p['edges'] / p['phases']))
                     ideals.append(p['edges'] / p['ideal'][str(t)])
                     free.append(p['edges'] / p['ideal_no_max'][str(t)])
+                    costs.append(p['ideal'][str(t)])
+                    edges.append(p['edges'])
                 output.append(dict(graph=graph, variant=plan['variant'], filter=plan['filter'], threads=t, delta=d,
                     time_ms=time_ms, seq_time_ms=seq_ms, seq_delta=seq_key[-1], dijkstra_time_ms=dij_ms,
                     speedup_seq=seq_ms/time_ms, speedup_dijkstra=dij_ms/time_ms,
                     speedup_omp1=times[1, d]/time_ms, efficiency_seq=seq_ms/time_ms/t,
                     efficiency_omp1=times[1, d]/time_ms/t, phases=statistics.mean(v[0] for v in counters),
                     average_parallelism=statistics.mean(v[1] for v in counters),
-                    ideal_speedup=statistics.mean(ideals), ideal_no_max_speedup=statistics.mean(free)))
+                    ideal_speedup=statistics.mean(ideals), ideal_no_max_speedup=statistics.mean(free),
+                    ideal_work=statistics.mean(costs), edges_scanned=statistics.mean(edges)))
     if not output:
         raise ValueError('no complete E2 graphs; synchronize plans, CSVs, .done and .phases.json first')
     return output, hashes, [g for g in e1.manifest['profiles'] if g in pending]
@@ -187,9 +191,14 @@ def main():
     write_csv(OUT / 'scaling_table.csv', best)
     report = markdown(best)
     (OUT / 'scaling_table.md').write_text(report)
+    fits, splits, bandwidth = analyze(rows, best)
+    for name, values in [('q3_fit', fits), ('q3_time_split', splits), ('q3_bandwidth', bandwidth)]:
+        write_csv(OUT / (name + '.csv'), values)
+    (OUT / 'q3_hardware.md').write_text(hardware_markdown(fits, splits, bandwidth))
     plots(rows, best)
     (OUT / 'ANALYSIS_META.json').write_text(json.dumps(dict(input_sha256=hashes,
-        analysis_sha256=sha(pathlib.Path(__file__)), pending=pending), indent=2) + '\n')
+        analysis_sha256=sha(pathlib.Path(__file__)), hardware_sha256=sha(ROOT / 'analysis/e2_hardware.py'),
+        pending=pending), indent=2) + '\n')
     print(f'PASS: {len(rows)} E2 Δ/thread points; {len(best)} scaling rows; pending {pending}')
     print(report)
 
