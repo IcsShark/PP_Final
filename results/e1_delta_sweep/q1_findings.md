@@ -53,6 +53,14 @@ Counts below are arithmetic means across the four fixed sources. The attribution
 | kron23 | t6 | all/merge | 1 → 262144 | 279600.50 → 24.00 | 0.00 → 0.00 | 0.00% |
 | kron23 | t6 | lh/pop | 1 → 262144 | 560341.75 → 26.75 | 1140.75 → 0.00 | 0.20% |
 | kron23 | t6 | lh/merge | 1 → 262144 | 559201.00 → 28.50 | 0.00 → 0.00 | 0.00% |
+| urand23 | seq | all/pop | 1 → 262144 | 355414.00 → 44.50 | 132295.50 → 0.50 | 37.23% |
+| urand23 | seq | all/merge | 1 → 262144 | 223118.50 → 44.00 | 0.00 → 0.00 | 0.00% |
+| urand23 | seq | lh/pop | 1 → 262144 | 578532.50 → 47.00 | 132295.50 → 0.50 | 22.87% |
+| urand23 | seq | lh/merge | 1 → 262144 | 446237.00 → 46.50 | 0.00 → 0.00 | 0.00% |
+| urand23 | t6 | all/pop | 1 → 262144 | 355414.25 → 44.75 | 132295.75 → 0.50 | 37.23% |
+| urand23 | t6 | all/merge | 1 → 262144 | 223118.50 → 44.00 | 0.00 → 0.00 | 0.00% |
+| urand23 | t6 | lh/pop | 1 → 262144 | 578532.75 → 46.50 | 132295.75 → 0.50 | 22.87% |
+| urand23 | t6 | lh/merge | 1 → 262144 | 446237.00 → 46.75 | 0.00 → 0.00 | 0.00% |
 
 The residual phase reduction comes from fewer nonempty phases, not fewer empty phases. See `q1_phase_reduction.csv` for comparisons against each pair’s best Δ as well.
 
@@ -96,9 +104,15 @@ The residual phase reduction comes from fewer nonempty phases, not fewer empty p
 | kron23 | t6 | lh | 1024 / 517.901 | 1024 / 518.071 | no |
 | kron23 | t12 | all | 256 / 493.468 | 256 / 489.684 | no |
 | kron23 | t12 | lh | 2048 / 487.066 | 1024 / 488.015 | yes |
+| urand23 | seq | all | 1024 / 3366.735 | 1024 / 3436.907 | no |
+| urand23 | seq | lh | 8 / 4037.709 | 32 / 3983.959 | yes |
+| urand23 | t6 | all | 2048 / 930.283 | 1024 / 929.747 | yes |
+| urand23 | t6 | lh | 1024 / 1139.073 | 1024 / 1132.568 | no |
+| urand23 | t12 | all | 2048 / 852.683 | 4096 / 847.732 | yes |
+| urand23 | t12 | lh | 2048 / 1042.364 | 2048 / 1024.676 | no |
 
 ## Coverage
 
-Complete graphs: NY, LJ, grid2896, CTR, USA, kron23. Pending: urand23, OK.
-Reduced phase runs matched to stats CSVs: 3936 / 3936.
+Complete graphs: NY, LJ, grid2896, CTR, USA, kron23, urand23. Pending: OK.
+Reduced phase runs matched to stats CSVs: 4576 / 4576.
 Work/depth plots use seq/t6 stats; timing plots also include measured t12 timings. Each performance point is the mean of four per-source medians of three repetitions.
