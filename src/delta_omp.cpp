@@ -19,6 +19,13 @@ struct alignas(64) ThreadCounters {
   uint64_t ph_edges = 0, ph_exp = 0, ph_max = 0;  // last phase (stats build)
 };
 
+// Per-thread barrier wait times, one entry per phase (stats build + phase log
+// only). Each thread appends only to its own vector, so no synchronisation is
+// needed; the vectors are merged after the parallel region.
+struct alignas(64) ThreadWaits {
+  std::vector<double> v;
+};
+
 }  // namespace
 
 // OpenMP delta-stepping (proposal Algorithm 1 + Figure 2).
@@ -58,6 +65,9 @@ void delta_stepping_omp(const CSRGraph& g, vid_t src, const DeltaOptions& opt, i
 
   std::vector<PaddedU64> nexts(nthreads), sizes(nthreads), ssizes(nthreads);
   std::vector<ThreadCounters> tc(nthreads);
+#ifdef SSSP_STATS
+  std::vector<ThreadWaits> waits(phase_log ? nthreads : 0);
+#endif
 
   const eid_t* off = g.offsets.data();
   const vid_t* dst = g.dst.data();
@@ -160,7 +170,18 @@ void delta_stepping_omp(const CSRGraph& g, vid_t src, const DeltaOptions& opt, i
         c.ph_exp = px;
         c.ph_max = pm;
       }
+#ifdef SSSP_STATS
+      // Barrier wait = idle time caused by imbalance. #ifdef (not if constexpr)
+      // so the timing build does not even capture `waits`: its machine code
+      // stays identical to the version without this measurement.
+      const double wait_start = phase_log ? omp_get_wtime() : 0.0;
+#endif
 #pragma omp barrier
+#ifdef SSSP_STATS
+      // Stored in the thread's own vector; thread 0 must not read other
+      // threads' values here (they may not have written them yet).
+      if (phase_log) waits[tid].v.push_back(omp_get_wtime() - wait_start);
+#endif
       if (tid == 0) {
         ++stats.phases;
         if (mode == 2) {
@@ -175,6 +196,7 @@ void delta_stepping_omp(const CSRGraph& g, vid_t src, const DeltaOptions& opt, i
               r.expanded += tc[t].ph_exp;
               r.edges += tc[t].ph_edges;
               r.max_vertex_edges = std::max(r.max_vertex_edges, tc[t].ph_max);
+              r.max_thread_edges = std::max(r.max_thread_edges, tc[t].ph_edges);
             }
             if (mode == 2) r.expanded = cnt;
             phase_log->push_back(r);
@@ -228,6 +250,27 @@ void delta_stepping_omp(const CSRGraph& g, vid_t src, const DeltaOptions& opt, i
 
   ws.epoch = epoch_end;
   if constexpr (kStatsEnabled) {
+#ifdef SSSP_STATS
+    if (phase_log) {
+      // Every thread executed every relax() and pushed exactly one wait per
+      // phase, so each non-empty vector has one entry per PhaseRecord.
+      const size_t P = phase_log->size();
+      std::vector<const std::vector<double>*> per_thread;
+      for (const ThreadWaits& w : waits)
+        if (!w.v.empty() || P == 0) per_thread.push_back(&w.v);
+      for (const auto* w : per_thread)
+        if (w->size() != P) throw std::logic_error("barrier wait log does not match phase log");
+      for (size_t i = 0; i < P && !per_thread.empty(); ++i) {
+        double mx = 0, sum = 0;
+        for (const auto* w : per_thread) {
+          mx = std::max(mx, (*w)[i]);
+          sum += (*w)[i];
+        }
+        (*phase_log)[i].max_wait_s = mx;
+        (*phase_log)[i].mean_wait_s = sum / static_cast<double>(per_thread.size());
+      }
+    }
+#endif
     for (const ThreadCounters& t : tc) {
       stats.edges_scanned += t.s.edges_scanned;
       stats.relax_ok += t.s.relax_ok;

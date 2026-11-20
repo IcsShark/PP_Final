@@ -69,7 +69,7 @@ void delta_stepping_seq(const CSRGraph& g, vid_t src, const DeltaOptions& opt, D
       ++stats.heavy_passes;
       if constexpr (kStatsEnabled) {
         stats.edges_scanned += pe;
-        if (phase_log) phase_log->push_back({cur, true, S.size(), S.size(), pe, pm});
+        if (phase_log) phase_log->push_back({cur, true, S.size(), S.size(), pe, pm, pe});
       }
       S.clear();
       continue;
@@ -125,7 +125,7 @@ void delta_stepping_seq(const CSRGraph& g, vid_t src, const DeltaOptions& opt, D
     if constexpr (kStatsEnabled) {
       stats.expansions += px;
       stats.edges_scanned += pe;
-      if (phase_log) phase_log->push_back({cur, false, F.size(), px, pe, pm});
+      if (phase_log) phase_log->push_back({cur, false, F.size(), px, pe, pm, pe});
     }
   }
   ws.epoch = epoch;

@@ -372,6 +372,25 @@ void test_stats_invariants() {
   }
   CHECK(edges == st.edges_scanned);
   CHECK(exp == st.expansions);
+
+  // Per-thread imbalance fields: edges/T <= max_thread_edges <= edges,
+  // max_thread_edges >= max_vertex_edges (one vertex is done by one thread),
+  // and 0 <= mean_wait <= max_wait.
+  bool bounds_ok = true, waits_ok = true;
+  for (const PhaseRecord& r : log) {
+    bounds_ok &= r.max_thread_edges <= r.edges;
+    bounds_ok &= r.max_thread_edges * 4 >= r.edges;
+    bounds_ok &= r.max_thread_edges >= r.max_vertex_edges;
+    waits_ok &= r.mean_wait_s >= 0 && r.mean_wait_s <= r.max_wait_s + 1e-12;
+  }
+  CHECK(bounds_ok);
+  CHECK(waits_ok);
+
+  // Sequential: one thread does everything, so max_thread_edges == edges.
+  delta_stepping_seq(g, src, o, ws, dist, st, &log);
+  bool seq_ok = !log.empty();
+  for (const PhaseRecord& r : log) seq_ok &= r.max_thread_edges == r.edges && r.max_wait_s == 0;
+  CHECK(seq_ok);
 }
 
 }  // namespace

@@ -45,6 +45,14 @@ struct PhaseRecord {
   uint64_t expanded;          // vertices actually relaxed
   uint64_t edges;             // edges scanned in this phase
   uint64_t max_vertex_edges;  // largest single-vertex work item (load-imbalance bound)
+  // Largest per-thread edge count in this phase. Per-phase imbalance is
+  // max_thread_edges / (edges / T); 1.0 = perfectly balanced. Sequential: = edges.
+  uint64_t max_thread_edges = 0;
+  // Time threads spent waiting at the barrier that ends the relax loop
+  // (OpenMP only, measured with omp_get_wtime around that barrier): the
+  // maximum and the mean over threads, in seconds. 0 for the sequential code.
+  double max_wait_s = 0;
+  double mean_wait_s = 0;
 };
 
 // Scratch memory reused across runs so that allocation is not timed again

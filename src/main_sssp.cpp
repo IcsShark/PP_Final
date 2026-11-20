@@ -242,7 +242,7 @@ int main(int argc, char** argv) {
       else
         plog = open_append(a.phase_log,
                            "graph,algo,variant,filter,threads,delta,source,phase,bucket,heavy,frontier,expanded,"
-                           "edges,max_vertex_edges\n");
+                           "edges,max_vertex_edges,max_thread_edges,max_wait_us,mean_wait_us\n");
     }
 
     std::vector<dist_t> dist, oracle;  // oracle is implemented using Dijkstra, to check the correctness of our algorithm
@@ -313,11 +313,12 @@ int main(int argc, char** argv) {
               if (pl) {
                 for (size_t i = 0; i < phases.size(); ++i) {
                   const PhaseRecord& r = phases[i];
-                  std::fprintf(plog, "%s,%s,%s,%s,%d,%llu,%u,%zu,%llu,%d,%llu,%llu,%llu,%llu\n", gname.c_str(),
-                               algo.c_str(), vname, fname, t, (unsigned long long)delta, src, i,
+                  std::fprintf(plog, "%s,%s,%s,%s,%d,%llu,%u,%zu,%llu,%d,%llu,%llu,%llu,%llu,%llu,%.3f,%.3f\n",
+                               gname.c_str(), algo.c_str(), vname, fname, t, (unsigned long long)delta, src, i,
                                (unsigned long long)r.bucket, r.heavy ? 1 : 0, (unsigned long long)r.frontier,
                                (unsigned long long)r.expanded, (unsigned long long)r.edges,
-                               (unsigned long long)r.max_vertex_edges);
+                               (unsigned long long)r.max_vertex_edges, (unsigned long long)r.max_thread_edges,
+                               r.max_wait_s * 1e6, r.mean_wait_s * 1e6);
                 }
                 std::fflush(plog);
               }
