@@ -1,0 +1,23 @@
+{
+  "version": 2,
+  "transport": "fifo",
+  "rows": [
+    {
+      "graph": "USA",
+      "algo": "delta-omp",
+      "variant": "lh",
+      "filter": "merge",
+      "threads": "6",
+      "delta": "2",
+      "source": "3263369",
+      "phases": 28215520,
+      "empty_frontier": 0,
+      "empty_expanded": 0,
+      "empty_edges": 14106280,
+      "heavy_phases": 14107660,
+      "frontier_sum": 47903003,
+      "expanded_sum": 47903003,
+      "edges_sum": 57708625
+    }
+  ]
+}

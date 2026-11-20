@@ -1,14 +1,14 @@
-CTR: 3712 verified rows; 0 gzip phase headers/first rows checked; 672 streamed phase runs checked
-CTR: jobs=106 compute_minutes=279.04 max_job_minutes=7.87 estimated_minutes=775.24
-BEST CTR delta-seq t=1 all/pop delta=4096 mean_source_median_ms=909.1649
-BEST CTR delta-omp t=6 all/pop delta=16384 mean_source_median_ms=324.0900
-BEST CTR delta-omp t=12 all/pop delta=32768 mean_source_median_ms=317.4086
-PHASES CTR delta-seq all/pop: 10377688.2 -> 18733.0; adjacent increases=0
-PHASES CTR delta-seq all/merge: 9906536.8 -> 18733.0; adjacent increases=0
-PHASES CTR delta-seq lh/pop: 20284225.0 -> 18831.2; adjacent increases=0
-PHASES CTR delta-seq lh/merge: 19813073.5 -> 18831.2; adjacent increases=0
-PHASES CTR delta-omp all/pop: 10377693.2 -> 18696.8; adjacent increases=0
-PHASES CTR delta-omp all/merge: 9906536.8 -> 18676.8; adjacent increases=0
-PHASES CTR delta-omp lh/pop: 20284227.5 -> 18769.5; adjacent increases=0
-PHASES CTR delta-omp lh/merge: 19813073.5 -> 18781.0; adjacent increases=0
-ETA: 464 jobs remain, observed/model=0.378, projected_compute_hours=23.81; add scheduler/NFS overhead
+USA: 3888 verified rows; 0 gzip phase headers/first rows checked; 704 streamed phase runs checked
+USA: jobs=162 compute_minutes=492.31 max_job_minutes=10.17 estimated_minutes=1304.46
+BEST USA delta-seq t=1 all/pop delta=4096 mean_source_median_ms=1341.8748
+BEST USA delta-omp t=6 all/pop delta=32768 mean_source_median_ms=531.5331
+BEST USA delta-omp t=12 all/pop delta=32768 mean_source_median_ms=507.7597
+PHASES USA delta-seq all/pop: 17690413.2 -> 27628.5; adjacent increases=0
+PHASES USA delta-seq all/merge: 16883680.5 -> 27628.5; adjacent increases=0
+PHASES USA delta-seq lh/pop: 34574093.5 -> 27717.0; adjacent increases=0
+PHASES USA delta-seq lh/merge: 33767361.0 -> 27717.0; adjacent increases=0
+PHASES USA delta-omp all/pop: 17690418.8 -> 27588.0; adjacent increases=0
+PHASES USA delta-omp all/merge: 16883680.5 -> 27602.2; adjacent increases=0
+PHASES USA delta-omp lh/pop: 34574099.8 -> 27674.2; adjacent increases=0
+PHASES USA delta-omp lh/merge: 33767361.0 -> 27674.5; adjacent increases=0
+ETA: 302 jobs remain, observed/model=0.378, projected_compute_hours=15.58; add scheduler/NFS overhead

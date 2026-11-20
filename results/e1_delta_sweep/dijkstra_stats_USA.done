@@ -1,0 +1,38 @@
+{
+  "job": "dijkstra_stats_USA",
+  "seconds": 30.929063320159912,
+  "hostname": "cmpt046.hpc.cc.cs.nctu.edu.tw",
+  "rows": 4,
+  "csv_sha256": "6c306f4548080dd24ebed4981285550662180f6977e38c7c340a022f0aaa60cf",
+  "manifest_sha256": "484ebaac429eacc697cdaa218534b70b39fa3abfa7b9930bc00baa01e9c361ab",
+  "phase_logs": [],
+  "phase_summary": null,
+  "phase_summary_sha256": null,
+  "commands": [
+    [
+      "/net/cs/111/111550055/devin/PP_Final/bin/sssp_stats",
+      "-g",
+      "/u/cs/111/111550055/pp_data/csr/USA.csr",
+      "-a",
+      "dijkstra",
+      "-d",
+      "1",
+      "-t",
+      "1",
+      "--variant",
+      "all",
+      "--filter",
+      "pop",
+      "--seed",
+      "42",
+      "-r",
+      "1",
+      "--verify",
+      "--csv",
+      "/net/cs/111/111550055/devin/PP_Final/results/e1_delta_sweep/dijkstra_stats_USA.csv.partial",
+      "-q",
+      "--sources",
+      "4"
+    ]
+  ]
+}

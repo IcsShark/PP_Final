@@ -1,0 +1,40 @@
+{
+  "job": "stats_USA_delta-omp_all_merge_t6_b01_s3",
+  "seconds": 54.660327672958374,
+  "hostname": "cmpt046.hpc.cc.cs.nctu.edu.tw",
+  "rows": 1,
+  "csv_sha256": "9b4b0108e82c2f3dc775498a9a26e7b233f6ff930c69abef742d9491806b5e82",
+  "manifest_sha256": "484ebaac429eacc697cdaa218534b70b39fa3abfa7b9930bc00baa01e9c361ab",
+  "phase_logs": [],
+  "phase_summary": "/net/cs/111/111550055/devin/PP_Final/results/e1_delta_sweep/phase_summaries/stats_USA_delta-omp_all_merge_t6_b01_s3.stream.json",
+  "phase_summary_sha256": "1b165fbde466fd3f46375c6901cbf6f25be1e22032b9428d289f3aca5f62d464",
+  "commands": [
+    [
+      "/net/cs/111/111550055/devin/PP_Final/bin/sssp_stats",
+      "-g",
+      "/u/cs/111/111550055/pp_data/csr/USA.csr",
+      "-a",
+      "delta-omp",
+      "-d",
+      "2",
+      "-t",
+      "6",
+      "--variant",
+      "all",
+      "--filter",
+      "merge",
+      "--seed",
+      "42",
+      "-r",
+      "1",
+      "--verify",
+      "--csv",
+      "/net/cs/111/111550055/devin/PP_Final/results/e1_delta_sweep/stats_USA_delta-omp_all_merge_t6_b01_s3.csv.partial",
+      "-q",
+      "--source",
+      "3263369",
+      "--phase-log",
+      "/tmp/sssp-phase-s7pryx93/phases.fifo"
+    ]
+  ]
+}
