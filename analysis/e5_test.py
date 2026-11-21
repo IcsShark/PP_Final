@@ -168,6 +168,17 @@ class E5MathTest(unittest.TestCase):
         self.assertIn('efficiency versus same-Δ t1 is 100.0%', report)
         self.assertIn('would give 64.000 GB/s', report)
 
+    def test_urand_conclusion_tracks_measured_bandwidth(self):
+        rows = [dict(graph='urand23', threads=t, time_ms=1200 / t, speedup_t1=t, cpi=2,
+                     misses_per_edge=1, miss_rate=0.5, dram_gb_s=20, triad_gb_s=15.5,
+                     stall_mem_fraction=0.4, timing_deviation_pct=0,
+                     timing_within_10pct=True, e2_time_ms=1200 / t,
+                     min_event_running_pct=49, mem_load_retired_l3_miss=100000000)
+                for t in (1, 2, 4, 6, 8, 12)]
+        self.assertIn('pattern is not observed', conclusions(rows))
+        rows[-1]['dram_gb_s'] = 5
+        self.assertIn('estimate remains below triad', conclusions(rows))
+
 
 if __name__ == '__main__':
     unittest.main()

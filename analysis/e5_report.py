@@ -59,6 +59,19 @@ def conclusions(rows):
                              'signatures support memory pressure, but do not establish that physical '
                              'DRAM bandwidth is saturated: event semantics, multiplexing and untimed '
                              'housekeeping limit the bandwidth inference.')
+            if graph == 'urand23':
+                if twelve['dram_gb_s'] >= twelve['triad_gb_s']:
+                    lines.append('  **Latency/bandwidth distinction:** the anticipated low-bandwidth/'
+                                 'high-CPI pattern is not observed with the prescribed generic '
+                                 'estimator: its bandwidth estimate exceeds triad. The old ~11 GB/s '
+                                 'E2 assumed-traffic proxy uses a different numerator and cannot '
+                                 'replace these counters. High CPI and stalls support memory '
+                                 'pressure, but do not isolate latency from bandwidth limits.')
+                else:
+                    lines.append('  **Latency/bandwidth distinction:** the generic bandwidth '
+                                 'estimate remains below triad. With high CPI this is consistent '
+                                 'with latency limits, but does not exclude synchronization or '
+                                 'limited memory-level parallelism. It is not a direct latency measurement.')
     if by_graph['LJ'] and by_graph['USA']:
         lj, usa = by_graph['LJ'][-1], by_graph['USA'][-1]
         lines.append(f'- **Road/social comparison**: at the highest measured threads '
