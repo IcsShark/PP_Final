@@ -18,6 +18,12 @@ Counter estimates use (median(B) − median(A)) / 20, independently per event, f
 | USA | 6 | 510.394 | 3.033× | 2.798 | 0.416 | 4.8% | 4.096 | 19.7 | 35.8% | -1.66% |
 | USA | 8 | 542.914 | 2.851× | 3.465 | 0.426 | 4.1% | 3.945 | 18.9 | 40.9% | +8.22% |
 | USA | 12 | 542.133 | 2.855× | 4.102 | 0.425 | 4.0% | 3.932 | 18.5 | 46.4% | +8.95% |
+| OK | 1 | 2295.721 | 1.000× | 2.345 | 1.054 | 47.5% | 7.579 | 15.5 | 57.4% | -2.75% |
+| OK | 2 | 1273.942 | 1.802× | 2.570 | 1.030 | 43.1% | 13.348 | 18.3 | 57.6% | -7.40% |
+| OK | 4 | 755.595 | 3.038× | 2.956 | 0.996 | 43.2% | 21.752 | 20.3 | 60.8% | -4.46% |
+| OK | 6 | 585.392 | 3.922× | 3.265 | 0.907 | 41.9% | 25.571 | 19.7 | 62.5% | -3.17% |
+| OK | 8 | 577.209 | 3.977× | 4.182 | 0.902 | 40.9% | 25.772 | 18.9 | 64.8% | -6.70% |
+| OK | 12 | 563.554 | 4.074× | 5.583 | 0.895 | 40.3% | 26.181 | 18.5 | 68.6% | +0.67% |
 
 ## Conclusions from these measurements
 
@@ -28,7 +34,9 @@ Counter estimates use (median(B) − median(A)) / 20, independently per event, f
 - **USA** (complete): CPI 2.003 at t=1 → 4.102 at t=12; estimated bandwidth 1.277 → 3.932 GB/s. The estimate reaches/exceeds the same-thread triad reference at none of the measured thread counts.
   t6→t12 speedup is only 0.941×; t12 efficiency versus same-Δ t1 is 23.8%. All measured CPI values exceed one: True. CPI increases monotonically: False.
   At t12 the generic estimate is 0.21× the triad reference. For comparison, retired demand-load L3 misses ×64/time would give 0.631 GB/s. The event semantics differ: neither directly measures all DRAM traffic, and the triad result is a reference rather than a universal hard ceiling for every access pattern.
-- OK: not measured yet (optional for OK and urand23).
+- **OK** (complete): CPI 2.345 at t=1 → 5.583 at t=12; estimated bandwidth 7.579 → 26.181 GB/s. The estimate reaches/exceeds the same-thread triad reference at 4, 6, 8, 12.
+  t6→t12 speedup is only 1.039×; t12 efficiency versus same-Δ t1 is 33.9%. All measured CPI values exceed one: True. CPI increases monotonically: True.
+  At t12 the generic estimate is 1.42× the triad reference. For comparison, retired demand-load L3 misses ×64/time would give 9.494 GB/s. The event semantics differ: neither directly measures all DRAM traffic, and the triad result is a reference rather than a universal hard ceiling for every access pattern.
 - urand23: not measured yet (optional for OK and urand23).
 - **Road/social comparison**: at the highest measured threads (LJ t12, USA t12), USA CPI 4.102 vs LJ 6.619; USA bandwidth 3.932 vs LJ 27.394 GB/s. Use these observed values, not an assumption that the road CPI must be lower.
 
@@ -46,7 +54,7 @@ Counter estimates use (median(B) − median(A)) / 20, independently per event, f
 
 ## Anomalies and completeness
 
-- Completed 12/12 required and 0/12 optional combinations; 3 timings differ from same-Δ E2 by at least 10%.
+- Completed 12/12 required and 6/12 optional combinations; 3 timings differ from same-Δ E2 by at least 10%.
   - LJ t2: -18.76% (680.709 vs 837.894 ms). Retained without retuning.
   - LJ t4: -14.79% (383.245 vs 449.741 ms). Retained without retuning.
   - USA t2: +24.93% (1123.552 vs 899.322 ms). Retained without retuning.
