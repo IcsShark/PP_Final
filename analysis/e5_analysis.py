@@ -134,6 +134,29 @@ def collect(raw):
     return rows
 
 
+def read_aggregate(path):
+    with path.open() as stream:
+        rows = list(csv.DictReader(stream))
+    if not rows:
+        raise ValueError('Empty E5 aggregate CSV')
+    text_fields = {'graph', 'variant', 'filter', 'schedule', 'hostname', 'sources', 'raw_directory'}
+    for row in rows:
+        for key, value in row.items():
+            if key in text_fields:
+                continue
+            if key == 'timing_within_10pct':
+                if value not in ('True', 'False'):
+                    raise ValueError(f'Invalid boolean: {value}')
+                row[key] = value == 'True'
+            elif key in ('threads', 'delta'):
+                row[key] = int(value)
+            else:
+                row[key] = float(value)
+                if not math.isfinite(row[key]):
+                    raise ValueError(f'Invalid aggregate number: {key}={value}')
+    return rows
+
+
 def plot(rows, out):
     import matplotlib
     matplotlib.use('Agg')
@@ -206,6 +229,7 @@ def plot(rows, out):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--raw', type=pathlib.Path)
+    parser.add_argument('--csv-input', type=pathlib.Path)
     parser.add_argument('--out', type=pathlib.Path, default=ROOT / 'results/e5_perf')
     parser.add_argument('--check-job', type=pathlib.Path)
     parser.add_argument('--csv-only', action='store_true')
@@ -215,12 +239,12 @@ def main():
         print(f'PASS: {row["graph"]} t={row["threads"]}: 3 A + 3 B, same sources, eight usable events; '
               f'time={row["time_ms"]:.3f} ms, E2 deviation={row["timing_deviation_pct"]:+.2f}%')
         return
-    if args.raw is None:
-        parser.error('--raw or --check-job is required')
-    rows = collect(args.raw)
+    if (args.raw is None) == (args.csv_input is None):
+        parser.error('Specify exactly one of --raw or --csv-input (or use --check-job)')
+    rows = collect(args.raw) if args.raw else read_aggregate(args.csv_input)
     args.out.mkdir(parents=True, exist_ok=True)
     with (args.out / 'e5_counters.csv').open('w') as stream:
-        writer = csv.DictWriter(stream, fieldnames=list(rows[0]))
+        writer = csv.DictWriter(stream, fieldnames=list(rows[0]), lineterminator='\n')
         writer.writeheader()
         writer.writerows(rows)
     if not args.csv_only:

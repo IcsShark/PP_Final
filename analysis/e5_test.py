@@ -3,7 +3,7 @@ import pathlib
 import tempfile
 import unittest
 
-from e5_analysis import EVENTS, collect, metrics, read_perf, read_timing, subtract
+from e5_analysis import EVENTS, collect, metrics, read_aggregate, read_perf, read_timing, subtract
 from e5_report import conclusions
 
 
@@ -81,6 +81,18 @@ class E5MathTest(unittest.TestCase):
     def test_report_rejects_empty_campaign(self):
         with self.assertRaises(ValueError):
             conclusions([])
+
+    def test_aggregate_roundtrip_types_and_invalid_data(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = pathlib.Path(directory) / 'aggregate.csv'
+            path.write_text('graph,threads,delta,time_ms,timing_within_10pct\nLJ,1,4096,1000,True\n')
+            self.assertEqual(read_aggregate(path), [dict(graph='LJ', threads=1, delta=4096,
+                                                       time_ms=1000, timing_within_10pct=True)])
+            for content in ('graph,threads\n', 'graph,time_ms\nLJ,nan\n',
+                            'graph,timing_within_10pct\nLJ,maybe\n'):
+                path.write_text(content)
+                with self.assertRaises(ValueError):
+                    read_aggregate(path)
 
     def test_report_partial_campaign_and_deviation(self):
         row = dict(graph='LJ', threads=1, time_ms=1000, speedup_t1=1, cpi=2,

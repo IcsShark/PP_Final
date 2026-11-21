@@ -45,6 +45,20 @@ def conclusions(rows):
                          f't12 efficiency versus same-Δ t1 is {twelve["speedup_t1"] / 12:.1%}. '
                          f'All measured CPI values exceed one: {all(r["cpi"] > 1 for r in data)}. '
                          f'CPI increases monotonically: {all(a["cpi"] <= b["cpi"] for a, b in zip(data, data[1:]))}.')
+            retired_bw = twelve['mem_load_retired_l3_miss'] * 64 / (twelve['time_ms'] * 1e6)
+            lines.append(f'  At t12 the generic estimate is {twelve["dram_gb_s"] / twelve["triad_gb_s"]:.2f}× '
+                         f'the triad reference. For comparison, retired demand-load L3 misses ×64/time '
+                         f'would give {retired_bw:.3f} GB/s. The event semantics differ: neither '
+                         'directly measures all DRAM traffic, and the triad result is a reference '
+                         'rather than a universal hard ceiling for every access pattern.')
+            if graph == 'LJ':
+                lines.append('  **Four-evidence answer:** efficiency saturation is quantified above; '
+                             'CPI is above one and its thread trend is reported explicitly; the LLC '
+                             'proxy is high per edge; the generic bandwidth estimate reaches/exceeds '
+                             'the triad reference at the thread counts listed above. These qualitative '
+                             'signatures support memory pressure, but do not establish that physical '
+                             'DRAM bandwidth is saturated: event semantics, multiplexing and untimed '
+                             'housekeeping limit the bandwidth inference.')
     if by_graph['LJ'] and by_graph['USA']:
         lj, usa = by_graph['LJ'][-1], by_graph['USA'][-1]
         lines.append(f'- **Road/social comparison**: at the highest measured threads '
@@ -94,7 +108,7 @@ def conclusions(rows):
                      f'({r["time_ms"]:.3f} vs {r["e2_time_ms"]:.3f} ms). Retained without retuning.')
     lines.append(f'- Minimum event running percentage: {min(r["min_event_running_pct"] for r in rows):.2f}%. '
                  'All eight events must be finite, positive and present in all six samples.')
-    return '\n'.join(lines) + '\n'
+    return '\n'.join(line.rstrip() for line in '\n'.join(lines).splitlines()) + '\n'
 
 
 def provenance(rows, raw):
@@ -132,8 +146,13 @@ def provenance(rows, raw):
              'module load pp', 'bash scripts/exp/e5_probe.sh',
              'run -c 12 -- bash scripts/exp/e5_probe.sh --events',
              'bash scripts/exp/e5_run.sh', 'bash scripts/exp/e5_run.sh --optional',
-             f'python3 analysis/e5_analysis.py --raw {raw}',
+             f'python3 analysis/e5_analysis.py --raw {raw} --csv-only',
              f'python3 analysis/e5_report.py --raw {raw}',
+             'scp hpc:devin/PP_Final/results/e5_perf/e5_counters.csv results/e5_perf/',
+             'python3 analysis/e5_analysis.py --csv-input results/e5_perf/e5_counters.csv',
+             'Plot rendering is on the local VM (/usr/bin/python3; matplotlib3.10.9).',
+             'Cluster pp module is loaded correctly but contains neither matplotlib nor pip;',
+             'no cluster Python environment or shared configuration was modified.',
              'Build command: run -c 4 -- make -j4',
              'Inventory command: run -c 12 -- bash scripts/exp/e5_probe.sh --compute',
              'Per-combo scheduler command: run -c 12 -- timeout 1700 bash scripts/exp/e5_run.sh --compute GRAPH THREADS',
@@ -151,7 +170,7 @@ def provenance(rows, raw):
                   'run -c 12 -- timeout 1700 bash scripts/exp/e5_run.sh --compute '
                   f'{row["graph"]} {row["threads"]}']
         lines += [line for line in log if line.startswith(('perf ', './bin/sssp ', '2026-', 'OMP_', 'pid '))]
-    return '\n'.join(lines) + '\n'
+    return '\n'.join(line.rstrip() for line in '\n'.join(lines).splitlines()) + '\n'
 
 
 def main():

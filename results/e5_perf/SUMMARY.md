@@ -7,13 +7,23 @@ Counter estimates use (median(B) − median(A)) / 20, independently per event, f
 | Graph | t | Time ms | Speedup | CPI | Misses/edge | Miss rate | BW GB/s | Triad GB/s | Memory stall | E2 deviation |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
 | LJ | 1 | 1197.636 | 1.000× | 3.247 | 1.883 | 64.0% | 7.603 | 15.5 | 53.9% | +2.40% |
+| LJ | 2 | 680.709 | 1.759× | 3.616 | 1.875 | 54.5% | 13.311 | 18.3 | 54.0% | -18.76% |
+| LJ | 4 | 383.245 | 3.125× | 3.917 | 1.743 | 53.3% | 21.975 | 20.3 | 56.6% | -14.79% |
+| LJ | 6 | 290.665 | 4.120× | 4.221 | 1.604 | 54.4% | 26.660 | 19.7 | 59.2% | -0.37% |
+| LJ | 8 | 278.702 | 4.297× | 5.216 | 1.535 | 51.0% | 26.601 | 18.9 | 62.4% | +2.23% |
+| LJ | 12 | 258.343 | 4.636× | 6.619 | 1.465 | 51.0% | 27.394 | 18.5 | 67.4% | +1.44% |
+| USA | 1 | 1547.906 | 1.000× | 2.003 | 0.386 | 7.8% | 1.277 | 15.5 | 25.0% | +2.04% |
 
 ## Conclusions from these measurements
 
-- **LJ** (partial): CPI 3.247 at t=1 → 3.247 at t=1; estimated bandwidth 7.603 → 7.603 GB/s. The estimate reaches/exceeds the same-thread triad reference at none of the measured thread counts.
-- USA: not measured yet (optional for OK and urand23).
+- **LJ** (complete): CPI 3.247 at t=1 → 6.619 at t=12; estimated bandwidth 7.603 → 27.394 GB/s. The estimate reaches/exceeds the same-thread triad reference at 4, 6, 8, 12.
+  t6→t12 speedup is only 1.125×; t12 efficiency versus same-Δ t1 is 38.6%. All measured CPI values exceed one: True. CPI increases monotonically: True.
+  At t12 the generic estimate is 1.48× the triad reference. For comparison, retired demand-load L3 misses ×64/time would give 8.338 GB/s. The event semantics differ: neither directly measures all DRAM traffic, and the triad result is a reference rather than a universal hard ceiling for every access pattern.
+  **Four-evidence answer:** efficiency saturation is quantified above; CPI is above one and its thread trend is reported explicitly; the LLC proxy is high per edge; the generic bandwidth estimate reaches/exceeds the triad reference at the thread counts listed above. These qualitative signatures support memory pressure, but do not establish that physical DRAM bandwidth is saturated: event semantics, multiplexing and untimed housekeeping limit the bandwidth inference.
+- **USA** (partial): CPI 2.003 at t=1 → 2.003 at t=1; estimated bandwidth 1.277 → 1.277 GB/s. The estimate reaches/exceeds the same-thread triad reference at none of the measured thread counts.
 - OK: not measured yet (optional for OK and urand23).
 - urand23: not measured yet (optional for OK and urand23).
+- **Road/social comparison**: at the highest measured threads (LJ t12, USA t1), USA CPI 2.003 vs LJ 6.619; USA bandwidth 1.277 vs LJ 27.394 GB/s. Use these observed values, not an assumption that the road CPI must be lower.
 
 ### Interpretation limits
 
@@ -29,5 +39,7 @@ Counter estimates use (median(B) − median(A)) / 20, independently per event, f
 
 ## Anomalies and completeness
 
-- Completed 1/12 required and 0/12 optional combinations; 0 timings differ from same-Δ E2 by at least 10%.
+- Completed 7/12 required and 0/12 optional combinations; 2 timings differ from same-Δ E2 by at least 10%.
+  - LJ t2: -18.76% (680.709 vs 837.894 ms). Retained without retuning.
+  - LJ t4: -14.79% (383.245 vs 449.741 ms). Retained without retuning.
 - Minimum event running percentage: 49.00%. All eight events must be finite, positive and present in all six samples.
