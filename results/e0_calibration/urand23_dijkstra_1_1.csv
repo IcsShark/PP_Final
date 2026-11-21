@@ -1,0 +1,4 @@
+graph,algo,variant,filter,sched,threads,delta,source,rep,time_ms,phases,buckets,heavy_passes,edges_scanned,relax_ok,expansions,stale,merge_dropped,reached,verified,stats_build
+urand23,dijkstra,-,-,-,1,0,6334703,0,7814.2737,0,0,0,0,0,0,0,0,8388607,1,0
+urand23,dijkstra,-,-,-,1,0,6334703,1,7872.6032,0,0,0,0,0,0,0,0,8388607,1,0
+urand23,dijkstra,-,-,-,1,0,6334703,2,7816.5278,0,0,0,0,0,0,0,0,8388607,1,0

@@ -1,0 +1,843 @@
+{
+  "graph": "urand23",
+  "variant": "all",
+  "filter": "merge",
+  "anchors": {
+    "6": 1024,
+    "12": 4096
+  },
+  "deltas": [
+    512,
+    1024,
+    2048,
+    4096,
+    8192
+  ],
+  "e1_sha256": {
+    "dijkstra_stats_urand23.csv": "74059cf223a1584c449afc34e032b349381f9324d763a7b8555b50a46977204d",
+    "dijkstra_timing_urand23.csv": "427c391d82345923e9d0b5754e76d35f3842d5ab0fa725741d22b2d0e489ee47",
+    "timing_urand23_delta-seq_all_pop_t1_b00_s0.csv": "8dd488db0feae4896687564e2d500d19dfed7d5b938650fef53c55afb4f53e6a",
+    "timing_urand23_delta-seq_all_pop_t1_b01_s0.csv": "930d72d9206aae6a299bf28710ae5d862d031768eb91ce86baf139b72ec15da8",
+    "timing_urand23_delta-seq_all_pop_t1_b02_s0.csv": "bbd2ee95df0d9cc42927218f4fda1e6cfdebdc61f8b3b7b0a81accc366dc2eaf",
+    "timing_urand23_delta-seq_all_pop_t1_b03_s0.csv": "2aa703ec7c34506a3399014d1d3056bad899a5ddda66d38ae9c5061227cffedc",
+    "timing_urand23_delta-seq_all_pop_t1_b04_s0.csv": "2b31c5afbff80dd1aa74184ecaa2e7204a3275607670713de1b26de66cb63fcc",
+    "timing_urand23_delta-seq_all_pop_t1_b05_s0.csv": "bd781ebcc6f740d7db129532febc26eac77d8efc67089065b4d99ef64f6869de",
+    "timing_urand23_delta-seq_all_pop_t1_b06_s0.csv": "7eac7513eae5f9f7753cdae3656fb97cf3b6ce8404f0d5302e36cfdd7924cb32",
+    "timing_urand23_delta-omp_all_pop_t6_b00_s0.csv": "2b591533073bee7a19752748e76bccf0af75acfea39792482eeb67ed36b76b22",
+    "timing_urand23_delta-omp_all_pop_t6_b01_s0.csv": "6c6eed41a81774fa0ccbfb71e0571e2d35525ef3de5f626bcbdeaa3227976734",
+    "timing_urand23_delta-omp_all_pop_t6_b02_s0.csv": "5b03718c275d150f92f25e82445a3902a4926f6e781e23748a3e112ab67df43a",
+    "timing_urand23_delta-omp_all_pop_t6_b03_s0.csv": "49b955034a9485c4d21b096782dd05d1bc47d897b3ec4ec48fe3d7e640dae52f",
+    "timing_urand23_delta-omp_all_pop_t6_b04_s0.csv": "c907e46aae026722d163d0b093c5b9161dd1e6607b046485a96f08db2070f731",
+    "timing_urand23_delta-omp_all_pop_t12_b00_s0.csv": "dc6208365172a640b33c9799510f6685abcce7b23838de714f99cf6194205f7e",
+    "timing_urand23_delta-omp_all_pop_t12_b01_s0.csv": "36d4d91ef8a672440de3f769ca2de2698d692a1eab0e6ab7b4a25f2d18aa29d4",
+    "timing_urand23_delta-omp_all_pop_t12_b02_s0.csv": "9bb46926f795b97598ede8d4f2315d150d1aecbc8ee78686bdb1b76e68b71261",
+    "timing_urand23_delta-omp_all_pop_t12_b03_s0.csv": "a387b579716e0825928965c909d34e4740899010e8ec176eb9ad14ebb4e45fff",
+    "timing_urand23_delta-omp_all_pop_t12_b04_s0.csv": "5ab900c11fb3362aa0bbb8ba6335ab10e28a6e41f1c72071a0f9d2c8a754ff08",
+    "stats_urand23_delta-seq_all_pop_t1_b00_s0.csv": "8c750e40b47be980c1053a2257e1c53e95abb38dec9ac4f923c6622f390d63b7",
+    "stats_urand23_delta-seq_all_pop_t1_b01_s0.csv": "39599c626059e37e8ad224558afc6c5c4b493923eacf7a831b322af0a2553d97",
+    "stats_urand23_delta-seq_all_pop_t1_b02_s0.csv": "5827e2e09c0da561dab9929c6bbbbeb2cf541bf92d71acb5d9de7be68574914a",
+    "stats_urand23_delta-seq_all_pop_t1_b03_s0.csv": "25b66a7d541a250af00629388e45a8e3a7b18808ad0490e89a2d2b074ce86728",
+    "stats_urand23_delta-seq_all_pop_t1_b04_s0.csv": "04c866c9f7a1f9c83c70aaa5193877abb0cb28d5234245017a263edd32155e54",
+    "stats_urand23_delta-seq_all_pop_t1_b05_s0.csv": "25e5f2f1d722c134e41c855ff6675684070e119274fc0a7976faf6134dabf5e2",
+    "stats_urand23_delta-omp_all_pop_t6_b00_s0.csv": "24be4928ab4842e721234e92e8ec9a425bee103cf787c090012a4718e2dfa7e4",
+    "stats_urand23_delta-omp_all_pop_t6_b01_s0.csv": "12bf70cc283d5c59c5fd91e5f712993e89ad5e170461b71dd7dbb873e653ed92",
+    "stats_urand23_delta-omp_all_pop_t6_b02_s0.csv": "605479a02f9d99177d8695def84fd625aa58c1391021db96b2eeec26bce39fd5",
+    "stats_urand23_delta-omp_all_pop_t6_b03_s0.csv": "9964f093ddb4b0f5603cb390d7211b140de0a0e05931eb7e5e2361dde5d8e14a",
+    "stats_urand23_delta-omp_all_pop_t6_b04_s0.csv": "53d65015be7b82f7a39d2f5286c9812b408fe5fc62abd111a5a5a504ca76936d",
+    "timing_urand23_delta-seq_all_merge_t1_b00_s0.csv": "9a0c412652343b49ad58ffd8e45118716bec40bb773c6d2881cde6890d22406a",
+    "timing_urand23_delta-seq_all_merge_t1_b01_s0.csv": "bbdb74735faf7d8d9e637d0b3af009242a0929ba5485341aa48718a63ae1358b",
+    "timing_urand23_delta-seq_all_merge_t1_b02_s0.csv": "28fc119c1030aa8bfb5adf4f97b61ea09f810030ea6300333508c78d79914282",
+    "timing_urand23_delta-seq_all_merge_t1_b03_s0.csv": "a49189e8dc96ca9abf6e4c1cf1d34222162698cc7093f672b75a07844a9473a5",
+    "timing_urand23_delta-seq_all_merge_t1_b04_s0.csv": "8745a0fda0e851dfab00a10b1895c2baf7e922fd877fbeaba6540b485c61ebeb",
+    "timing_urand23_delta-seq_all_merge_t1_b05_s0.csv": "480107fb7c077595c3f10aab8e05f0c1fb9c72a66852a9be2ee36437a57ab338",
+    "timing_urand23_delta-seq_all_merge_t1_b06_s0.csv": "43ad5d5a26a82a3c6ca2aa27be4e5bdcec672ff383b96cf31be0564a4e91030f",
+    "timing_urand23_delta-omp_all_merge_t6_b00_s0.csv": "8621b73cf57cd04b4f5c07eb4680674c07d0ca0b193e1226a1f3db9f41673d2f",
+    "timing_urand23_delta-omp_all_merge_t6_b01_s0.csv": "f40f39af095c8129a15cb8065843ecc961e835459f6ed444bfb210ccf81b56cf",
+    "timing_urand23_delta-omp_all_merge_t6_b02_s0.csv": "7373cc414c612e7d70b534680fef65a570dcaa8f6701641a680d346eccb7bfae",
+    "timing_urand23_delta-omp_all_merge_t6_b03_s0.csv": "492cba961439c3e66c5eb2d53e7fd737a2bf362c8c0f159534747be2aa216f8a",
+    "timing_urand23_delta-omp_all_merge_t6_b04_s0.csv": "935a753ab8788c99970abab01091f90896b4dacfbdaa353f3a2b1e626d9c5391",
+    "timing_urand23_delta-omp_all_merge_t12_b00_s0.csv": "f240210e0c047892ef0a541dc2abd8b47bec348baf07d6d37c52579add73eb72",
+    "timing_urand23_delta-omp_all_merge_t12_b01_s0.csv": "c8980ea287503def28fc74ecd0d03a303f697c55c743d429274fb1d2be17c745",
+    "timing_urand23_delta-omp_all_merge_t12_b02_s0.csv": "c0ed5ba1ee5b89806092051e00a1b4ba45c1e8ba8eab0f2ca330431753785991",
+    "timing_urand23_delta-omp_all_merge_t12_b03_s0.csv": "9bb0b9c715b124dd1b1fe6953d58369dc90a3515a33bc47e1a1da131e5fe0275",
+    "timing_urand23_delta-omp_all_merge_t12_b04_s0.csv": "82f953e713ec4f8f5feb0912335e140c306e8467f15d29857793c2cff7ce9cbd",
+    "stats_urand23_delta-seq_all_merge_t1_b00_s0.csv": "eb7ab53b45a2ddee6d9a36240525bb83d50aff4bfbfa2361e1efaf58c5610eda",
+    "stats_urand23_delta-seq_all_merge_t1_b01_s0.csv": "13ee4c97aa49ffa86cc20f16bffdeeab2a28129416b97ae05723d9905e5110ad",
+    "stats_urand23_delta-seq_all_merge_t1_b02_s0.csv": "7c1139c6270ee2f8cb3822c009a6c84f6db55f3b7a40fcfe91f8d5316eed866b",
+    "stats_urand23_delta-seq_all_merge_t1_b03_s0.csv": "d87e40a24b3e4bbc0c7a43e20a6e62bf8ec731950782e8430975e01a243db627",
+    "stats_urand23_delta-seq_all_merge_t1_b04_s0.csv": "f5138f01e9a790cc68d35a792819d46a23626a176b6d2f43ea46d20831c56798",
+    "stats_urand23_delta-seq_all_merge_t1_b05_s0.csv": "5c0dcbcc4b3d3919818c73e11e9dc7eaae343c5c097cd2ca7b2a9aeb734e47fa",
+    "stats_urand23_delta-omp_all_merge_t6_b00_s0.csv": "924b7b630cee1b5212b0ed7131eb1afdecb83b09d01b1549f4daa28ecc295039",
+    "stats_urand23_delta-omp_all_merge_t6_b01_s0.csv": "e9028a543378c84d24a3c0577ac9739fe7e70d8f279d5e41970fad0be1282dfe",
+    "stats_urand23_delta-omp_all_merge_t6_b02_s0.csv": "24fc4d84d4ea92e3c5ec6c4acd773b919122c520e68b9f324c04e8bbb5afaa33",
+    "stats_urand23_delta-omp_all_merge_t6_b03_s0.csv": "d71b14e8371fb432e9b66598e0f57bb39b72a2ff79518457973bd74bbdcb088b",
+    "stats_urand23_delta-omp_all_merge_t6_b04_s0.csv": "8902365ee596ceb5f95c3ebf9c220383c863c4fb25e7ba27dcbe65d7d9014e86",
+    "timing_urand23_delta-seq_lh_pop_t1_b00_s0.csv": "f931b9c3e32dcc48bc704c9010fe92ce53a55476d557b9a244ea03812a161369",
+    "timing_urand23_delta-seq_lh_pop_t1_b01_s0.csv": "188bf27f890cc0ee2074b09a8e88fe5cd356232356568538f6d884f812b5ff9b",
+    "timing_urand23_delta-seq_lh_pop_t1_b02_s0.csv": "028b6c2833359784510c4068c78ad4adece8bd74a1a54c162a5d0774a62aa8e5",
+    "timing_urand23_delta-seq_lh_pop_t1_b03_s0.csv": "6cf5dba3c1daee513b27e23182b4aaa0013e0ae61a99eefb623cb1addd9ac81a",
+    "timing_urand23_delta-seq_lh_pop_t1_b04_s0.csv": "aedc5ed92b55aa610d93803280e448ff050e1bc3a571d8e023307ddcbac6b296",
+    "timing_urand23_delta-seq_lh_pop_t1_b05_s0.csv": "90f2d37ed0bb24f0bdefb5911d148aca4c79e2b6178c565a332ec2eee08080b8",
+    "timing_urand23_delta-seq_lh_pop_t1_b06_s0.csv": "f5d0accb410f84bd0b5794c51919912f0dc5707c0d5b8b64b8383ed16174ffa5",
+    "timing_urand23_delta-omp_lh_pop_t6_b00_s0.csv": "974feacdcc29021b37d22da79efdf8036afc2a4eba6bcec4cd959ea47c7f9f89",
+    "timing_urand23_delta-omp_lh_pop_t6_b01_s0.csv": "172d2e477df0fd04eb4fb16e24199bf34135838b02919111f9761cd3d6a68d4c",
+    "timing_urand23_delta-omp_lh_pop_t6_b02_s0.csv": "c3456c2fa34f12359c58962ff27dd50d9993bc2b3a9f697c1156599cbc1fe268",
+    "timing_urand23_delta-omp_lh_pop_t6_b03_s0.csv": "6b70255c354d0a6ae25d2a507c993ce20d08729b278b2b04a7227f21c40b90ec",
+    "timing_urand23_delta-omp_lh_pop_t6_b04_s0.csv": "7ee5bbf201b8421eaf1419b7c250eacc33f6f0f836e9497ae4c0412c8d6ade60",
+    "timing_urand23_delta-omp_lh_pop_t12_b00_s0.csv": "bf0f965adc493d4eb78832888a6ea12bb800bd5b8aabf86a405711129e8b4f24",
+    "timing_urand23_delta-omp_lh_pop_t12_b01_s0.csv": "33e55417a42194d8c5250ae9d9d72d33034953e95dc9437fba6f4df196ab7c15",
+    "timing_urand23_delta-omp_lh_pop_t12_b02_s0.csv": "cf7dc9ba6ab95723e9d9c57f25653c97df52b0b6e1892bef41aa8895e64d8eeb",
+    "timing_urand23_delta-omp_lh_pop_t12_b03_s0.csv": "de1a4132a3918e135610c7a58d6045d5658dc684d38e59cef2e2d4de3e57e593",
+    "timing_urand23_delta-omp_lh_pop_t12_b04_s0.csv": "6eea52a0859feb5397cd3246592c7f8d0de5b274d17465f365106166973b9d07",
+    "stats_urand23_delta-seq_lh_pop_t1_b00_s0.csv": "c6d3a48a00c00f1fea487284078ec7675e2dd9f048cd1e765645071d6a1fa00a",
+    "stats_urand23_delta-seq_lh_pop_t1_b01_s0.csv": "f7cc3aad9855677bc605424d61d094fc370691315b4d5313e0f86f3c68d6e7f2",
+    "stats_urand23_delta-seq_lh_pop_t1_b02_s0.csv": "3a2196da4785996c950e291642ecfb599b0f31bc994e22d85ea2577d68e7fd4a",
+    "stats_urand23_delta-seq_lh_pop_t1_b03_s0.csv": "eef71f74013e2627034daf85c0f975985f3bc91dcc76ed34a1420d68755f9d08",
+    "stats_urand23_delta-seq_lh_pop_t1_b04_s0.csv": "5aebb050cea202688bf04df1024e922821701000b56a06ea3b2967147754c026",
+    "stats_urand23_delta-seq_lh_pop_t1_b05_s0.csv": "5e8ccbdf8f6ef94f1b29815902438d659818bb64802c40570cf5382c3d9296c1",
+    "stats_urand23_delta-omp_lh_pop_t6_b00_s0.csv": "6fc184960e7f49bb5d723f4add3a5e2e4b98c7dcd49cbfb221b5b03565b6683a",
+    "stats_urand23_delta-omp_lh_pop_t6_b01_s0.csv": "59e7d5a3a10c4a992403f58c1ef2f2b70a210543e951a5e5f3c84e8738c38294",
+    "stats_urand23_delta-omp_lh_pop_t6_b02_s0.csv": "1d82f0325cb1b938d358d9b9cad3081006088ce91fcd5669be728683146b4186",
+    "stats_urand23_delta-omp_lh_pop_t6_b03_s0.csv": "174a8b5603d6d08846e2ad601c624dfd7d100d8ec05f39136e86d1419e6eee10",
+    "stats_urand23_delta-omp_lh_pop_t6_b04_s0.csv": "1ce72783d079511b864d29df45a7125e0bb3da2b16bec91ae66835e59944d059",
+    "timing_urand23_delta-seq_lh_merge_t1_b00_s0.csv": "4f83c44bf6b062ab9c00da8453e7bd0e3377e4cad7a96910a6312ad55243acdf",
+    "timing_urand23_delta-seq_lh_merge_t1_b01_s0.csv": "ba4f287e834fe480f6049851276c4d7b7be3cb7b5e514e733f3ccb34935082ed",
+    "timing_urand23_delta-seq_lh_merge_t1_b02_s0.csv": "531b40bc8f81ddc4bdf5495f6bf9e1c41034007856009fe58a96e2fff9b81e4b",
+    "timing_urand23_delta-seq_lh_merge_t1_b03_s0.csv": "71c03635496096226a425e87d19c9aec04d2fb13b6a3d3b1df7ee57f95d4e0bb",
+    "timing_urand23_delta-seq_lh_merge_t1_b04_s0.csv": "db23ad670bfdc399dbc5cc49b50fb6c8ccd5e143d0469c39ad4797aaaead1dcd",
+    "timing_urand23_delta-seq_lh_merge_t1_b05_s0.csv": "98c5410d3044566efabd5946476e619f78a8e4d82bde85e422539673334906ef",
+    "timing_urand23_delta-seq_lh_merge_t1_b06_s0.csv": "f0c68b69c193b73394052d0d150c38c553520b99dfc1d91f96e83ca81eb18b92",
+    "timing_urand23_delta-omp_lh_merge_t6_b00_s0.csv": "80a477faa5f1c57d7f9979955d9159126a039316e15a6233c4bbc50a53d815d8",
+    "timing_urand23_delta-omp_lh_merge_t6_b01_s0.csv": "26842c4f36f87a8b677d9273d473e829b1cc8c22ceb65c7f025bbc7277d9bd22",
+    "timing_urand23_delta-omp_lh_merge_t6_b02_s0.csv": "58336cac895961973cfc2b5157090ace4d91c7ad724c278c664f04f517d62d45",
+    "timing_urand23_delta-omp_lh_merge_t6_b03_s0.csv": "62273c72ac35db01ea324b4d8b8af638c27db18e761a795973df0020d3747be6",
+    "timing_urand23_delta-omp_lh_merge_t6_b04_s0.csv": "debad8f159fadeb4fda4327a2f1a19e9c5bb53cb1ec44cc81e4eba15cc02aac7",
+    "timing_urand23_delta-omp_lh_merge_t12_b00_s0.csv": "caf057bf0dc32a8193df846ee67296ebd52689f97cfe798165027a00a68d251d",
+    "timing_urand23_delta-omp_lh_merge_t12_b01_s0.csv": "a8d5d280cefcd7d83e52c834e6caa8032fe58988bd97d1c014fae33d50f7145a",
+    "timing_urand23_delta-omp_lh_merge_t12_b02_s0.csv": "37768544336e3fc28cffdec0fe8716ae69cdbccbf8263f8edb3f1b8491fa57a8",
+    "timing_urand23_delta-omp_lh_merge_t12_b03_s0.csv": "e8a8f005a89c3fc5f6e1738d63b37f5860ec3719485231ba4dd35dc3097c3961",
+    "timing_urand23_delta-omp_lh_merge_t12_b04_s0.csv": "7b079403625041e726826556771f29ad7a6ad5f0609cc83a9f54dbf7a09184e6",
+    "stats_urand23_delta-seq_lh_merge_t1_b00_s0.csv": "394e0757c6b8e9b48fa5da24ba20b1e38fd2abea7eef4a13305c477b298b9e12",
+    "stats_urand23_delta-seq_lh_merge_t1_b01_s0.csv": "c61c9e47fb9dd3bc98409a386bd24c824f6b8c6055e31662ba9673195ab0a1ec",
+    "stats_urand23_delta-seq_lh_merge_t1_b02_s0.csv": "25977426dabd1705b065d765f8f529e366ead790a272a1ce6650e519ba6e57fb",
+    "stats_urand23_delta-seq_lh_merge_t1_b03_s0.csv": "f4b9fae85e8b3d79a370363454fc78753ba53fe7c1b6357c65d0a0e2cf6e0bb6",
+    "stats_urand23_delta-seq_lh_merge_t1_b04_s0.csv": "82f4fd198179feda3fb1093675f811e35efc226a71431da1c22a1fe48d8022b1",
+    "stats_urand23_delta-seq_lh_merge_t1_b05_s0.csv": "31dd05d6c32fb3768117549d8fd4b278222bdb9a80ebfb194107b22c4dc931d1",
+    "stats_urand23_delta-omp_lh_merge_t6_b00_s0.csv": "63883b6f32a69b6bd8b5887e0ff17ad8b4567fba96437d107c2ac9b699b0b5de",
+    "stats_urand23_delta-omp_lh_merge_t6_b01_s0.csv": "d891fc25112c7410918b433f7749f2a2ce2a6780137e9ca530d403283d7e750c",
+    "stats_urand23_delta-omp_lh_merge_t6_b02_s0.csv": "dd268ef3bdbf98671cbaa8bfa5a28c52a22040bb9ef841e40e9caba6d583e8f5",
+    "stats_urand23_delta-omp_lh_merge_t6_b03_s0.csv": "a4aaeb75919e420f8a07b835d38aee2221c30d2211c3d168aa645117047114c2",
+    "stats_urand23_delta-omp_lh_merge_t6_b04_s0.csv": "0f05a5d91bf111db071e27d036e61479e6fa94120365005c8b96d4823ea91827"
+  },
+  "selection": "global fastest E1 OMP pair; pair held fixed for t6/t12 anchors",
+  "jobs": [
+    {
+      "id": "timing_urand23_all_merge_t1_b0",
+      "graph": "urand23",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "merge",
+      "threads": 1,
+      "deltas": [
+        512,
+        1024
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_urand23_all_merge_t1_b1",
+      "graph": "urand23",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "merge",
+      "threads": 1,
+      "deltas": [
+        2048,
+        4096
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_urand23_all_merge_t1_b2",
+      "graph": "urand23",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "merge",
+      "threads": 1,
+      "deltas": [
+        8192
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_urand23_all_merge_t2_b0",
+      "graph": "urand23",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "merge",
+      "threads": 2,
+      "deltas": [
+        512,
+        1024
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_urand23_all_merge_t2_b1",
+      "graph": "urand23",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "merge",
+      "threads": 2,
+      "deltas": [
+        2048,
+        4096
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_urand23_all_merge_t2_b2",
+      "graph": "urand23",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "merge",
+      "threads": 2,
+      "deltas": [
+        8192
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_urand23_all_merge_t4_b0",
+      "graph": "urand23",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "merge",
+      "threads": 4,
+      "deltas": [
+        512,
+        1024
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_urand23_all_merge_t4_b1",
+      "graph": "urand23",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "merge",
+      "threads": 4,
+      "deltas": [
+        2048,
+        4096
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_urand23_all_merge_t4_b2",
+      "graph": "urand23",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "merge",
+      "threads": 4,
+      "deltas": [
+        8192
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_urand23_all_merge_t6_b0",
+      "graph": "urand23",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "merge",
+      "threads": 6,
+      "deltas": [
+        512,
+        1024
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_urand23_all_merge_t6_b1",
+      "graph": "urand23",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "merge",
+      "threads": 6,
+      "deltas": [
+        2048,
+        4096
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_urand23_all_merge_t6_b2",
+      "graph": "urand23",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "merge",
+      "threads": 6,
+      "deltas": [
+        8192
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_urand23_all_merge_t8_b0",
+      "graph": "urand23",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "merge",
+      "threads": 8,
+      "deltas": [
+        512,
+        1024
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_urand23_all_merge_t8_b1",
+      "graph": "urand23",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "merge",
+      "threads": 8,
+      "deltas": [
+        2048,
+        4096
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_urand23_all_merge_t8_b2",
+      "graph": "urand23",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "merge",
+      "threads": 8,
+      "deltas": [
+        8192
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_urand23_all_merge_t12_b0",
+      "graph": "urand23",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "merge",
+      "threads": 12,
+      "deltas": [
+        512,
+        1024
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_urand23_all_merge_t12_b1",
+      "graph": "urand23",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "merge",
+      "threads": 12,
+      "deltas": [
+        2048,
+        4096
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_urand23_all_merge_t12_b2",
+      "graph": "urand23",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "merge",
+      "threads": 12,
+      "deltas": [
+        8192
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_urand23_all_merge_t1_b0",
+      "graph": "urand23",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "merge",
+      "threads": 1,
+      "deltas": [
+        512,
+        1024
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_urand23_all_merge_t1_b1",
+      "graph": "urand23",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "merge",
+      "threads": 1,
+      "deltas": [
+        2048,
+        4096
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_urand23_all_merge_t1_b2",
+      "graph": "urand23",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "merge",
+      "threads": 1,
+      "deltas": [
+        8192
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_urand23_all_merge_t2_b0",
+      "graph": "urand23",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "merge",
+      "threads": 2,
+      "deltas": [
+        512,
+        1024
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_urand23_all_merge_t2_b1",
+      "graph": "urand23",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "merge",
+      "threads": 2,
+      "deltas": [
+        2048,
+        4096
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_urand23_all_merge_t2_b2",
+      "graph": "urand23",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "merge",
+      "threads": 2,
+      "deltas": [
+        8192
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_urand23_all_merge_t4_b0",
+      "graph": "urand23",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "merge",
+      "threads": 4,
+      "deltas": [
+        512,
+        1024
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_urand23_all_merge_t4_b1",
+      "graph": "urand23",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "merge",
+      "threads": 4,
+      "deltas": [
+        2048,
+        4096
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_urand23_all_merge_t4_b2",
+      "graph": "urand23",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "merge",
+      "threads": 4,
+      "deltas": [
+        8192
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_urand23_all_merge_t6_b0",
+      "graph": "urand23",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "merge",
+      "threads": 6,
+      "deltas": [
+        512,
+        1024
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_urand23_all_merge_t6_b1",
+      "graph": "urand23",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "merge",
+      "threads": 6,
+      "deltas": [
+        2048,
+        4096
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_urand23_all_merge_t6_b2",
+      "graph": "urand23",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "merge",
+      "threads": 6,
+      "deltas": [
+        8192
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_urand23_all_merge_t8_b0",
+      "graph": "urand23",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "merge",
+      "threads": 8,
+      "deltas": [
+        512,
+        1024
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_urand23_all_merge_t8_b1",
+      "graph": "urand23",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "merge",
+      "threads": 8,
+      "deltas": [
+        2048,
+        4096
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_urand23_all_merge_t8_b2",
+      "graph": "urand23",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "merge",
+      "threads": 8,
+      "deltas": [
+        8192
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_urand23_all_merge_t12_b0",
+      "graph": "urand23",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "merge",
+      "threads": 12,
+      "deltas": [
+        512,
+        1024
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_urand23_all_merge_t12_b1",
+      "graph": "urand23",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "merge",
+      "threads": 12,
+      "deltas": [
+        2048,
+        4096
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_urand23_all_merge_t12_b2",
+      "graph": "urand23",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "merge",
+      "threads": 12,
+      "deltas": [
+        8192
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  ]
+}

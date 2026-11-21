@@ -1,0 +1,36 @@
+{
+  "job": "dijkstra_timing_NY",
+  "seconds": 1.1733534336090088,
+  "hostname": "cmpt050.hpc.cc.cs.nctu.edu.tw",
+  "rows": 12,
+  "csv_sha256": "f827b580fdd7f5683bc1db00176b915025c1b8f7d635624bbdd4e618440cdcbf",
+  "manifest_sha256": "484ebaac429eacc697cdaa218534b70b39fa3abfa7b9930bc00baa01e9c361ab",
+  "phase_logs": [],
+  "commands": [
+    [
+      "/net/cs/111/111550055/devin/PP_Final/bin/sssp",
+      "-g",
+      "/u/cs/111/111550055/pp_data/csr/NY.csr",
+      "-a",
+      "dijkstra",
+      "-d",
+      "1",
+      "-t",
+      "1",
+      "--variant",
+      "all",
+      "--filter",
+      "pop",
+      "--seed",
+      "42",
+      "-r",
+      "3",
+      "--verify",
+      "--csv",
+      "/net/cs/111/111550055/devin/PP_Final/results/e1_delta_sweep/dijkstra_timing_NY.csv.partial",
+      "-q",
+      "--sources",
+      "4"
+    ]
+  ]
+}

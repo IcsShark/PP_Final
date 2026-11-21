@@ -1,0 +1,4 @@
+graph,algo,variant,filter,sched,threads,delta,source,rep,time_ms,phases,buckets,heavy_passes,edges_scanned,relax_ok,expansions,stale,merge_dropped,reached,verified,stats_build
+kron23,dijkstra,-,-,-,1,0,5360583,0,3617.3436,0,0,0,0,0,0,0,0,3846665,1,0
+kron23,dijkstra,-,-,-,1,0,5360583,1,3620.9798,0,0,0,0,0,0,0,0,3846665,1,0
+kron23,dijkstra,-,-,-,1,0,5360583,2,3591.5498,0,0,0,0,0,0,0,0,3846665,1,0

@@ -1,0 +1,14 @@
+{
+  "graph": "/u/cs/111/111550055/pp_data/csr/USA.csr",
+  "n": 23947347,
+  "m": 57708624,
+  "d_avg": 2.4098,
+  "d_max": 9,
+  "w_min": 1,
+  "w_max": 368855,
+  "zero_out_degree": 0,
+  "sorted_by_weight": true,
+  "delta_rule_dmax": 40983.89,
+  "delta_rule_davg": 153063.75,
+  "delta_sweep": [1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536, 131072, 262144, 524288]
+}

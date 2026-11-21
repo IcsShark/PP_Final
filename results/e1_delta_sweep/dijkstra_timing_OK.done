@@ -1,0 +1,38 @@
+{
+  "job": "dijkstra_timing_OK",
+  "seconds": 98.18366551399231,
+  "hostname": "cmpt046.hpc.cc.cs.nctu.edu.tw",
+  "rows": 12,
+  "csv_sha256": "171f993c7dce6868a0c4dff86826804e85af5a9d4544d4eefa194f67573d28ce",
+  "manifest_sha256": "484ebaac429eacc697cdaa218534b70b39fa3abfa7b9930bc00baa01e9c361ab",
+  "phase_logs": [],
+  "phase_summary": null,
+  "phase_summary_sha256": null,
+  "commands": [
+    [
+      "/net/cs/111/111550055/devin/PP_Final/bin/sssp",
+      "-g",
+      "/u/cs/111/111550055/pp_data/csr/OK.csr",
+      "-a",
+      "dijkstra",
+      "-d",
+      "1",
+      "-t",
+      "1",
+      "--variant",
+      "all",
+      "--filter",
+      "pop",
+      "--seed",
+      "42",
+      "-r",
+      "3",
+      "--verify",
+      "--csv",
+      "/net/cs/111/111550055/devin/PP_Final/results/e1_delta_sweep/dijkstra_timing_OK.csv.partial",
+      "-q",
+      "--sources",
+      "4"
+    ]
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "job": "stats_grid2896_delta-omp_all_pop_t6_b00_s3",
+  "seconds": 44.125051975250244,
+  "hostname": "cmpt047.hpc.cc.cs.nctu.edu.tw",
+  "rows": 1,
+  "csv_sha256": "9eba2a7b8028f53a33922d90c221a5ca7f71d5a137f2e5b462aa5d208ed2922a",
+  "manifest_sha256": "484ebaac429eacc697cdaa218534b70b39fa3abfa7b9930bc00baa01e9c361ab",
+  "phase_logs": [],
+  "phase_summary": "/net/cs/111/111550055/devin/PP_Final/results/e1_delta_sweep/phase_summaries/stats_grid2896_delta-omp_all_pop_t6_b00_s3.stream.json",
+  "phase_summary_sha256": "a58eacd1c8b0a51c99cdbf4e13ecc8ae800d6b30c5e9ea14599b96f967da3ca4",
+  "commands": [
+    [
+      "/net/cs/111/111550055/devin/PP_Final/bin/sssp_stats",
+      "-g",
+      "/u/cs/111/111550055/pp_data/csr/grid2896.csr",
+      "-a",
+      "delta-omp",
+      "-d",
+      "1",
+      "-t",
+      "6",
+      "--variant",
+      "all",
+      "--filter",
+      "pop",
+      "--seed",
+      "42",
+      "-r",
+      "1",
+      "--verify",
+      "--csv",
+      "/net/cs/111/111550055/devin/PP_Final/results/e1_delta_sweep/stats_grid2896_delta-omp_all_pop_t6_b00_s3.csv.partial",
+      "-q",
+      "--source",
+      "1142893",
+      "--phase-log",
+      "/tmp/sssp-phase-_v0ex1gw/phases.fifo"
+    ]
+  ]
+}

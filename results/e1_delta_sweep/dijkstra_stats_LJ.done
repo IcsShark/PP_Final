@@ -1,0 +1,36 @@
+{
+  "job": "dijkstra_stats_LJ",
+  "seconds": 33.99276518821716,
+  "hostname": "cmpt051.hpc.cc.cs.nctu.edu.tw",
+  "rows": 4,
+  "csv_sha256": "4549c6c3ac39bdd6bbf0fe727f4c89933e05a437e714631982cee31093111fbd",
+  "manifest_sha256": "484ebaac429eacc697cdaa218534b70b39fa3abfa7b9930bc00baa01e9c361ab",
+  "phase_logs": [],
+  "commands": [
+    [
+      "/net/cs/111/111550055/devin/PP_Final/bin/sssp_stats",
+      "-g",
+      "/u/cs/111/111550055/pp_data/csr/LJ.csr",
+      "-a",
+      "dijkstra",
+      "-d",
+      "1",
+      "-t",
+      "1",
+      "--variant",
+      "all",
+      "--filter",
+      "pop",
+      "--seed",
+      "42",
+      "-r",
+      "1",
+      "--verify",
+      "--csv",
+      "/net/cs/111/111550055/devin/PP_Final/results/e1_delta_sweep/dijkstra_stats_LJ.csv.partial",
+      "-q",
+      "--sources",
+      "4"
+    ]
+  ]
+}

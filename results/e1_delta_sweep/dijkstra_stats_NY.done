@@ -1,0 +1,36 @@
+{
+  "job": "dijkstra_stats_NY",
+  "seconds": 0.6253049373626709,
+  "hostname": "cmpt052.hpc.cc.cs.nctu.edu.tw",
+  "rows": 4,
+  "csv_sha256": "02b3434494617cc8b406a494c006268f3f6d9d1d78c07346c9731ed3441a0f15",
+  "manifest_sha256": "484ebaac429eacc697cdaa218534b70b39fa3abfa7b9930bc00baa01e9c361ab",
+  "phase_logs": [],
+  "commands": [
+    [
+      "/net/cs/111/111550055/devin/PP_Final/bin/sssp_stats",
+      "-g",
+      "/u/cs/111/111550055/pp_data/csr/NY.csr",
+      "-a",
+      "dijkstra",
+      "-d",
+      "1",
+      "-t",
+      "1",
+      "--variant",
+      "all",
+      "--filter",
+      "pop",
+      "--seed",
+      "42",
+      "-r",
+      "1",
+      "--verify",
+      "--csv",
+      "/net/cs/111/111550055/devin/PP_Final/results/e1_delta_sweep/dijkstra_stats_NY.csv.partial",
+      "-q",
+      "--sources",
+      "4"
+    ]
+  ]
+}

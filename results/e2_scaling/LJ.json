@@ -1,0 +1,541 @@
+{
+  "graph": "LJ",
+  "variant": "all",
+  "filter": "merge",
+  "anchors": {
+    "6": 4096,
+    "12": 4096
+  },
+  "deltas": [
+    2048,
+    4096,
+    8192
+  ],
+  "e1_sha256": {
+    "dijkstra_stats_LJ.csv": "4549c6c3ac39bdd6bbf0fe727f4c89933e05a437e714631982cee31093111fbd",
+    "dijkstra_timing_LJ.csv": "3e1c684412466ce1513e785be9928010a9f0184b4ea7783ce01d0a560308afc0",
+    "timing_LJ_delta-seq_all_pop_t1_b00_s0.csv": "2fb058a1cda1f5567d22f6d4c3301e5e14c7f22a7cc11b965f1c00cc7dad00ea",
+    "timing_LJ_delta-seq_all_pop_t1_b01_s0.csv": "3e0ccdb2ccb80ee825a016c2473828a9b005667cd4f2d3c3e3994177513e3ebd",
+    "timing_LJ_delta-seq_all_pop_t1_b02_s0.csv": "bcbec442c62f4157924edcbee85db62d49b42bdb59256a6bb49e01f855cf84e2",
+    "timing_LJ_delta-omp_all_pop_t6_b00_s0.csv": "a8dd358b7c882ac1f1ebcadaa9fe8a9a23943373484983c6f994759318fbbf3f",
+    "timing_LJ_delta-omp_all_pop_t6_b01_s0.csv": "4e641fb7a4ab28b36e4f324c84f077cd36522560b37ab61be27eaab4d492017f",
+    "timing_LJ_delta-omp_all_pop_t6_b02_s0.csv": "e51a117c658e0b96bccd44fb2132466c9cab263ff01b54581bf270770fb46b0f",
+    "timing_LJ_delta-omp_all_pop_t12_b00_s0.csv": "051f4cc0ecd238672a839198aa46a07e112dda5fb082fed223cb65ae507bfa36",
+    "timing_LJ_delta-omp_all_pop_t12_b01_s0.csv": "6828195d41da5f78598dba2c3abeffde955f257569dc6efa6acd3271a6d4005d",
+    "stats_LJ_delta-seq_all_pop_t1_b00_s0.csv": "86e4b74cb0d69eb4e17bbc5eca3c4f02378deb4de23fec8d886ec30d7c34415d",
+    "stats_LJ_delta-seq_all_pop_t1_b01_s0.csv": "cbba306db1e2a45c43872b8b9e08b2ca974a49be58a0ea33ecb4e536925f92e8",
+    "stats_LJ_delta-seq_all_pop_t1_b02_s0.csv": "9f23349d693162da54b519f9fdbe354e5be5cac7d5d3e74090fdc590b097a25f",
+    "stats_LJ_delta-omp_all_pop_t6_b00_s0.csv": "bf242a3204b63e818c432863883fe3a7cb2fce5dee1e3be2a682cf729944664a",
+    "stats_LJ_delta-omp_all_pop_t6_b01_s0.csv": "6aee514725d4965fab34b86df4b614709bf4b397bd8dfef17c71c7c59c164983",
+    "timing_LJ_delta-seq_all_merge_t1_b00_s0.csv": "dddd22370c531bee9abb4cc68529ee7e20ea65f3e1e5ce84e8a8fe39cbc2584f",
+    "timing_LJ_delta-seq_all_merge_t1_b01_s0.csv": "cb573c52349d1b2794ac8241f6a3391c30eb8d458e4ca68025922c4c1d3c239e",
+    "timing_LJ_delta-seq_all_merge_t1_b02_s0.csv": "4b750af40713045ad6255a6b3b333efb9a406f954542425f630083fb5194ad0e",
+    "timing_LJ_delta-omp_all_merge_t6_b00_s0.csv": "027c5e552a4f1ca7f1c3d89039a7a4e1c4e533bf55173d561f367b1e363b1eb4",
+    "timing_LJ_delta-omp_all_merge_t6_b01_s0.csv": "01ddf597005f6bc396f86fe8574a65c1a534c5819cffc344e48eaaf0d9de0255",
+    "timing_LJ_delta-omp_all_merge_t6_b02_s0.csv": "1d496db587d0a5a328407c908479cfdb1b8cdd2dd58879544abb8a7a1d89a9fd",
+    "timing_LJ_delta-omp_all_merge_t12_b00_s0.csv": "5c95ebfc70f18c5ffde2851e44feaa5dbbfd1f763635c2afbf1dfa31c9135e13",
+    "timing_LJ_delta-omp_all_merge_t12_b01_s0.csv": "b618f0e5fd527312d00a285c2ccd5cd6cebba1070634c71a4247e7f1e4eccb13",
+    "stats_LJ_delta-seq_all_merge_t1_b00_s0.csv": "c158bac4336779d732d6a470cce5e498e81610efb0d293d4dc66bb65e810a827",
+    "stats_LJ_delta-seq_all_merge_t1_b01_s0.csv": "12206d5624ff1059fca6ea3151e95c64aa990aa6914b4bed7940db5aef4b2529",
+    "stats_LJ_delta-seq_all_merge_t1_b02_s0.csv": "6eca3224e3a7d206e84851997bcdb030d437cba91de9830a07570bcb8963753c",
+    "stats_LJ_delta-omp_all_merge_t6_b00_s0.csv": "a1819aa15199b0f2cfa219f84bd969a6f308e1969b2cce77d1641baa16b099c3",
+    "stats_LJ_delta-omp_all_merge_t6_b01_s0.csv": "f3d732d3f1bff810ace883872201c0e37c8123c4d87990fc72d4f71e3fb23e17",
+    "timing_LJ_delta-seq_lh_pop_t1_b00_s0.csv": "27aeddd1d9f1cb66031043ddab3614caea3edfab0c8e42b88f3093f749893d74",
+    "timing_LJ_delta-seq_lh_pop_t1_b01_s0.csv": "390c4de301a82cd00db3184f6d46e6ee5231b403de00ace73a3eba869ce163b8",
+    "timing_LJ_delta-seq_lh_pop_t1_b02_s0.csv": "a49a4da574beef3c8e20bad6890f9774b53867f307936b0fa248dca849e4d6c4",
+    "timing_LJ_delta-omp_lh_pop_t6_b00_s0.csv": "6bb0b8f4dfd7a807c7cf8096e6e32ed5277b0973e7cf41860e89ea1826316988",
+    "timing_LJ_delta-omp_lh_pop_t6_b01_s0.csv": "cb3e323191a645d51e25df588a0dca38bc1cef3680bb58660eee90d6a5f5f297",
+    "timing_LJ_delta-omp_lh_pop_t6_b02_s0.csv": "a346a15d7e030ae50711dfe234d4f8ba1796c392842f3a860eb73d49b09f3c9b",
+    "timing_LJ_delta-omp_lh_pop_t12_b00_s0.csv": "f342fd2d8a32fe31f3f468d4d0092f73afec2bcf69313d7a0f20fad5b436aca6",
+    "timing_LJ_delta-omp_lh_pop_t12_b01_s0.csv": "7aeda1651d9b1fee67930b19c32023e9c0a0fa407195e329516feb5b74d9b197",
+    "stats_LJ_delta-seq_lh_pop_t1_b00_s0.csv": "fadf3730967871dff5e8092c86ee98b24612a29ca7ef67ab8c0171eba7bf6e37",
+    "stats_LJ_delta-seq_lh_pop_t1_b01_s0.csv": "984e1756d67a71ed0570d2716ea201ae2092a8829ddc0fb44ddac354068ac03b",
+    "stats_LJ_delta-seq_lh_pop_t1_b02_s0.csv": "eba331377c2d2b3c3806e1ced58612af228ada5e42d507ca2ea2ee4ab1204075",
+    "stats_LJ_delta-omp_lh_pop_t6_b00_s0.csv": "1a5b5326d5e03f99037957c742c1c5d93bd3055cc6413d566ef843784dc6e9ce",
+    "stats_LJ_delta-omp_lh_pop_t6_b01_s0.csv": "f7ccabd69f9067d669c0cadee79af63a97ac7ed78e34879f1b3e04e8ced8f022",
+    "timing_LJ_delta-seq_lh_merge_t1_b00_s0.csv": "32a547d664f0ed02ff623389055ff6414e6459f339a3005c1fc03f0699a73ace",
+    "timing_LJ_delta-seq_lh_merge_t1_b01_s0.csv": "d63242ae7decbeb1a41f2c2c4a011c784e1ba7165b362c153a12ccd6ed5d21e9",
+    "timing_LJ_delta-seq_lh_merge_t1_b02_s0.csv": "7b27e1b46035b75fb30091d7c3133c031d3a71b461a6ffbb01eacd6f09075600",
+    "timing_LJ_delta-omp_lh_merge_t6_b00_s0.csv": "5b4cfaf605a0b1e310690963d11a03ff2653a5961b41a43e2114cb33c27e0b8d",
+    "timing_LJ_delta-omp_lh_merge_t6_b01_s0.csv": "9c59b830c074b0897a00a14868a71e4da788539e4811693031a39c6602486fc6",
+    "timing_LJ_delta-omp_lh_merge_t6_b02_s0.csv": "f8c324675024f4cef91b3d2cb0d42fe15c9f803d7669eca93f1f35e29265e137",
+    "timing_LJ_delta-omp_lh_merge_t12_b00_s0.csv": "c7c831be72324f9390e30397d0b667a0d1e1368463071127925b9923146b7af2",
+    "timing_LJ_delta-omp_lh_merge_t12_b01_s0.csv": "39ad65fae14aa27ac2adfb690296bd70400c61aa12ab4e5a1494d4666b30a5c9",
+    "stats_LJ_delta-seq_lh_merge_t1_b00_s0.csv": "a5c37f11d505ca4a39d778d7bf927037675f48bc5585e8516a27938e1c1f0364",
+    "stats_LJ_delta-seq_lh_merge_t1_b01_s0.csv": "7f78d7682bd5532c491c4414fea283108559c1ad6297e9832286760a50bcd196",
+    "stats_LJ_delta-seq_lh_merge_t1_b02_s0.csv": "97567152cd4ca90250d29582457230b41f605dc2e8d129c98cac3a524974bbd3",
+    "stats_LJ_delta-omp_lh_merge_t6_b00_s0.csv": "2b80bbcd4e384b04057c38bcf32424ae53a80a71c2ac9c7e3dae6e016672525b",
+    "stats_LJ_delta-omp_lh_merge_t6_b01_s0.csv": "6d4e97d778d545eba9e7d0aeb1e946c5e4092c93842a51e1fbd349136289911e"
+  },
+  "selection": "global fastest E1 OMP pair; pair held fixed for t6/t12 anchors",
+  "jobs": [
+    {
+      "id": "timing_LJ_all_merge_t1_b0",
+      "graph": "LJ",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "merge",
+      "threads": 1,
+      "deltas": [
+        2048,
+        4096
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_LJ_all_merge_t1_b1",
+      "graph": "LJ",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "merge",
+      "threads": 1,
+      "deltas": [
+        8192
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_LJ_all_merge_t2_b0",
+      "graph": "LJ",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "merge",
+      "threads": 2,
+      "deltas": [
+        2048,
+        4096
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_LJ_all_merge_t2_b1",
+      "graph": "LJ",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "merge",
+      "threads": 2,
+      "deltas": [
+        8192
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_LJ_all_merge_t4_b0",
+      "graph": "LJ",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "merge",
+      "threads": 4,
+      "deltas": [
+        2048,
+        4096
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_LJ_all_merge_t4_b1",
+      "graph": "LJ",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "merge",
+      "threads": 4,
+      "deltas": [
+        8192
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_LJ_all_merge_t6_b0",
+      "graph": "LJ",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "merge",
+      "threads": 6,
+      "deltas": [
+        2048,
+        4096
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_LJ_all_merge_t6_b1",
+      "graph": "LJ",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "merge",
+      "threads": 6,
+      "deltas": [
+        8192
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_LJ_all_merge_t8_b0",
+      "graph": "LJ",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "merge",
+      "threads": 8,
+      "deltas": [
+        2048,
+        4096
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_LJ_all_merge_t8_b1",
+      "graph": "LJ",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "merge",
+      "threads": 8,
+      "deltas": [
+        8192
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_LJ_all_merge_t12_b0",
+      "graph": "LJ",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "merge",
+      "threads": 12,
+      "deltas": [
+        2048,
+        4096
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_LJ_all_merge_t12_b1",
+      "graph": "LJ",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "merge",
+      "threads": 12,
+      "deltas": [
+        8192
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_LJ_all_merge_t1_b0",
+      "graph": "LJ",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "merge",
+      "threads": 1,
+      "deltas": [
+        2048,
+        4096
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_LJ_all_merge_t1_b1",
+      "graph": "LJ",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "merge",
+      "threads": 1,
+      "deltas": [
+        8192
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_LJ_all_merge_t2_b0",
+      "graph": "LJ",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "merge",
+      "threads": 2,
+      "deltas": [
+        2048,
+        4096
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_LJ_all_merge_t2_b1",
+      "graph": "LJ",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "merge",
+      "threads": 2,
+      "deltas": [
+        8192
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_LJ_all_merge_t4_b0",
+      "graph": "LJ",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "merge",
+      "threads": 4,
+      "deltas": [
+        2048,
+        4096
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_LJ_all_merge_t4_b1",
+      "graph": "LJ",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "merge",
+      "threads": 4,
+      "deltas": [
+        8192
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_LJ_all_merge_t6_b0",
+      "graph": "LJ",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "merge",
+      "threads": 6,
+      "deltas": [
+        2048,
+        4096
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_LJ_all_merge_t6_b1",
+      "graph": "LJ",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "merge",
+      "threads": 6,
+      "deltas": [
+        8192
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_LJ_all_merge_t8_b0",
+      "graph": "LJ",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "merge",
+      "threads": 8,
+      "deltas": [
+        2048,
+        4096
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_LJ_all_merge_t8_b1",
+      "graph": "LJ",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "merge",
+      "threads": 8,
+      "deltas": [
+        8192
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_LJ_all_merge_t12_b0",
+      "graph": "LJ",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "merge",
+      "threads": 12,
+      "deltas": [
+        2048,
+        4096
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_LJ_all_merge_t12_b1",
+      "graph": "LJ",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "merge",
+      "threads": 12,
+      "deltas": [
+        8192
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+graph,algo,variant,filter,sched,threads,delta,source,rep,time_ms,phases,buckets,heavy_passes,edges_scanned,relax_ok,expansions,stale,merge_dropped,reached,verified,stats_build
+kron23,delta-seq,lh,merge,-,1,262144,5360583,0,18114.7306,22,3,3,1680965306,24514532,24145760,0,368773,3846665,1,1
+kron23,delta-seq,lh,merge,-,1,262144,6309451,0,13297.9402,30,4,4,1220370229,17965150,16399580,0,1565571,3846665,1,1
+kron23,delta-seq,lh,merge,-,1,262144,7577169,0,13318.5500,29,4,4,1207948519,19807708,17209477,0,2598232,3846665,1,1
+kron23,delta-seq,lh,merge,-,1,262144,789102,0,13728.1036,24,3,3,1235620820,18924098,18776540,0,147559,3846665,1,1

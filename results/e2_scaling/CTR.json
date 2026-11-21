@@ -1,0 +1,606 @@
+{
+  "graph": "CTR",
+  "variant": "all",
+  "filter": "pop",
+  "anchors": {
+    "6": 16384,
+    "12": 32768
+  },
+  "deltas": [
+    8192,
+    16384,
+    32768,
+    65536
+  ],
+  "e1_sha256": {
+    "dijkstra_stats_CTR.csv": "24c75061f6c5f2707d602f0f9c6d822b55bc96bbf252c03a176ffe5f33eca554",
+    "dijkstra_timing_CTR.csv": "bf82860ea1e705693c9fea128d3b797c83f1222e26b9fa7eb9736a09b1d6280b",
+    "timing_CTR_delta-seq_all_pop_t1_b00_s0.csv": "e3ca6a9f8c8da2fa49a943087ccfec477b2365cf696173cdf214f78532d78dab",
+    "timing_CTR_delta-seq_all_pop_t1_b01_s0.csv": "b21b0d0ef8b1a99711ea386c14c56a2c8005715677e9930043000b1b7ba32ebf",
+    "timing_CTR_delta-seq_all_pop_t1_b02_s0.csv": "31db7b073793e86d65323ffcd3c53fb9f3cb63e6fd98cdf67b6d16bdbb0ad3e5",
+    "timing_CTR_delta-omp_all_pop_t6_b00_s0.csv": "e404749f08307646f05fb0ef9350282584764ac85705cf9a9e7828c3ced9d0e0",
+    "timing_CTR_delta-omp_all_pop_t6_b00_s2.csv": "fb4fdbffc235963308d9d1af742b792de9616541289360f0287a64edc4dd3c54",
+    "timing_CTR_delta-omp_all_pop_t6_b01_s0.csv": "78553441b815a303b92f0479ff3683489bed07b2eef577629b5fd35e65f18264",
+    "timing_CTR_delta-omp_all_pop_t6_b01_s3.csv": "1e14f81c70856cafb0a7e0420162f632aa335f55a85d2b49e68e800e83e06ce5",
+    "timing_CTR_delta-omp_all_pop_t6_b02_s0.csv": "0479d0db9c2d23303f6616b5c005abefa4858cf56d154f50946af8f00148887b",
+    "timing_CTR_delta-omp_all_pop_t6_b03_s0.csv": "dc39688ad08d98228bf4965b0b87a290d5aeecac9fa96de9f12de0a6647a0b95",
+    "timing_CTR_delta-omp_all_pop_t6_b04_s0.csv": "0e5c826b45e79082c2fae584e91936d6d74bb32a69a96e600bd495cace330dad",
+    "timing_CTR_delta-omp_all_pop_t6_b05_s0.csv": "aaa9bc9a33d901b551bc4687b5c83aef6828e5256c8e7e5f4bc5ae0c9d444480",
+    "timing_CTR_delta-omp_all_pop_t12_b00_s0.csv": "0f0c49120b9b479fc829770daabbc961cf4f2cd5748f506f4e462b3c65b007fe",
+    "timing_CTR_delta-omp_all_pop_t12_b00_s3.csv": "a4f20b652f0d7faf6e7828442f356dc586ad53f9e3a22617f11dcbe0f8355100",
+    "timing_CTR_delta-omp_all_pop_t12_b01_s0.csv": "3d4ebe940bd4a16a73bd20da08cf330611e50729f45184e5d762af5654975264",
+    "timing_CTR_delta-omp_all_pop_t12_b02_s0.csv": "bf1867f8b63c7525c5123f24ac51b180cacfcc8d9073908d645f84a3a5f87e2d",
+    "timing_CTR_delta-omp_all_pop_t12_b03_s0.csv": "6d3ddc7417eabff06be300933306440c9ad929f72998c74c2ac69d388ababd48",
+    "timing_CTR_delta-omp_all_pop_t12_b04_s0.csv": "a202ca5386b21c21cc8ea0e03469c380bc3aa07a7a110a4811bef3608582dda5",
+    "stats_CTR_delta-seq_all_pop_t1_b00_s0.csv": "7b5a246f8b55fed66b128c8b923a1867475790d44425fb86ba98fe8907c4e730",
+    "stats_CTR_delta-seq_all_pop_t1_b01_s0.csv": "d4cb371ab15a5cb176271f15d810546f92f903235b4c808aa4a386ab6b5a5847",
+    "stats_CTR_delta-seq_all_pop_t1_b02_s0.csv": "104d062e3b59426fd4e234b23e3e8bbba2090d6e7dd708c613f1971a868e0e73",
+    "stats_CTR_delta-omp_all_pop_t6_b00_s0.csv": "87ec8697c4ad22b54f3bae3705b2e8ad2a5679941b5a8e2aa3da0ed7f00b1a51",
+    "stats_CTR_delta-omp_all_pop_t6_b00_s3.csv": "9030c850ee38b7522832521bc87a3a189f921f8a359eea8ad95dea1d4d9e0413",
+    "stats_CTR_delta-omp_all_pop_t6_b01_s0.csv": "4b9b230494ee546c5affb39b09882b5cd2d21603599291313f2db6ce39956b8d",
+    "stats_CTR_delta-omp_all_pop_t6_b02_s0.csv": "80ba062ed4bf65bbb4bb235c6f189ae0336a5c7f85247d1585e79c85f9007fff",
+    "stats_CTR_delta-omp_all_pop_t6_b03_s0.csv": "61c2c9b8aadf48e272fd2a75f4ade4f23360d6d495e12d5d3f768ca2299e94b2",
+    "stats_CTR_delta-omp_all_pop_t6_b04_s0.csv": "7432847789e19497abfb4a6c2ab8365e5c1416a9401e4daee95c53d6aff32e32",
+    "timing_CTR_delta-seq_all_merge_t1_b00_s0.csv": "df8456c2adc1b689a1eec3928897612266dd577c1760ae2d7306bdd6541c942c",
+    "timing_CTR_delta-seq_all_merge_t1_b01_s0.csv": "c01afefbf4dd822410bf60a16412c12ca6b0e77f2f2c98b9991bb670fb895768",
+    "timing_CTR_delta-seq_all_merge_t1_b02_s0.csv": "08f9364a1b5a517b7a8ff3c4f4df74185fd15b73f3ab45e10899bbcb8ba4286b",
+    "timing_CTR_delta-omp_all_merge_t6_b00_s0.csv": "3cce0a14dd301fd0e217d3ffcbc8dae24e4005adaa18e3aa26305e894d724ad4",
+    "timing_CTR_delta-omp_all_merge_t6_b00_s2.csv": "d8f6910a84acc7c80e92615476af6bbbf0d45fd2ec10e19e77ee01066abd39c9",
+    "timing_CTR_delta-omp_all_merge_t6_b01_s0.csv": "fe8e5d6e51a37d68f56d9ae217cd4d4a9cda6c6c40d0c4561e45124ff7e06276",
+    "timing_CTR_delta-omp_all_merge_t6_b01_s3.csv": "a4db4f77f1d5f97a61a735c81cd23a1f1207fbe7d5e454658d25af7c9dc79517",
+    "timing_CTR_delta-omp_all_merge_t6_b02_s0.csv": "c8d58853c8a9ebe570890899e61ac275d21832af1c8abf4b6d5931048fd619cb",
+    "timing_CTR_delta-omp_all_merge_t6_b03_s0.csv": "b3de701ab52e1dff8af1af202c2769ae31c2d3f269dcfcaf6d26e8c0b289270a",
+    "timing_CTR_delta-omp_all_merge_t6_b04_s0.csv": "c1d53cc5073c0d0555b46b8ddd26cab40b6ce8120018fa0f81f3806e19a37fd9",
+    "timing_CTR_delta-omp_all_merge_t6_b05_s0.csv": "882aec34d32b4095d24fc3fb2a2a936de100e166d03d507dc71918be5e602eed",
+    "timing_CTR_delta-omp_all_merge_t12_b00_s0.csv": "153d0489722213e2c855bc15fb3ec984467d6e4256bbbdd2128756a2c5838d33",
+    "timing_CTR_delta-omp_all_merge_t12_b00_s3.csv": "4482b380f31d75188efa4dc3f07f5957f1b448efaadf79df8315975466ec4ea9",
+    "timing_CTR_delta-omp_all_merge_t12_b01_s0.csv": "4250a120d0c1ca8a7aeaba63ae2d289933694936b45579c9fb76af7eb350cac2",
+    "timing_CTR_delta-omp_all_merge_t12_b02_s0.csv": "c67ece345c15952c9993fae96bcd7a0b89ada034899b47d6c2ef0f65643a9b86",
+    "timing_CTR_delta-omp_all_merge_t12_b03_s0.csv": "31344cfa59d3eefff06e7f8cf75ee958da41eda0e946c205c435cc1f3ffebdfa",
+    "timing_CTR_delta-omp_all_merge_t12_b04_s0.csv": "e31f8fb11d291ab7116efdb56dc4df54a1ea7655b59032c2000ba7481cce0d3a",
+    "stats_CTR_delta-seq_all_merge_t1_b00_s0.csv": "e47f73741aad859b177300d823aaec9f5f2ffa3d0df29339a2643b4b780187f4",
+    "stats_CTR_delta-seq_all_merge_t1_b01_s0.csv": "3822d4ced3a3a5e974109448d0bd3d2f9dca82a6d059dce4c4686ef5c9b20e7f",
+    "stats_CTR_delta-seq_all_merge_t1_b02_s0.csv": "987afcc99027647277a5534e22da00ecf633048b65423a0e836d8a89b16295d2",
+    "stats_CTR_delta-omp_all_merge_t6_b00_s0.csv": "279c5d1555427f2c481a0aa04905e25aa4889a82ac6128d0071c0837130ae1a7",
+    "stats_CTR_delta-omp_all_merge_t6_b00_s3.csv": "f5d4f47cb9b578fcbb78f11187db96f596a154c3a30644f2bed33917e358fb43",
+    "stats_CTR_delta-omp_all_merge_t6_b01_s0.csv": "1fcac8c24759e3cf92db5fc51858b13432f953bbf728c3c4840101cbbaab78a9",
+    "stats_CTR_delta-omp_all_merge_t6_b02_s0.csv": "c14942a6416ec54a8adce6e2f167175bbf2298a3ba1852dc532da782af033fc7",
+    "stats_CTR_delta-omp_all_merge_t6_b03_s0.csv": "6d124af77be5fd7198253896168cf2d8ae6ebc61d8130373c86a03d25703bf0b",
+    "stats_CTR_delta-omp_all_merge_t6_b04_s0.csv": "a9130294cc26d67c5dfc869bbcd7a117d6bce590f32743ad01d4a1cf7023cb35",
+    "timing_CTR_delta-seq_lh_pop_t1_b00_s0.csv": "4395eb271a9b09a25ac802bed9bd3b63b25deebbc683108028d6c021a215ccaf",
+    "timing_CTR_delta-seq_lh_pop_t1_b01_s0.csv": "23092dd362a0051a6703920dbb313110ba7bf23674b6554168de79052931c20e",
+    "timing_CTR_delta-seq_lh_pop_t1_b02_s0.csv": "90d067fb5ff657a1ca328c9ee566504e74f9ee7b6487822a97bb95e849f78f01",
+    "timing_CTR_delta-omp_lh_pop_t6_b00_s0.csv": "5f7828b13bb30097a038a9905977e4b2da22f9f910198177ba8ad79b748f0e4b",
+    "timing_CTR_delta-omp_lh_pop_t6_b00_s2.csv": "abc065b95dc8dc01ba50c96004fc1a5d1663559689101bbf69c9a8ec2be3a5b4",
+    "timing_CTR_delta-omp_lh_pop_t6_b01_s0.csv": "d1ef1ab135595b9fa831a5aa21ece62213437c7bbe55e9d654a03fd3e765908e",
+    "timing_CTR_delta-omp_lh_pop_t6_b01_s3.csv": "b87700466d14a5f9d15cfb8667dc569c6dd1002b2492bf4065e74f89906c7749",
+    "timing_CTR_delta-omp_lh_pop_t6_b02_s0.csv": "14b30b3c89dee6698bec7265c682686be9dee7de3dabe013d415d863bdb7b347",
+    "timing_CTR_delta-omp_lh_pop_t6_b03_s0.csv": "728dec001fef66fe4013820e6283647b720f4397db179185fa82d956b3c70c3e",
+    "timing_CTR_delta-omp_lh_pop_t6_b04_s0.csv": "cb6d992af1328939fa475c34ab92dff0eeeb09aaff55ff80702bc16c817fe22a",
+    "timing_CTR_delta-omp_lh_pop_t6_b05_s0.csv": "3d56b35fd11e91d08add59ab9dc5e3f6ba09ba4f8365f9528cb4785f73a3fffc",
+    "timing_CTR_delta-omp_lh_pop_t12_b00_s0.csv": "a91bcead8f5b4f9b017c0f0c6f04e40d2f9fe38ab08f431d29792a4d4afa5acd",
+    "timing_CTR_delta-omp_lh_pop_t12_b00_s3.csv": "8be4c2086023fe3a3d7810a673804605ee5e91a109a2f71e92852210136a0db7",
+    "timing_CTR_delta-omp_lh_pop_t12_b01_s0.csv": "c5cb1a83576531ddd28a8992ff191f2567b6a3663cf306906fe3201ccab7e14a",
+    "timing_CTR_delta-omp_lh_pop_t12_b02_s0.csv": "2e29db5a8c632eb6f2d64670aabf67aa8c5aae945d846daefdbcbe1668d19c4a",
+    "timing_CTR_delta-omp_lh_pop_t12_b03_s0.csv": "9d60fc54b995c2b134cf14735ed4bcd85c1bbd0747320f4bba2f21b280b44ed0",
+    "timing_CTR_delta-omp_lh_pop_t12_b04_s0.csv": "9464015a13b96a4362627109fad28d3807e40265e46ddbe70d98a07eb253c195",
+    "stats_CTR_delta-seq_lh_pop_t1_b00_s0.csv": "935942023e678265cefdddd807cf4e31d5eccbc2277ff9095aebda03fd8a24f4",
+    "stats_CTR_delta-seq_lh_pop_t1_b01_s0.csv": "87f34c73905db9fd46b1c4056a12ecb6f10ddb826f6a74151b14191870f71c04",
+    "stats_CTR_delta-seq_lh_pop_t1_b02_s0.csv": "a887af6b74ce204b2bc701e984cb135fc6c79bf63165beefd465f806f8fcf1cd",
+    "stats_CTR_delta-omp_lh_pop_t6_b00_s0.csv": "72ec04d390fe5dacc7a7fc58b99ab519a676ba043f5436134769eeeae31f039e",
+    "stats_CTR_delta-omp_lh_pop_t6_b00_s3.csv": "9f9f465c2cf09f5d1c2b2fa7f560f24db6bf693d7c55db1f8fb97c0802ca075e",
+    "stats_CTR_delta-omp_lh_pop_t6_b01_s0.csv": "b8807cc5a1250f736f2557b859d598ad5d17ced52c51097ebdf9373d7531d994",
+    "stats_CTR_delta-omp_lh_pop_t6_b02_s0.csv": "54e64ff49d4070626ddd7c6268284522613a180455cd65b0ccc54afeee366277",
+    "stats_CTR_delta-omp_lh_pop_t6_b03_s0.csv": "1197ff08fde9f585b2eb8c917d00e76a6e4ef51ff374b99d30565580451f4c4c",
+    "stats_CTR_delta-omp_lh_pop_t6_b04_s0.csv": "3e7f2db28bd931e1c661e6fd8811b5a57d62dd1bd508e8d41941916d9c0c4e84",
+    "timing_CTR_delta-seq_lh_merge_t1_b00_s0.csv": "f67350ec7498eb1b6632b2ff419b6fbfacce0d2b410b2e97e72626fe314409d4",
+    "timing_CTR_delta-seq_lh_merge_t1_b01_s0.csv": "c5c715275de010d51ceed0ee434cd2faf5b135327fcd78f08f2760e9ab6b7cd4",
+    "timing_CTR_delta-seq_lh_merge_t1_b02_s0.csv": "e90ce306dd48c05261f56c0add3c8dae845056efdb6943e774eaf2608758d7ab",
+    "timing_CTR_delta-omp_lh_merge_t6_b00_s0.csv": "2ce7964f9a998e5b5cd65f9a77ceab3749ab863b35887694f45823e47788902b",
+    "timing_CTR_delta-omp_lh_merge_t6_b00_s2.csv": "e6469fcd2b6e0acd518859d9f6c25bc341e8625d7e7be06ad5ce4d3c19f227a4",
+    "timing_CTR_delta-omp_lh_merge_t6_b01_s0.csv": "41039b0a516aec633fed475bafc17399ac3a17e7f78039f2b06bc403142366f7",
+    "timing_CTR_delta-omp_lh_merge_t6_b01_s3.csv": "9cc48ea5f0506841c741efbf7bdc2e3d941691e4eac5ea72e02de50471264f08",
+    "timing_CTR_delta-omp_lh_merge_t6_b02_s0.csv": "32f34a1ba098bd32c2a51072cb52d6f06e6c9c820d9faf5b949b78825c19c903",
+    "timing_CTR_delta-omp_lh_merge_t6_b03_s0.csv": "6a62fd572b56fe8b84a7d62318203d29d5db3ad08d6bff14644af2e972fd9b39",
+    "timing_CTR_delta-omp_lh_merge_t6_b04_s0.csv": "8f33513dd3698c430d2824b496a8adc77c2a85753c7b9ba06eeace8e957b659a",
+    "timing_CTR_delta-omp_lh_merge_t6_b05_s0.csv": "75ea3ad94f4f44f10b85ef3a24426da53f80312623b2877e4de8f4adbb012f64",
+    "timing_CTR_delta-omp_lh_merge_t12_b00_s0.csv": "f03a27ff5a7f8077bb612a7d135153a51ff96277e066b2320dc8e0d7eeee7e93",
+    "timing_CTR_delta-omp_lh_merge_t12_b00_s3.csv": "c7cbdea8be128673826c7145ce353ec0341b60e81b052334dcb0914e800ef58b",
+    "timing_CTR_delta-omp_lh_merge_t12_b01_s0.csv": "a3c93ee37c4e5d4e3102c7da2bccfff3013ee671a43b390fb6f57aa259844352",
+    "timing_CTR_delta-omp_lh_merge_t12_b02_s0.csv": "79638bd760721f9ea7983c96d3bcebc20675b440fb8df8bfde523c39070f5437",
+    "timing_CTR_delta-omp_lh_merge_t12_b03_s0.csv": "231d4e19732797031f17a66360c06c57b58a6986bdd86f8605b307626f313d06",
+    "timing_CTR_delta-omp_lh_merge_t12_b04_s0.csv": "75bd5c9ce19034bd929fa63b24be3ee8d2accc0b798e3424d0946380c7b66660",
+    "stats_CTR_delta-seq_lh_merge_t1_b00_s0.csv": "07146ab03705741ae825c309c95f18836a1e117edc175d1944346c58d80ff6aa",
+    "stats_CTR_delta-seq_lh_merge_t1_b01_s0.csv": "bdf552587fcc5bf81e25632f8fe433c3d913635a136bd1eee569948495b7c2bc",
+    "stats_CTR_delta-seq_lh_merge_t1_b02_s0.csv": "aab64aff7547eed4255e13330d9474447a83d19728de301d156b8b20ffe0c500",
+    "stats_CTR_delta-omp_lh_merge_t6_b00_s0.csv": "a9e68cad64173598faa48244394ac8e361c29df21de5cb8ef9b7ae9b99d79776",
+    "stats_CTR_delta-omp_lh_merge_t6_b00_s3.csv": "85b6301f11bef763c4e92f1790495ff94814f46ced2e72f6945656b31315d524",
+    "stats_CTR_delta-omp_lh_merge_t6_b01_s0.csv": "5c1da61e90a102c615aa4660f74295ea282ba910412b7d276e5fe9f414f746b0",
+    "stats_CTR_delta-omp_lh_merge_t6_b02_s0.csv": "ec860d2034549e83fabb681aaa1ada970090a0aeb678a418baf9040a6ad6bec1",
+    "stats_CTR_delta-omp_lh_merge_t6_b03_s0.csv": "a9b3dcfcce487dd7bb16723947495e728f5508d9b9edc2c2b0340f76888a0f1c",
+    "stats_CTR_delta-omp_lh_merge_t6_b04_s0.csv": "76e05ec4ce81d7ab8cd535eea5c7af2c1ecf867c79d31d4aba9e9339ea53d809"
+  },
+  "selection": "global fastest E1 OMP pair; pair held fixed for t6/t12 anchors",
+  "jobs": [
+    {
+      "id": "timing_CTR_all_pop_t1_b0",
+      "graph": "CTR",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 1,
+      "deltas": [
+        8192,
+        16384
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_CTR_all_pop_t1_b1",
+      "graph": "CTR",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 1,
+      "deltas": [
+        32768,
+        65536
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_CTR_all_pop_t2_b0",
+      "graph": "CTR",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 2,
+      "deltas": [
+        8192,
+        16384
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_CTR_all_pop_t2_b1",
+      "graph": "CTR",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 2,
+      "deltas": [
+        32768,
+        65536
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_CTR_all_pop_t4_b0",
+      "graph": "CTR",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 4,
+      "deltas": [
+        8192,
+        16384
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_CTR_all_pop_t4_b1",
+      "graph": "CTR",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 4,
+      "deltas": [
+        32768,
+        65536
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_CTR_all_pop_t6_b0",
+      "graph": "CTR",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 6,
+      "deltas": [
+        8192,
+        16384
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_CTR_all_pop_t6_b1",
+      "graph": "CTR",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 6,
+      "deltas": [
+        32768,
+        65536
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_CTR_all_pop_t8_b0",
+      "graph": "CTR",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 8,
+      "deltas": [
+        8192,
+        16384
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_CTR_all_pop_t8_b1",
+      "graph": "CTR",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 8,
+      "deltas": [
+        32768,
+        65536
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_CTR_all_pop_t12_b0",
+      "graph": "CTR",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 12,
+      "deltas": [
+        8192,
+        16384
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_CTR_all_pop_t12_b1",
+      "graph": "CTR",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 12,
+      "deltas": [
+        32768,
+        65536
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_CTR_all_pop_t1_b0",
+      "graph": "CTR",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 1,
+      "deltas": [
+        8192,
+        16384
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_CTR_all_pop_t1_b1",
+      "graph": "CTR",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 1,
+      "deltas": [
+        32768,
+        65536
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_CTR_all_pop_t2_b0",
+      "graph": "CTR",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 2,
+      "deltas": [
+        8192,
+        16384
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_CTR_all_pop_t2_b1",
+      "graph": "CTR",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 2,
+      "deltas": [
+        32768,
+        65536
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_CTR_all_pop_t4_b0",
+      "graph": "CTR",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 4,
+      "deltas": [
+        8192,
+        16384
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_CTR_all_pop_t4_b1",
+      "graph": "CTR",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 4,
+      "deltas": [
+        32768,
+        65536
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_CTR_all_pop_t6_b0",
+      "graph": "CTR",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 6,
+      "deltas": [
+        8192,
+        16384
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_CTR_all_pop_t6_b1",
+      "graph": "CTR",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 6,
+      "deltas": [
+        32768,
+        65536
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_CTR_all_pop_t8_b0",
+      "graph": "CTR",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 8,
+      "deltas": [
+        8192,
+        16384
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_CTR_all_pop_t8_b1",
+      "graph": "CTR",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 8,
+      "deltas": [
+        32768,
+        65536
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_CTR_all_pop_t12_b0",
+      "graph": "CTR",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 12,
+      "deltas": [
+        8192,
+        16384
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_CTR_all_pop_t12_b1",
+      "graph": "CTR",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 12,
+      "deltas": [
+        32768,
+        65536
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  ]
+}

@@ -1,0 +1,509 @@
+{
+  "graph": "NY",
+  "variant": "all",
+  "filter": "pop",
+  "anchors": {
+    "6": 16384,
+    "12": 16384
+  },
+  "deltas": [
+    8192,
+    16384,
+    32768
+  ],
+  "e1_sha256": {
+    "dijkstra_stats_NY.csv": "02b3434494617cc8b406a494c006268f3f6d9d1d78c07346c9731ed3441a0f15",
+    "dijkstra_timing_NY.csv": "f827b580fdd7f5683bc1db00176b915025c1b8f7d635624bbdd4e618440cdcbf",
+    "timing_NY_delta-seq_all_pop_t1_b00_s0.csv": "b7e49a077289f6f6308c219b5132a1773504696380b4a8b0e0519d58f4262c98",
+    "timing_NY_delta-omp_all_pop_t6_b00_s0.csv": "f5e21d9a5b187f10365b60004f1f53362bbc60aa049196cd6c1595009254a0ac",
+    "timing_NY_delta-omp_all_pop_t12_b00_s0.csv": "a62f4adb849f40b8d6175c572d99cf8600cfbcf498e9cc64d880a15a86e8f5ff",
+    "stats_NY_delta-seq_all_pop_t1_b00_s0.csv": "4d41aad065be86bf75ec1cf822d9164cb47053d60bb824e5043195be46dcbb0f",
+    "stats_NY_delta-omp_all_pop_t6_b00_s0.csv": "bd11959f0d81490500c3c9873090d1bfcb90370a9e34fcb9e6052e26ed4958a5",
+    "timing_NY_delta-seq_all_merge_t1_b00_s0.csv": "8d400ac574ed1bbd4f5752d34d7004172a3037c35e71a0ccb9d5b3406323d21a",
+    "timing_NY_delta-omp_all_merge_t6_b00_s0.csv": "d90eca88c3a14ef88123983667358a9f699604368492771a8cf821e5e1dd63e9",
+    "timing_NY_delta-omp_all_merge_t12_b00_s0.csv": "adcabaf80a7d8aa0c1e704454ab9e68b381922c6a625f71a3189f3f81cc9683f",
+    "stats_NY_delta-seq_all_merge_t1_b00_s0.csv": "350422e98202cafc5957aa11ba8e880484f7613fd63e613280d40d447eee4315",
+    "stats_NY_delta-omp_all_merge_t6_b00_s0.csv": "ae4fae3fda3b27330597bcca2796477257c5d53fb2aa8de8f97af920bfbb3ff7",
+    "timing_NY_delta-seq_lh_pop_t1_b00_s0.csv": "ce8372fbb92d34bf54ec11a7cbb44692c0ef43f862ed7eaeeefb99e47a4bc00d",
+    "timing_NY_delta-omp_lh_pop_t6_b00_s0.csv": "e9789ff278a608ba6deba6c8639ac24dacfa029f2b21fa8a07ac72d4b6323911",
+    "timing_NY_delta-omp_lh_pop_t12_b00_s0.csv": "6335b3ee999cd5a21f31347c9813710147e557cfcf56d9fc2057f696aad1b04d",
+    "stats_NY_delta-seq_lh_pop_t1_b00_s0.csv": "6ecff6e8cad257093ecdb6d687c4ed6c84b2ba0bcf0db1ee27e027381965bf37",
+    "stats_NY_delta-omp_lh_pop_t6_b00_s0.csv": "fa5a430c919ab7977f786ba7910f5e08b1b7d05881cfb132ca12ca1cb2030449",
+    "timing_NY_delta-seq_lh_merge_t1_b00_s0.csv": "7ce7b00df49f2e3cde1f6822d4a18de830a1331cc0b826a9af47a8c838eeb1b3",
+    "timing_NY_delta-omp_lh_merge_t6_b00_s0.csv": "158e4fd9f321e720e5b7273bbac9b28daf15f3840e505f07ef5612e77dccbb6b",
+    "timing_NY_delta-omp_lh_merge_t12_b00_s0.csv": "a98f9c8f8fd48dfc0faea855df557883931e3c481346f8b749b16a2b84a77360",
+    "stats_NY_delta-seq_lh_merge_t1_b00_s0.csv": "d31619071937a0c0507056c96964719a8fdecbf298195810522ba91a2bbdf274",
+    "stats_NY_delta-omp_lh_merge_t6_b00_s0.csv": "78b172ebece8f247e93b052610598d2fdd549e6054ef181bc355fde8151fb6ee"
+  },
+  "selection": "global fastest E1 OMP pair; pair held fixed for t6/t12 anchors",
+  "jobs": [
+    {
+      "id": "timing_NY_all_pop_t1_b0",
+      "graph": "NY",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 1,
+      "deltas": [
+        8192,
+        16384
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_NY_all_pop_t1_b1",
+      "graph": "NY",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 1,
+      "deltas": [
+        32768
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_NY_all_pop_t2_b0",
+      "graph": "NY",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 2,
+      "deltas": [
+        8192,
+        16384
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_NY_all_pop_t2_b1",
+      "graph": "NY",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 2,
+      "deltas": [
+        32768
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_NY_all_pop_t4_b0",
+      "graph": "NY",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 4,
+      "deltas": [
+        8192,
+        16384
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_NY_all_pop_t4_b1",
+      "graph": "NY",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 4,
+      "deltas": [
+        32768
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_NY_all_pop_t6_b0",
+      "graph": "NY",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 6,
+      "deltas": [
+        8192,
+        16384
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_NY_all_pop_t6_b1",
+      "graph": "NY",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 6,
+      "deltas": [
+        32768
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_NY_all_pop_t8_b0",
+      "graph": "NY",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 8,
+      "deltas": [
+        8192,
+        16384
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_NY_all_pop_t8_b1",
+      "graph": "NY",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 8,
+      "deltas": [
+        32768
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_NY_all_pop_t12_b0",
+      "graph": "NY",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 12,
+      "deltas": [
+        8192,
+        16384
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "timing_NY_all_pop_t12_b1",
+      "graph": "NY",
+      "kind": "timing",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 12,
+      "deltas": [
+        32768
+      ],
+      "reps": 3,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_NY_all_pop_t1_b0",
+      "graph": "NY",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 1,
+      "deltas": [
+        8192,
+        16384
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_NY_all_pop_t1_b1",
+      "graph": "NY",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 1,
+      "deltas": [
+        32768
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_NY_all_pop_t2_b0",
+      "graph": "NY",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 2,
+      "deltas": [
+        8192,
+        16384
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_NY_all_pop_t2_b1",
+      "graph": "NY",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 2,
+      "deltas": [
+        32768
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_NY_all_pop_t4_b0",
+      "graph": "NY",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 4,
+      "deltas": [
+        8192,
+        16384
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_NY_all_pop_t4_b1",
+      "graph": "NY",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 4,
+      "deltas": [
+        32768
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_NY_all_pop_t6_b0",
+      "graph": "NY",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 6,
+      "deltas": [
+        8192,
+        16384
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_NY_all_pop_t6_b1",
+      "graph": "NY",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 6,
+      "deltas": [
+        32768
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_NY_all_pop_t8_b0",
+      "graph": "NY",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 8,
+      "deltas": [
+        8192,
+        16384
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_NY_all_pop_t8_b1",
+      "graph": "NY",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 8,
+      "deltas": [
+        32768
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_NY_all_pop_t12_b0",
+      "graph": "NY",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 12,
+      "deltas": [
+        8192,
+        16384
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "stats_NY_all_pop_t12_b1",
+      "graph": "NY",
+      "kind": "stats",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": 12,
+      "deltas": [
+        32768
+      ],
+      "reps": 1,
+      "sources": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  ]
+}

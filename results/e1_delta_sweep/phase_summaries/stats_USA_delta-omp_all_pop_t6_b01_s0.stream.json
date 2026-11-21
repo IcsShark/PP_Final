@@ -1,0 +1,57 @@
+{
+  "version": 2,
+  "transport": "fifo",
+  "rows": [
+    {
+      "graph": "USA",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": "6",
+      "delta": "2",
+      "source": "18083971",
+      "phases": 12826250,
+      "empty_frontier": 0,
+      "empty_expanded": 401613,
+      "empty_edges": 401613,
+      "heavy_phases": 0,
+      "frontier_sum": 25664481,
+      "expanded_sum": 23955425,
+      "edges_sum": 57737236
+    },
+    {
+      "graph": "USA",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": "6",
+      "delta": "2",
+      "source": "15303106",
+      "phases": 12404796,
+      "empty_frontier": 0,
+      "empty_expanded": 392066,
+      "empty_edges": 392066,
+      "heavy_phases": 0,
+      "frontier_sum": 25665785,
+      "expanded_sum": 23955363,
+      "edges_sum": 57737029
+    },
+    {
+      "graph": "USA",
+      "algo": "delta-omp",
+      "variant": "all",
+      "filter": "pop",
+      "threads": "6",
+      "delta": "2",
+      "source": "18011882",
+      "phases": 13187092,
+      "empty_frontier": 0,
+      "empty_expanded": 426013,
+      "empty_edges": 426013,
+      "heavy_phases": 0,
+      "frontier_sum": 25664635,
+      "expanded_sum": 23955340,
+      "edges_sum": 57736941
+    }
+  ]
+}

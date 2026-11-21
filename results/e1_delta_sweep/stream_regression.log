@@ -1,0 +1,8 @@
+test_existing_ny_raw_log_exact_equivalence (scripts.exp.phase_stream_test.PhaseStreamTests.test_existing_ny_raw_log_exact_equivalence) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 8.806s
+
+OK
+EXACT NY EQUIVALENCE e1_phase_reduce: 19 runs, 802522 phases in 1.493s; stats_NY_delta-seq_all_pop_t1_b00_s0_source36023.phases.csv.gz
+EXACT NY EQUIVALENCE e2_phase_reduce: 19 runs, 802522 phases in 2.871s; stats_NY_delta-seq_all_pop_t1_b00_s0_source36023.phases.csv.gz

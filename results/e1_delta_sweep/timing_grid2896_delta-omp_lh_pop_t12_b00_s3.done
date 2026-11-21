@@ -1,0 +1,38 @@
+{
+  "job": "timing_grid2896_delta-omp_lh_pop_t12_b00_s3",
+  "seconds": 145.78602695465088,
+  "hostname": "cmpt048.hpc.cc.cs.nctu.edu.tw",
+  "rows": 3,
+  "csv_sha256": "62a3fb429fd67971fd486c472fe6f0880719a8369b509453a27ec11d51064640",
+  "manifest_sha256": "484ebaac429eacc697cdaa218534b70b39fa3abfa7b9930bc00baa01e9c361ab",
+  "phase_logs": [],
+  "phase_summary": null,
+  "phase_summary_sha256": null,
+  "commands": [
+    [
+      "/net/cs/111/111550055/devin/PP_Final/bin/sssp",
+      "-g",
+      "/u/cs/111/111550055/pp_data/csr/grid2896.csr",
+      "-a",
+      "delta-omp",
+      "-d",
+      "1",
+      "-t",
+      "12",
+      "--variant",
+      "lh",
+      "--filter",
+      "pop",
+      "--seed",
+      "42",
+      "-r",
+      "3",
+      "--verify",
+      "--csv",
+      "/net/cs/111/111550055/devin/PP_Final/results/e1_delta_sweep/timing_grid2896_delta-omp_lh_pop_t12_b00_s3.csv.partial",
+      "-q",
+      "--source",
+      "1142893"
+    ]
+  ]
+}

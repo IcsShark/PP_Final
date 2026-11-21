@@ -1,0 +1,40 @@
+{
+  "version": 2,
+  "transport": "fifo",
+  "rows": [
+    {
+      "graph": "USA",
+      "algo": "delta-omp",
+      "variant": "lh",
+      "filter": "pop",
+      "threads": "6",
+      "delta": "1",
+      "source": "18011882",
+      "phases": 34463280,
+      "empty_frontier": 0,
+      "empty_expanded": 792810,
+      "empty_edges": 17627276,
+      "heavy_phases": 16835235,
+      "frontier_sum": 49611926,
+      "expanded_sum": 47894694,
+      "edges_sum": 57708624
+    },
+    {
+      "graph": "USA",
+      "algo": "delta-omp",
+      "variant": "lh",
+      "filter": "pop",
+      "threads": "6",
+      "delta": "1",
+      "source": "3263369",
+      "phases": 36860166,
+      "empty_frontier": 0,
+      "empty_expanded": 919908,
+      "empty_edges": 18889282,
+      "heavy_phases": 17970129,
+      "frontier_sum": 49616528,
+      "expanded_sum": 47894694,
+      "edges_sum": 57708624
+    }
+  ]
+}

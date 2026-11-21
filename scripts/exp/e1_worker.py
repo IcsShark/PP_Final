@@ -1,0 +1,151 @@
+#!/usr/bin/env python3
+"""Compute-node worker. Only publishes a CSV/.done after full verification."""
+import argparse
+import json
+import os
+import signal
+import socket
+import subprocess
+import sys
+import time
+import traceback
+
+from e1_common import DATA, OUT, ROOT, digest, job_path, load_manifest, read_rows, revision, validate_rows
+from phase_stream import PhaseStream
+
+sys.path.insert(0, str(ROOT / 'analysis'))
+from e1_phase_reduce import summarize
+
+
+def run_checked(cmd, csv_path, log_path, check=None):
+    with log_path.open('a') as log:
+        proc = subprocess.Popen(cmd, cwd=ROOT, stdout=log, stderr=subprocess.STDOUT,
+                                start_new_session=True)
+        try:
+            deadline = time.monotonic() + 1100
+            while proc.poll() is None:
+                if check:
+                    check()
+                if time.monotonic() > deadline:
+                    raise TimeoutError('kernel invocation exceeded 1100 seconds')
+                for row in read_rows(csv_path):
+                    if row.get('verified') == '0':
+                        raise RuntimeError('verified=0: stopping experiment immediately')
+                if 'WRONG' in log_path.read_text(errors='replace') or 'MISMATCH' in log_path.read_text(errors='replace'):
+                    raise RuntimeError('WRONG/MISMATCH: stopping experiment immediately')
+                time.sleep(0.5)
+            if proc.returncode:
+                raise RuntimeError(f'kernel exited {proc.returncode}; see {log_path}')
+            if check:
+                check()
+        except BaseException:
+            if proc.poll() is None:
+                os.killpg(proc.pid, signal.SIGKILL)
+            proc.wait()
+            raise
+    validate_rows(read_rows(csv_path))
+
+
+def worker(job):
+    OUT.mkdir(parents=True, exist_ok=True)
+    stem = OUT / job['id']
+    final = job_path(job)
+    done = stem.with_suffix('.done')
+    if done.exists():
+        validate_rows(read_rows(final), len(job['sources']) * len(job['deltas']) * job['reps'])
+        return
+    start = time.time()
+    partial = stem.with_suffix('.csv.partial')
+    if partial.exists():
+        partial.rename(str(partial) + f'.previous.{time.time_ns()}')
+    log = stem.with_suffix('.kernel.log')
+    host = socket.gethostname()
+    hardware = OUT / f'lscpu.{host}.txt'
+    if not hardware.exists():
+        hardware.write_text(subprocess.check_output(['lscpu'], text=True))
+    affinity = sorted(os.sched_getaffinity(0))
+    if len(affinity) < 12:
+        raise RuntimeError(f'whole-node allocation required, affinity={affinity}')
+    is_dij = job['algo'] == 'dijkstra'
+    is_stats = 'stats' in job['kind']
+    if is_dij:
+        source_groups = [None]
+    else:
+        rows = read_rows(OUT / f'dijkstra_stats_{job["graph"]}.csv')
+        validate_rows(rows, 4)
+        sources = [int(r['source']) for r in rows]
+        source_groups = [sources[i] for i in job['sources']]
+    phase_rows = []
+    commands = []
+    for source in source_groups:
+        cmd = [str(ROOT / 'bin' / ('sssp_stats' if is_stats else 'sssp')),
+               '-g', str(DATA / (job['graph'] + '.csr')), '-a', job['algo'],
+               '-d', ','.join(map(str, job['deltas'])), '-t', str(job['threads']),
+               '--variant', job['variant'], '--filter', job['filter'],
+               '--seed', '42', '-r', str(job['reps']), '--verify', '--csv', str(partial), '-q']
+        cmd += ['--sources', '4'] if source is None else ['--source', str(source)]
+        metadata = dict(job=job['id'], commit=revision(), manifest_sha256=digest(OUT / 'jobs.json'),
+                        hostname=host, affinity=affinity, time=time.time(),
+                        OMP_PROC_BIND=os.getenv('OMP_PROC_BIND', 'unset'),
+                        OMP_PLACES=os.getenv('OMP_PLACES', 'unset'), phase_transport='fifo' if is_stats and not is_dij else None)
+        if is_stats and not is_dij:
+            with PhaseStream(summarize) as stream:
+                cmd += ['--phase-log', str(stream.path)]
+                commands.append(cmd)
+                with (OUT / 'META.txt').open('a') as f:
+                    f.write(json.dumps(dict(metadata, command=cmd)) + '\n')
+                run_checked(cmd, partial, log, check=stream.check)
+            phase_rows.extend(stream.rows)
+        else:
+            commands.append(cmd)
+            with (OUT / 'META.txt').open('a') as f:
+                f.write(json.dumps(dict(metadata, command=cmd)) + '\n')
+            run_checked(cmd, partial, log)
+    rows = read_rows(partial)
+    validate_rows(rows, len(job['sources']) * len(job['deltas']) * job['reps'])
+    if any(int(r['stats_build']) != int(is_stats) for r in rows):
+        raise RuntimeError('wrong executable build')
+    phase_summary = None
+    if phase_rows:
+        if len(phase_rows) != len(rows):
+            raise ValueError('missing streamed phase runs')
+        for r in phase_rows:
+            row = next(x for x in rows if x['source'] == r['source'] and x['delta'] == r['delta'])
+            if any(r[a] != int(row[b]) for a, b in (('phases', 'phases'), ('edges_sum', 'edges_scanned'),
+                                                      ('heavy_phases', 'heavy_passes'))):
+                raise ValueError('streamed phases disagree with stats CSV')
+        directory = OUT / 'phase_summaries'
+        directory.mkdir(exist_ok=True)
+        phase_summary = directory / (job['id'] + '.stream.json')
+        temporary = phase_summary.with_suffix('.json.partial')
+        temporary.write_text(json.dumps(dict(version=2, transport='fifo', rows=phase_rows), indent=2) + '\n')
+        temporary.replace(phase_summary)
+    os.replace(partial, final)
+    record = dict(job=job['id'], seconds=time.time() - start, hostname=host, rows=len(rows),
+                  csv_sha256=digest(final), manifest_sha256=digest(OUT / 'jobs.json'),
+                  phase_logs=[], phase_summary=str(phase_summary) if phase_summary else None,
+                  phase_summary_sha256=digest(phase_summary) if phase_summary else None, commands=commands)
+    done.with_suffix('.done.tmp').write_text(json.dumps(record, indent=2) + '\n')
+    os.replace(done.with_suffix('.done.tmp'), done)
+    print(f'{job["id"]}: verified {len(rows)} rows in {record["seconds"]:.2f}s', flush=True)
+
+
+def main():
+    def interrupted(signum, frame):
+        raise TimeoutError(f'worker interrupted by signal {signum}')
+    signal.signal(signal.SIGTERM, interrupted)
+    parser = argparse.ArgumentParser()
+    parser.add_argument('job')
+    args = parser.parse_args()
+    job = next(j for j in load_manifest()['jobs'] if j['id'] == args.job)
+    try:
+        worker(job)
+    except BaseException:
+        failure = traceback.format_exc()
+        (OUT / (job['id'] + '.failed')).write_text(failure)
+        (OUT / 'STOPPED').write_text(failure)
+        raise
+
+
+if __name__ == '__main__':
+    main()

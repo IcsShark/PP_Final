@@ -1,0 +1,14 @@
+{
+  "graph": "/u/cs/111/111550055/pp_data/csr/NY.csr",
+  "n": 264346,
+  "m": 730100,
+  "d_avg": 2.7619,
+  "d_max": 8,
+  "w_min": 1,
+  "w_max": 36946,
+  "zero_out_degree": 0,
+  "sorted_by_weight": true,
+  "delta_rule_dmax": 4618.25,
+  "delta_rule_davg": 13376.97,
+  "delta_sweep": [1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536]
+}

@@ -1,0 +1,11 @@
+commit=1ba51d3236163a0229780c338f4e064e706cdf10
+hostname=cmpt047.hpc.cc.cs.nctu.edu.tw
+module load pp && run -c 6 -- timeout 1200 bash scripts/exp/e0_calibrate.sh setup
+bin/profile /u/cs/111/111550055/pp_data/csr/NY.csr > results/profile/NY.json
+bin/profile /u/cs/111/111550055/pp_data/csr/CTR.csr > results/profile/CTR.json
+bin/profile /u/cs/111/111550055/pp_data/csr/USA.csr > results/profile/USA.json
+bin/profile /u/cs/111/111550055/pp_data/csr/LJ.csr > results/profile/LJ.json
+bin/profile /u/cs/111/111550055/pp_data/csr/OK.csr > results/profile/OK.json
+bin/profile /u/cs/111/111550055/pp_data/csr/kron23.csr > results/profile/kron23.json
+bin/profile /u/cs/111/111550055/pp_data/csr/urand23.csr > results/profile/urand23.json
+bin/profile /u/cs/111/111550055/pp_data/csr/grid2896.csr > results/profile/grid2896.json

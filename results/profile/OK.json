@@ -1,0 +1,14 @@
+{
+  "graph": "/u/cs/111/111550055/pp_data/csr/OK.csr",
+  "n": 3072626,
+  "m": 234370166,
+  "d_avg": 76.2768,
+  "d_max": 33313,
+  "w_min": 1,
+  "w_max": 262143,
+  "zero_out_degree": 185,
+  "sorted_by_weight": true,
+  "delta_rule_dmax": 7.87,
+  "delta_rule_davg": 3436.73,
+  "delta_sweep": [1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536, 131072, 262144]
+}
