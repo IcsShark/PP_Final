@@ -1,5 +1,0 @@
-graph,algo,variant,filter,sched,threads,delta,source,rep,time_ms,phases,buckets,heavy_passes,edges_scanned,relax_ok,expansions,stale,merge_dropped,reached,verified,stats_build
-LJ,delta-omp,all,merge,dynamic:64,1,8192,3660670,0,1631.2827,399,137,0,84769736,9183591,4745886,0,4437706,4400347,1,1
-LJ,delta-omp,all,merge,dynamic:64,1,8192,3097750,0,1615.7243,399,140,0,84542705,9165008,4743034,0,4421975,4400347,1,1
-LJ,delta-omp,all,merge,dynamic:64,1,8192,3646077,0,1598.1364,402,138,0,84293104,9158231,4739403,0,4418829,4400347,1,1
-LJ,delta-omp,all,merge,dynamic:64,1,8192,660591,0,1581.0376,405,134,0,84059413,9150687,4730447,0,4420241,4400347,1,1

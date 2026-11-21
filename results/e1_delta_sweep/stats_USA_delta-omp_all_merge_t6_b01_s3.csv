@@ -1,2 +1,0 @@
-graph,algo,variant,filter,sched,threads,delta,source,rep,time_ms,phases,buckets,heavy_passes,edges_scanned,relax_ok,expansions,stale,merge_dropped,reached,verified,stats_build
-USA,delta-omp,all,merge,dynamic:64,6,2,3263369,0,26480.8271,14107860,14107660,0,57738157,25669239,23955656,0,1713584,23947347,1,1

@@ -1,5 +1,0 @@
-graph,algo,variant,filter,sched,threads,delta,source,rep,time_ms,phases,buckets,heavy_passes,edges_scanned,relax_ok,expansions,stale,merge_dropped,reached,verified,stats_build
-CTR,dijkstra,-,-,-,1,0,10633961,0,1767.7929,0,0,0,33866826,15085114,14081816,1003299,0,14081816,1,1
-CTR,dijkstra,-,-,-,1,0,8998722,0,1829.5460,0,0,0,33866826,15090842,14081816,1009027,0,14081816,1,1
-CTR,dijkstra,-,-,-,1,0,10591570,0,1734.9286,0,0,0,33866826,15091976,14081816,1010161,0,14081816,1,1
-CTR,dijkstra,-,-,-,1,0,1918966,0,1718.7708,0,0,0,33866826,15088049,14081816,1006234,0,14081816,1,1
