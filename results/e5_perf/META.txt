@@ -1,0 +1,448 @@
+E5 hardware-counter experiment
+Metadata generation HEAD: b97aec1c8c5b8afacd7c3dc8e4a445bebf015c65
+Build source commit: b97aec1c8c5b8afacd7c3dc8e4a445bebf015c65 (fetched upstream main)
+Branch: exp/e5-perf; publication remote: fork (Penguin-71630/PP_Final); never main.
+Cluster worktree: /u/cs/111/111550055/devin/PP_Final
+Previous untracked experiment tree preserved intact at:
+/u/cs/111/111550055/devin/PP_Final.pre-e5-1795262155
+Raw .perf/.csv, job logs, probe/build logs and DONE/verification markers: /u/cs/111/111550055/devin/results_raw/e5
+Raw files are outside Git. Only aggregate CSV, metadata, summary and figures are published.
+Required settings: LJ Δ4096 all/merge; USA Δ32768 all/pop.
+Optional settings: OK Δ1024 all/merge; urand23 Δ1024 all/merge.
+All: dynamic,64 (E2 worker default, confirmed against CLI help); seed42; four sources;
+t=1,2,4,6,8,12; A=-r1, B=-r6; three repetitions of each.
+Counter = (median of three B counts - median of three A counts)/20, per event.
+Time = median of three B mean(source-wise medians), milliseconds; same as E2 aggregation.
+Edges scanned = same graph/Δ/t E2 all_runs.csv; denominator is mean over four sources.
+Events: cycles,instructions,cache-references,cache-misses,cycle_activity.stalls_l3_miss,cycle_activity.stalls_mem_any,mem_load_retired.l3_miss,offcore_requests.all_data_rd
+Both stall events, retired L3 misses and offcore reads returned positive numeric probe counts.
+LLC-load-misses: UNSUPPORTED in actual perf stat probe, despite generic perf-list catalogs.
+All eight campaign events are checked in every A/B sample; numeric perf counts are already scaled.
+All OpenMP threads summed by perf default; raw event running percentages retained.
+Triad reference, decimal GB/s: t1=15.5, t2=18.3, t4=20.3, t6=19.7, t8=18.9, t12=18.5
+DRAM random-access latency reference: approximately 67 ns (not remeasured).
+Estimated DRAM BW = cache-misses *64 / (kernel_time_ms*1e6) GB/s;
+lower bound, no prefetch/write-back (assumption; see SUMMARY limitations).
+CPI=cycles/instructions; misses/edge=cache-misses/edges_scanned;
+miss_rate=cache-misses/cache-references; stall fractions=stall cycles/cycles.
+OMP_PROC_BIND and OMP_PLACES unset, as in E2; allocation >= threads.
+One QoS job at a time, flock + empty-scheduler check, timeout1700s per measurement job.
+Verification is separate from perf A/B; any verified=0, WRONG or MISMATCH stops execution.
+
+Reproduction (module load pp before all cluster operations):
+module load pp
+bash scripts/exp/e5_probe.sh
+run -c 12 -- bash scripts/exp/e5_probe.sh --events
+bash scripts/exp/e5_run.sh
+bash scripts/exp/e5_run.sh --optional
+python3 analysis/e5_analysis.py --raw /u/cs/111/111550055/devin/results_raw/e5 --csv-only
+python3 analysis/e5_report.py --raw /u/cs/111/111550055/devin/results_raw/e5
+scp hpc:devin/PP_Final/results/e5_perf/e5_counters.csv results/e5_perf/
+python3 analysis/e5_analysis.py --csv-input results/e5_perf/e5_counters.csv
+Plot rendering is on the local VM (/usr/bin/python3; matplotlib3.10.9).
+Cluster pp module is loaded correctly but contains neither matplotlib nor pip;
+no cluster Python environment or shared configuration was modified.
+Build command: run -c 4 -- make -j4
+Inventory command: run -c 12 -- bash scripts/exp/e5_probe.sh --compute
+Per-combo scheduler command: run -c 12 -- timeout 1700 bash scripts/exp/e5_run.sh --compute GRAPH THREADS
+
+Input/script SHA256:
+6e1a1caeb80b2c625ea8ffb1d98bd25687f828625c31c72d0b29a3ecc737b806  scripts/exp/e5_run.sh
+7de860414871a12062e338a238b08e6a0d1824e693e6c6a5e3914ee4533c3677  scripts/exp/e5_probe.sh
+0f029ae8204939c93afdcdf513ffdba8b7af2bc8db791c33d82ab03572d5cca9  analysis/e5_analysis.py
+164d8b770fc4de20e278b67560c5e35dfcd6aaa330eb92dfcf47b4a33e26fa53  analysis/e5_report.py
+957b0626ba6c42db3d5291bd68c462d140ff158784b5a43030ce0e04367ee4cf  results/e2_scaling/all_runs.csv
+
+Probe host/hardware/affinity/environment and exact executed commands:
++ date --iso-8601=seconds
+2026-11-21T19:56:26+08:00
++ hostname -f
+cmpt046.hpc.cc.cs.nctu.edu.tw
++ git rev-parse HEAD
+b97aec1c8c5b8afacd7c3dc8e4a445bebf015c65
++ lscpu
+Architecture:                            x86_64
+CPU op-mode(s):                          32-bit, 64-bit
+Address sizes:                           39 bits physical, 48 bits virtual
+Byte Order:                              Little Endian
+CPU(s):                                  12
+On-line CPU(s) list:                     0-11
+Vendor ID:                               GenuineIntel
+Model name:                              Intel(R) Core(TM) i5-10500 CPU @ 3.10GHz
+CPU family:                              6
+Model:                                   165
+Thread(s) per core:                      1
+Core(s) per socket:                      12
+Socket(s):                               1
+Stepping:                                3
+BogoMIPS:                                6191.94
+Flags:                                   fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon rep_good nopl xtopology cpuid tsc_known_freq pni pclmulqdq vmx ssse3 fma cx16 pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch cpuid_fault invpcid_single ssbd ibrs ibpb stibp ibrs_enhanced tpr_shadow vnmi flexpriority ept vpid ept_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx rdseed adx smap clflushopt xsaveopt xsavec xgetbv1 xsaves arat umip md_clear flush_l1d arch_capabilities
+Virtualization:                          VT-x
+Hypervisor vendor:                       KVM
+Virtualization type:                     full
+L1d cache:                               384 KiB (12 instances)
+L1i cache:                               384 KiB (12 instances)
+L2 cache:                                48 MiB (12 instances)
+L3 cache:                                16 MiB (1 instance)
+NUMA node(s):                            1
+NUMA node0 CPU(s):                       0-11
+Vulnerability Gather data sampling:      Not affected
+Vulnerability Indirect target selection: Mitigation; Aligned branch/return thunks
+Vulnerability Itlb multihit:             Not affected
+Vulnerability L1tf:                      Not affected
+Vulnerability Mds:                       Not affected
+Vulnerability Meltdown:                  Not affected
+Vulnerability Mmio stale data:           Mitigation; Clear CPU buffers; SMT Host state unknown
+Vulnerability Reg file data sampling:    Not affected
+Vulnerability Retbleed:                  Mitigation; Enhanced IBRS
+Vulnerability Spec rstack overflow:      Not affected
+Vulnerability Spec store bypass:         Mitigation; Speculative Store Bypass disabled via prctl
+Vulnerability Spectre v1:                Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+Vulnerability Spectre v2:                Mitigation; Enhanced / Automatic IBRS; IBPB conditional; PBRSB-eIBRS SW sequence; BHI SW loop, KVM SW loop
+Vulnerability Srbds:                     Unknown: Dependent on hypervisor status
+Vulnerability Tsa:                       Not affected
+Vulnerability Tsx async abort:           Not affected
+Vulnerability Vmscape:                   Not affected
++ nproc
+12
++ taskset -p 4029106
+pid 4029106's current affinity mask: fff
++ printf 'OMP_PROC_BIND=%s OMP_PLACES=%s\n' unset unset
+OMP_PROC_BIND=unset OMP_PLACES=unset
++ cat /proc/sys/kernel/perf_event_paranoid
+1
++ perf --version
+perf version 6.9.10
++ perf list
++ ./bin/sssp --help
++ perf stat -x, -o /u/cs/111/111550055/devin/results_raw/e5/event_probe.perf -e cycles,instructions,cache-references,cache-misses -- python3 -c 'print(sum(i * i for i in range(1000000)))'
+333332833333500000
+
+
+Advanced-event probes:
+cmpt046.hpc.cc.cs.nctu.edu.tw
+
+EVENT=cycle_activity.stalls_l3_miss
+333332833333500000
+# started on Sat Nov 21 19:56:48 2026
+
+6646007,,cycle_activity.stalls_l3_miss,58653218,100.00,,
+
+EVENT=cycle_activity.stalls_mem_any
+333332833333500000
+# started on Sat Nov 21 19:56:48 2026
+
+19704965,,cycle_activity.stalls_mem_any,50922687,100.00,,
+
+EVENT=mem_load_retired.l3_miss
+333332833333500000
+# started on Sat Nov 21 19:56:48 2026
+
+44157,,mem_load_retired.l3_miss,51080140,100.00,,
+
+EVENT=offcore_requests.all_data_rd
+333332833333500000
+# started on Sat Nov 21 19:56:48 2026
+
+1314871,,offcore_requests.all_data_rd,50990026,100.00,,
+
+EVENT=LLC-load-misses
+333332833333500000
+# started on Sat Nov 21 19:56:48 2026
+
+<not supported>,,LLC-load-misses,0,100.00,,
+
+
+Completed measurement job commands:
+LJ t1; host=cmpt046.hpc.cc.cs.nctu.edu.tw; sources=3097750;3646077;3660670;660591
+run -c 12 -- timeout 1700 bash scripts/exp/e5_run.sh --compute LJ 1
+2026-11-21T19:58:37+08:00
+pid 4029173's current affinity mask: fff
+OMP_PROC_BIND=unset OMP_PLACES=unset
+./bin/sssp -g /u/cs/111/111550055/pp_data/csr/LJ.csr -a delta-omp -d 4096 -t 1 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 1 --verify --csv /u/cs/111/111550055/devin/results_raw/e5/LJ/verify.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/LJ/t1/A1.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/LJ.csr -a delta-omp -d 4096 -t 1 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/LJ/t1/A1.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/LJ/t1/B1.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/LJ.csr -a delta-omp -d 4096 -t 1 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/LJ/t1/B1.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/LJ/t1/A2.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/LJ.csr -a delta-omp -d 4096 -t 1 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/LJ/t1/A2.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/LJ/t1/B2.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/LJ.csr -a delta-omp -d 4096 -t 1 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/LJ/t1/B2.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/LJ/t1/A3.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/LJ.csr -a delta-omp -d 4096 -t 1 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/LJ/t1/A3.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/LJ/t1/B3.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/LJ.csr -a delta-omp -d 4096 -t 1 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/LJ/t1/B3.csv -q
+2026-11-21T20:00:44+08:00
+LJ t2; host=cmpt046.hpc.cc.cs.nctu.edu.tw; sources=3097750;3646077;3660670;660591
+run -c 12 -- timeout 1700 bash scripts/exp/e5_run.sh --compute LJ 2
+2026-11-21T20:02:07+08:00
+pid 4029235's current affinity mask: fff
+OMP_PROC_BIND=unset OMP_PLACES=unset
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/LJ/t2/A1.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/LJ.csr -a delta-omp -d 4096 -t 2 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/LJ/t2/A1.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/LJ/t2/B1.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/LJ.csr -a delta-omp -d 4096 -t 2 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/LJ/t2/B1.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/LJ/t2/A2.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/LJ.csr -a delta-omp -d 4096 -t 2 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/LJ/t2/A2.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/LJ/t2/B2.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/LJ.csr -a delta-omp -d 4096 -t 2 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/LJ/t2/B2.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/LJ/t2/A3.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/LJ.csr -a delta-omp -d 4096 -t 2 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/LJ/t2/A3.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/LJ/t2/B3.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/LJ.csr -a delta-omp -d 4096 -t 2 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/LJ/t2/B3.csv -q
+2026-11-21T20:03:06+08:00
+LJ t4; host=cmpt046.hpc.cc.cs.nctu.edu.tw; sources=3097750;3646077;3660670;660591
+run -c 12 -- timeout 1700 bash scripts/exp/e5_run.sh --compute LJ 4
+2026-11-21T20:03:09+08:00
+pid 4029288's current affinity mask: fff
+OMP_PROC_BIND=unset OMP_PLACES=unset
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/LJ/t4/A1.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/LJ.csr -a delta-omp -d 4096 -t 4 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/LJ/t4/A1.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/LJ/t4/B1.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/LJ.csr -a delta-omp -d 4096 -t 4 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/LJ/t4/B1.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/LJ/t4/A2.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/LJ.csr -a delta-omp -d 4096 -t 4 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/LJ/t4/A2.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/LJ/t4/B2.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/LJ.csr -a delta-omp -d 4096 -t 4 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/LJ/t4/B2.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/LJ/t4/A3.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/LJ.csr -a delta-omp -d 4096 -t 4 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/LJ/t4/A3.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/LJ/t4/B3.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/LJ.csr -a delta-omp -d 4096 -t 4 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/LJ/t4/B3.csv -q
+2026-11-21T20:03:43+08:00
+LJ t6; host=cmpt046.hpc.cc.cs.nctu.edu.tw; sources=3097750;3646077;3660670;660591
+run -c 12 -- timeout 1700 bash scripts/exp/e5_run.sh --compute LJ 6
+2026-11-21T20:03:47+08:00
+pid 4029352's current affinity mask: fff
+OMP_PROC_BIND=unset OMP_PLACES=unset
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/LJ/t6/A1.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/LJ.csr -a delta-omp -d 4096 -t 6 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/LJ/t6/A1.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/LJ/t6/B1.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/LJ.csr -a delta-omp -d 4096 -t 6 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/LJ/t6/B1.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/LJ/t6/A2.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/LJ.csr -a delta-omp -d 4096 -t 6 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/LJ/t6/A2.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/LJ/t6/B2.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/LJ.csr -a delta-omp -d 4096 -t 6 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/LJ/t6/B2.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/LJ/t6/A3.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/LJ.csr -a delta-omp -d 4096 -t 6 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/LJ/t6/A3.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/LJ/t6/B3.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/LJ.csr -a delta-omp -d 4096 -t 6 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/LJ/t6/B3.csv -q
+2026-11-21T20:04:13+08:00
+LJ t8; host=cmpt046.hpc.cc.cs.nctu.edu.tw; sources=3097750;3646077;3660670;660591
+run -c 12 -- timeout 1700 bash scripts/exp/e5_run.sh --compute LJ 8
+2026-11-21T20:04:18+08:00
+pid 4029429's current affinity mask: fff
+OMP_PROC_BIND=unset OMP_PLACES=unset
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/LJ/t8/A1.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/LJ.csr -a delta-omp -d 4096 -t 8 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/LJ/t8/A1.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/LJ/t8/B1.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/LJ.csr -a delta-omp -d 4096 -t 8 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/LJ/t8/B1.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/LJ/t8/A2.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/LJ.csr -a delta-omp -d 4096 -t 8 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/LJ/t8/A2.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/LJ/t8/B2.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/LJ.csr -a delta-omp -d 4096 -t 8 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/LJ/t8/B2.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/LJ/t8/A3.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/LJ.csr -a delta-omp -d 4096 -t 8 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/LJ/t8/A3.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/LJ/t8/B3.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/LJ.csr -a delta-omp -d 4096 -t 8 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/LJ/t8/B3.csv -q
+2026-11-21T20:04:44+08:00
+LJ t12; host=cmpt046.hpc.cc.cs.nctu.edu.tw; sources=3097750;3646077;3660670;660591
+run -c 12 -- timeout 1700 bash scripts/exp/e5_run.sh --compute LJ 12
+2026-11-21T20:04:45+08:00
+pid 4029517's current affinity mask: fff
+OMP_PROC_BIND=unset OMP_PLACES=unset
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/LJ/t12/A1.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/LJ.csr -a delta-omp -d 4096 -t 12 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/LJ/t12/A1.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/LJ/t12/B1.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/LJ.csr -a delta-omp -d 4096 -t 12 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/LJ/t12/B1.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/LJ/t12/A2.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/LJ.csr -a delta-omp -d 4096 -t 12 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/LJ/t12/A2.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/LJ/t12/B2.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/LJ.csr -a delta-omp -d 4096 -t 12 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/LJ/t12/B2.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/LJ/t12/A3.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/LJ.csr -a delta-omp -d 4096 -t 12 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/LJ/t12/A3.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/LJ/t12/B3.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/LJ.csr -a delta-omp -d 4096 -t 12 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/LJ/t12/B3.csv -q
+2026-11-21T20:05:09+08:00
+USA t1; host=cmpt046.hpc.cc.cs.nctu.edu.tw; sources=15303106;18011882;18083971;3263369
+run -c 12 -- timeout 1700 bash scripts/exp/e5_run.sh --compute USA 1
+2026-11-21T20:05:12+08:00
+pid 4029637's current affinity mask: fff
+OMP_PROC_BIND=unset OMP_PLACES=unset
+./bin/sssp -g /u/cs/111/111550055/pp_data/csr/USA.csr -a delta-omp -d 32768 -t 1 --variant all --filter pop --sched dynamic\,64 --sources 4 --seed 42 -r 1 --verify --csv /u/cs/111/111550055/devin/results_raw/e5/USA/verify.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/USA/t1/A1.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/USA.csr -a delta-omp -d 32768 -t 1 --variant all --filter pop --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/USA/t1/A1.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/USA/t1/B1.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/USA.csr -a delta-omp -d 32768 -t 1 --variant all --filter pop --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/USA/t1/B1.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/USA/t1/A2.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/USA.csr -a delta-omp -d 32768 -t 1 --variant all --filter pop --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/USA/t1/A2.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/USA/t1/B2.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/USA.csr -a delta-omp -d 32768 -t 1 --variant all --filter pop --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/USA/t1/B2.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/USA/t1/A3.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/USA.csr -a delta-omp -d 32768 -t 1 --variant all --filter pop --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/USA/t1/A3.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/USA/t1/B3.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/USA.csr -a delta-omp -d 32768 -t 1 --variant all --filter pop --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/USA/t1/B3.csv -q
+2026-11-21T20:07:49+08:00
+USA t2; host=cmpt046.hpc.cc.cs.nctu.edu.tw; sources=15303106;18011882;18083971;3263369
+run -c 12 -- timeout 1700 bash scripts/exp/e5_run.sh --compute USA 2
+2026-11-21T20:07:54+08:00
+pid 4029691's current affinity mask: fff
+OMP_PROC_BIND=unset OMP_PLACES=unset
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/USA/t2/A1.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/USA.csr -a delta-omp -d 32768 -t 2 --variant all --filter pop --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/USA/t2/A1.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/USA/t2/B1.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/USA.csr -a delta-omp -d 32768 -t 2 --variant all --filter pop --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/USA/t2/B1.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/USA/t2/A2.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/USA.csr -a delta-omp -d 32768 -t 2 --variant all --filter pop --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/USA/t2/A2.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/USA/t2/B2.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/USA.csr -a delta-omp -d 32768 -t 2 --variant all --filter pop --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/USA/t2/B2.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/USA/t2/A3.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/USA.csr -a delta-omp -d 32768 -t 2 --variant all --filter pop --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/USA/t2/A3.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/USA/t2/B3.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/USA.csr -a delta-omp -d 32768 -t 2 --variant all --filter pop --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/USA/t2/B3.csv -q
+2026-11-21T20:09:31+08:00
+USA t4; host=cmpt046.hpc.cc.cs.nctu.edu.tw; sources=15303106;18011882;18083971;3263369
+run -c 12 -- timeout 1700 bash scripts/exp/e5_run.sh --compute USA 4
+2026-11-21T20:09:32+08:00
+pid 4029744's current affinity mask: fff
+OMP_PROC_BIND=unset OMP_PLACES=unset
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/USA/t4/A1.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/USA.csr -a delta-omp -d 32768 -t 4 --variant all --filter pop --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/USA/t4/A1.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/USA/t4/B1.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/USA.csr -a delta-omp -d 32768 -t 4 --variant all --filter pop --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/USA/t4/B1.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/USA/t4/A2.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/USA.csr -a delta-omp -d 32768 -t 4 --variant all --filter pop --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/USA/t4/A2.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/USA/t4/B2.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/USA.csr -a delta-omp -d 32768 -t 4 --variant all --filter pop --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/USA/t4/B2.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/USA/t4/A3.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/USA.csr -a delta-omp -d 32768 -t 4 --variant all --filter pop --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/USA/t4/A3.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/USA/t4/B3.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/USA.csr -a delta-omp -d 32768 -t 4 --variant all --filter pop --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/USA/t4/B3.csv -q
+2026-11-21T20:10:29+08:00
+USA t6; host=cmpt046.hpc.cc.cs.nctu.edu.tw; sources=15303106;18011882;18083971;3263369
+run -c 12 -- timeout 1700 bash scripts/exp/e5_run.sh --compute USA 6
+2026-11-21T20:10:32+08:00
+pid 4029812's current affinity mask: fff
+OMP_PROC_BIND=unset OMP_PLACES=unset
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/USA/t6/A1.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/USA.csr -a delta-omp -d 32768 -t 6 --variant all --filter pop --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/USA/t6/A1.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/USA/t6/B1.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/USA.csr -a delta-omp -d 32768 -t 6 --variant all --filter pop --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/USA/t6/B1.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/USA/t6/A2.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/USA.csr -a delta-omp -d 32768 -t 6 --variant all --filter pop --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/USA/t6/A2.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/USA/t6/B2.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/USA.csr -a delta-omp -d 32768 -t 6 --variant all --filter pop --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/USA/t6/B2.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/USA/t6/A3.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/USA.csr -a delta-omp -d 32768 -t 6 --variant all --filter pop --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/USA/t6/A3.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/USA/t6/B3.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/USA.csr -a delta-omp -d 32768 -t 6 --variant all --filter pop --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/USA/t6/B3.csv -q
+2026-11-21T20:11:18+08:00
+USA t8; host=cmpt046.hpc.cc.cs.nctu.edu.tw; sources=15303106;18011882;18083971;3263369
+run -c 12 -- timeout 1700 bash scripts/exp/e5_run.sh --compute USA 8
+2026-11-21T20:11:21+08:00
+pid 4029889's current affinity mask: fff
+OMP_PROC_BIND=unset OMP_PLACES=unset
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/USA/t8/A1.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/USA.csr -a delta-omp -d 32768 -t 8 --variant all --filter pop --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/USA/t8/A1.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/USA/t8/B1.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/USA.csr -a delta-omp -d 32768 -t 8 --variant all --filter pop --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/USA/t8/B1.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/USA/t8/A2.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/USA.csr -a delta-omp -d 32768 -t 8 --variant all --filter pop --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/USA/t8/A2.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/USA/t8/B2.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/USA.csr -a delta-omp -d 32768 -t 8 --variant all --filter pop --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/USA/t8/B2.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/USA/t8/A3.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/USA.csr -a delta-omp -d 32768 -t 8 --variant all --filter pop --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/USA/t8/A3.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/USA/t8/B3.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/USA.csr -a delta-omp -d 32768 -t 8 --variant all --filter pop --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/USA/t8/B3.csv -q
+2026-11-21T20:12:09+08:00
+USA t12; host=cmpt046.hpc.cc.cs.nctu.edu.tw; sources=15303106;18011882;18083971;3263369
+run -c 12 -- timeout 1700 bash scripts/exp/e5_run.sh --compute USA 12
+2026-11-21T20:12:12+08:00
+pid 4029978's current affinity mask: fff
+OMP_PROC_BIND=unset OMP_PLACES=unset
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/USA/t12/A1.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/USA.csr -a delta-omp -d 32768 -t 12 --variant all --filter pop --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/USA/t12/A1.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/USA/t12/B1.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/USA.csr -a delta-omp -d 32768 -t 12 --variant all --filter pop --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/USA/t12/B1.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/USA/t12/A2.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/USA.csr -a delta-omp -d 32768 -t 12 --variant all --filter pop --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/USA/t12/A2.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/USA/t12/B2.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/USA.csr -a delta-omp -d 32768 -t 12 --variant all --filter pop --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/USA/t12/B2.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/USA/t12/A3.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/USA.csr -a delta-omp -d 32768 -t 12 --variant all --filter pop --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/USA/t12/A3.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/USA/t12/B3.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/USA.csr -a delta-omp -d 32768 -t 12 --variant all --filter pop --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/USA/t12/B3.csv -q
+2026-11-21T20:13:01+08:00
+OK t1; host=cmpt046.hpc.cc.cs.nctu.edu.tw; sources=1963504;2311060;2320310;418714
+run -c 12 -- timeout 1700 bash scripts/exp/e5_run.sh --compute OK 1
+2026-11-21T20:13:19+08:00
+pid 4030093's current affinity mask: fff
+OMP_PROC_BIND=unset OMP_PLACES=unset
+./bin/sssp -g /u/cs/111/111550055/pp_data/csr/OK.csr -a delta-omp -d 1024 -t 1 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 1 --verify --csv /u/cs/111/111550055/devin/results_raw/e5/OK/verify.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/OK/t1/A1.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/OK.csr -a delta-omp -d 1024 -t 1 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/OK/t1/A1.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/OK/t1/B1.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/OK.csr -a delta-omp -d 1024 -t 1 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/OK/t1/B1.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/OK/t1/A2.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/OK.csr -a delta-omp -d 1024 -t 1 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/OK/t1/A2.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/OK/t1/B2.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/OK.csr -a delta-omp -d 1024 -t 1 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/OK/t1/B2.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/OK/t1/A3.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/OK.csr -a delta-omp -d 1024 -t 1 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/OK/t1/A3.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/OK/t1/B3.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/OK.csr -a delta-omp -d 1024 -t 1 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/OK/t1/B3.csv -q
+2026-11-21T20:17:30+08:00
+OK t2; host=cmpt046.hpc.cc.cs.nctu.edu.tw; sources=1963504;2311060;2320310;418714
+run -c 12 -- timeout 1700 bash scripts/exp/e5_run.sh --compute OK 2
+2026-11-21T20:17:33+08:00
+pid 4030163's current affinity mask: fff
+OMP_PROC_BIND=unset OMP_PLACES=unset
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/OK/t2/A1.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/OK.csr -a delta-omp -d 1024 -t 2 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/OK/t2/A1.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/OK/t2/B1.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/OK.csr -a delta-omp -d 1024 -t 2 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/OK/t2/B1.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/OK/t2/A2.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/OK.csr -a delta-omp -d 1024 -t 2 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/OK/t2/A2.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/OK/t2/B2.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/OK.csr -a delta-omp -d 1024 -t 2 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/OK/t2/B2.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/OK/t2/A3.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/OK.csr -a delta-omp -d 1024 -t 2 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/OK/t2/A3.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/OK/t2/B3.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/OK.csr -a delta-omp -d 1024 -t 2 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/OK/t2/B3.csv -q
+2026-11-21T20:19:26+08:00
+OK t4; host=cmpt046.hpc.cc.cs.nctu.edu.tw; sources=1963504;2311060;2320310;418714
+run -c 12 -- timeout 1700 bash scripts/exp/e5_run.sh --compute OK 4
+2026-11-21T20:19:29+08:00
+pid 4030218's current affinity mask: fff
+OMP_PROC_BIND=unset OMP_PLACES=unset
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/OK/t4/A1.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/OK.csr -a delta-omp -d 1024 -t 4 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/OK/t4/A1.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/OK/t4/B1.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/OK.csr -a delta-omp -d 1024 -t 4 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/OK/t4/B1.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/OK/t4/A2.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/OK.csr -a delta-omp -d 1024 -t 4 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/OK/t4/A2.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/OK/t4/B2.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/OK.csr -a delta-omp -d 1024 -t 4 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/OK/t4/B2.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/OK/t4/A3.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/OK.csr -a delta-omp -d 1024 -t 4 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/OK/t4/A3.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/OK/t4/B3.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/OK.csr -a delta-omp -d 1024 -t 4 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/OK/t4/B3.csv -q
+2026-11-21T20:20:36+08:00
+OK t6; host=cmpt046.hpc.cc.cs.nctu.edu.tw; sources=1963504;2311060;2320310;418714
+run -c 12 -- timeout 1700 bash scripts/exp/e5_run.sh --compute OK 6
+2026-11-21T20:20:40+08:00
+pid 4030288's current affinity mask: fff
+OMP_PROC_BIND=unset OMP_PLACES=unset
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/OK/t6/A1.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/OK.csr -a delta-omp -d 1024 -t 6 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/OK/t6/A1.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/OK/t6/B1.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/OK.csr -a delta-omp -d 1024 -t 6 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/OK/t6/B1.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/OK/t6/A2.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/OK.csr -a delta-omp -d 1024 -t 6 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/OK/t6/A2.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/OK/t6/B2.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/OK.csr -a delta-omp -d 1024 -t 6 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/OK/t6/B2.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/OK/t6/A3.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/OK.csr -a delta-omp -d 1024 -t 6 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/OK/t6/A3.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/OK/t6/B3.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/OK.csr -a delta-omp -d 1024 -t 6 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/OK/t6/B3.csv -q
+2026-11-21T20:21:33+08:00
+OK t8; host=cmpt046.hpc.cc.cs.nctu.edu.tw; sources=1963504;2311060;2320310;418714
+run -c 12 -- timeout 1700 bash scripts/exp/e5_run.sh --compute OK 8
+2026-11-21T20:21:36+08:00
+pid 4030365's current affinity mask: fff
+OMP_PROC_BIND=unset OMP_PLACES=unset
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/OK/t8/A1.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/OK.csr -a delta-omp -d 1024 -t 8 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/OK/t8/A1.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/OK/t8/B1.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/OK.csr -a delta-omp -d 1024 -t 8 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/OK/t8/B1.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/OK/t8/A2.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/OK.csr -a delta-omp -d 1024 -t 8 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/OK/t8/A2.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/OK/t8/B2.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/OK.csr -a delta-omp -d 1024 -t 8 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/OK/t8/B2.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/OK/t8/A3.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/OK.csr -a delta-omp -d 1024 -t 8 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/OK/t8/A3.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/OK/t8/B3.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/OK.csr -a delta-omp -d 1024 -t 8 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/OK/t8/B3.csv -q
+2026-11-21T20:22:29+08:00
+OK t12; host=cmpt046.hpc.cc.cs.nctu.edu.tw; sources=1963504;2311060;2320310;418714
+run -c 12 -- timeout 1700 bash scripts/exp/e5_run.sh --compute OK 12
+2026-11-21T20:22:33+08:00
+pid 4030453's current affinity mask: fff
+OMP_PROC_BIND=unset OMP_PLACES=unset
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/OK/t12/A1.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/OK.csr -a delta-omp -d 1024 -t 12 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/OK/t12/A1.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/OK/t12/B1.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/OK.csr -a delta-omp -d 1024 -t 12 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/OK/t12/B1.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/OK/t12/A2.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/OK.csr -a delta-omp -d 1024 -t 12 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/OK/t12/A2.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/OK/t12/B2.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/OK.csr -a delta-omp -d 1024 -t 12 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/OK/t12/B2.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/OK/t12/A3.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/OK.csr -a delta-omp -d 1024 -t 12 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/OK/t12/A3.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/OK/t12/B3.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/OK.csr -a delta-omp -d 1024 -t 12 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/OK/t12/B3.csv -q
+2026-11-21T20:23:25+08:00
+urand23 t1; host=cmpt046.hpc.cc.cs.nctu.edu.tw; sources=1143138;5360583;6309451;6334703
+run -c 12 -- timeout 1700 bash scripts/exp/e5_run.sh --compute urand23 1
+2026-11-21T20:23:29+08:00
+pid 4030566's current affinity mask: fff
+OMP_PROC_BIND=unset OMP_PLACES=unset
+./bin/sssp -g /u/cs/111/111550055/pp_data/csr/urand23.csr -a delta-omp -d 1024 -t 1 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 1 --verify --csv /u/cs/111/111550055/devin/results_raw/e5/urand23/verify.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/urand23/t1/A1.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/urand23.csr -a delta-omp -d 1024 -t 1 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/urand23/t1/A1.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/urand23/t1/B1.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/urand23.csr -a delta-omp -d 1024 -t 1 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/urand23/t1/B1.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/urand23/t1/A2.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/urand23.csr -a delta-omp -d 1024 -t 1 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/urand23/t1/A2.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/urand23/t1/B2.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/urand23.csr -a delta-omp -d 1024 -t 1 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/urand23/t1/B2.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/urand23/t1/A3.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/urand23.csr -a delta-omp -d 1024 -t 1 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/urand23/t1/A3.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/urand23/t1/B3.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/urand23.csr -a delta-omp -d 1024 -t 1 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/urand23/t1/B3.csv -q
+2026-11-21T20:29:33+08:00
+urand23 t2; host=cmpt046.hpc.cc.cs.nctu.edu.tw; sources=1143138;5360583;6309451;6334703
+run -c 12 -- timeout 1700 bash scripts/exp/e5_run.sh --compute urand23 2
+2026-11-21T20:29:36+08:00
+pid 4030637's current affinity mask: fff
+OMP_PROC_BIND=unset OMP_PLACES=unset
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/urand23/t2/A1.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/urand23.csr -a delta-omp -d 1024 -t 2 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/urand23/t2/A1.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/urand23/t2/B1.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/urand23.csr -a delta-omp -d 1024 -t 2 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/urand23/t2/B1.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/urand23/t2/A2.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/urand23.csr -a delta-omp -d 1024 -t 2 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/urand23/t2/A2.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/urand23/t2/B2.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/urand23.csr -a delta-omp -d 1024 -t 2 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/urand23/t2/B2.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/urand23/t2/A3.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/urand23.csr -a delta-omp -d 1024 -t 2 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/urand23/t2/A3.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/urand23/t2/B3.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/urand23.csr -a delta-omp -d 1024 -t 2 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/urand23/t2/B3.csv -q
+2026-11-21T20:32:24+08:00
+urand23 t4; host=cmpt046.hpc.cc.cs.nctu.edu.tw; sources=1143138;5360583;6309451;6334703
+run -c 12 -- timeout 1700 bash scripts/exp/e5_run.sh --compute urand23 4
+2026-11-21T20:32:28+08:00
+pid 4030694's current affinity mask: fff
+OMP_PROC_BIND=unset OMP_PLACES=unset
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/urand23/t4/A1.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/urand23.csr -a delta-omp -d 1024 -t 4 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/urand23/t4/A1.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/urand23/t4/B1.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/urand23.csr -a delta-omp -d 1024 -t 4 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/urand23/t4/B1.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/urand23/t4/A2.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/urand23.csr -a delta-omp -d 1024 -t 4 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/urand23/t4/A2.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/urand23/t4/B2.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/urand23.csr -a delta-omp -d 1024 -t 4 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/urand23/t4/B2.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/urand23/t4/A3.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/urand23.csr -a delta-omp -d 1024 -t 4 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/urand23/t4/A3.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/urand23/t4/B3.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/urand23.csr -a delta-omp -d 1024 -t 4 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/urand23/t4/B3.csv -q
+2026-11-21T20:34:10+08:00
+urand23 t6; host=cmpt046.hpc.cc.cs.nctu.edu.tw; sources=1143138;5360583;6309451;6334703
+run -c 12 -- timeout 1700 bash scripts/exp/e5_run.sh --compute urand23 6
+2026-11-21T20:34:15+08:00
+pid 4030760's current affinity mask: fff
+OMP_PROC_BIND=unset OMP_PLACES=unset
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/urand23/t6/A1.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/urand23.csr -a delta-omp -d 1024 -t 6 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/urand23/t6/A1.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/urand23/t6/B1.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/urand23.csr -a delta-omp -d 1024 -t 6 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/urand23/t6/B1.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/urand23/t6/A2.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/urand23.csr -a delta-omp -d 1024 -t 6 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/urand23/t6/A2.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/urand23/t6/B2.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/urand23.csr -a delta-omp -d 1024 -t 6 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/urand23/t6/B2.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/urand23/t6/A3.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/urand23.csr -a delta-omp -d 1024 -t 6 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/urand23/t6/A3.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/urand23/t6/B3.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/urand23.csr -a delta-omp -d 1024 -t 6 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/urand23/t6/B3.csv -q
+2026-11-21T20:35:37+08:00
+urand23 t8; host=cmpt046.hpc.cc.cs.nctu.edu.tw; sources=1143138;5360583;6309451;6334703
+run -c 12 -- timeout 1700 bash scripts/exp/e5_run.sh --compute urand23 8
+2026-11-21T20:35:40+08:00
+pid 4030845's current affinity mask: fff
+OMP_PROC_BIND=unset OMP_PLACES=unset
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/urand23/t8/A1.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/urand23.csr -a delta-omp -d 1024 -t 8 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/urand23/t8/A1.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/urand23/t8/B1.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/urand23.csr -a delta-omp -d 1024 -t 8 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/urand23/t8/B1.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/urand23/t8/A2.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/urand23.csr -a delta-omp -d 1024 -t 8 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/urand23/t8/A2.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/urand23/t8/B2.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/urand23.csr -a delta-omp -d 1024 -t 8 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/urand23/t8/B2.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/urand23/t8/A3.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/urand23.csr -a delta-omp -d 1024 -t 8 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/urand23/t8/A3.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/urand23/t8/B3.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/urand23.csr -a delta-omp -d 1024 -t 8 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/urand23/t8/B3.csv -q
+2026-11-21T20:37:00+08:00
+urand23 t12; host=cmpt046.hpc.cc.cs.nctu.edu.tw; sources=1143138;5360583;6309451;6334703
+run -c 12 -- timeout 1700 bash scripts/exp/e5_run.sh --compute urand23 12
+2026-11-21T20:37:03+08:00
+pid 4030937's current affinity mask: fff
+OMP_PROC_BIND=unset OMP_PLACES=unset
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/urand23/t12/A1.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/urand23.csr -a delta-omp -d 1024 -t 12 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/urand23/t12/A1.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/urand23/t12/B1.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/urand23.csr -a delta-omp -d 1024 -t 12 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/urand23/t12/B1.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/urand23/t12/A2.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/urand23.csr -a delta-omp -d 1024 -t 12 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/urand23/t12/A2.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/urand23/t12/B2.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/urand23.csr -a delta-omp -d 1024 -t 12 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/urand23/t12/B2.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/urand23/t12/A3.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/urand23.csr -a delta-omp -d 1024 -t 12 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 1 --csv /u/cs/111/111550055/devin/results_raw/e5/urand23/t12/A3.csv -q
+perf stat -x\, -o /u/cs/111/111550055/devin/results_raw/e5/urand23/t12/B3.perf -e cycles\,instructions\,cache-references\,cache-misses\,cycle_activity.stalls_l3_miss\,cycle_activity.stalls_mem_any\,mem_load_retired.l3_miss\,offcore_requests.all_data_rd -- ./bin/sssp -g /u/cs/111/111550055/pp_data/csr/urand23.csr -a delta-omp -d 1024 -t 12 --variant all --filter merge --sched dynamic\,64 --sources 4 --seed 42 -r 6 --csv /u/cs/111/111550055/devin/results_raw/e5/urand23/t12/B3.csv -q
+2026-11-21T20:38:20+08:00
